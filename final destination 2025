@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Destination: Bloodlines - Watch Online</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #181818;
+      color: #fff;
+      min-height: 100vh;
+    }
+    .header {
+      background: #141414;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #e50914;
+      text-decoration: none;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      background: rgba(20,20,20,0.98);
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .movie-poster {
+      width: 320px;
+      min-width: 220px;
+      border-radius: 8px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+      object-fit: cover;
+      background: #222;
+    }
+    .movie-details {
+      flex: 1;
+      min-width: 260px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .movie-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .movie-meta {
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      color: #bbb;
+    }
+    .movie-info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 1.5rem 0;
+      font-size: 1rem;
+    }
+    .movie-info-list li {
+      margin-bottom: 0.5rem;
+    }
+    .section-title {
+      font-size: 1.2rem;
+      color: #e50914;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+    .cast-list, .writer-list, .genre-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #fff;
+      font-size: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1.2rem;
+    }
+    .video-player-placeholder {
+      width: 100%;
+      height: 360px;
+      background: #111;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      font-size: 1.3rem;
+      border: 2px dashed #333;
+    }
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .movie-poster {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+  </style>
+  <link href="https://vjs.zencdn.net/8.22.0/video-js.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="header">
+    <a href="#" class="logo">Marco</a>
+  </div>
+  <div class="container">
+    <img class="movie-poster" src="https://m.media-amazon.com/images/M/MV5BMzc3OWFhZWItMTE2Yy00N2NmLTg1YTktNGVlNDY0ODQ5YjNlXkEyXkFqcGc@._V1_.jpg" alt="Final Destination: Bloodlines Poster">
+    <div class="movie-details">
+      <div class="movie-title">Final Destination: Bloodlines</div>
+      <div class="movie-meta">Release Year: 2025 &nbsp;|&nbsp; Language: Dual Audio (Hindi - English)</div>
+      <ul class="movie-info-list">
+        <li><b>Size:</b> 1GB - 410MB - 2.2GB</li>
+        <li><b>Format:</b> MKV</li>
+        <li><b>Runtime:</b> 1h 50m minutes</li>
+        <li><b>Quality:</b> PRE-HD 720p - 480p - 1080p</li>
+        <li><b>Original language:</b> En</li>
+        <li><b>Genres:</b> Horror, Mystery</li>
+      </ul>
+      <div class="section-title">Writers</div>
+      <ul class="writer-list">
+        <li>Guy Busick</li>
+        <li>Lori Evans Taylor</li>
+        <li>Jon Watts</li>
+        <li>Jeffrey Reddick</li>
+      </ul>
+      <div class="section-title">Cast</div>
+      <ul class="cast-list">
+        <li>Tony Todd</li>
+        <li>Richard Harmon</li>
+        <li>Rya Kihlstedt</li>
+        <li>Anna Lore</li>
+        <li>Teo Briones</li>
+        <li>Owen Patrick Joyner</li>
+        <li>Alex Zahara</li>
+        <li>Travis Turner</li>
+        <li>Tinpo Lee</li>
+        <li>Matty Finochio</li>
+        <li>Sophia Chapdelaine</li>
+        <li>Brenna Llewellyn</li>
+        <li>Yvette Ferguson</li>
+        <li>Gabrielle Rose</li>
+        <li>Max Lloyd-Jones</li>
+        <li>Kaitlyn Santa Juana</li>
+        <li>April Telek</li>
+        <li>Brec Bassinger</li>
+      </ul>
+    </div>
+  </div>
+  <div class="container" style="margin-top:0;">
+    <div class="video-player-placeholder">
+     <video
+  id="my-video"
+  class="video-js"
+  controls
+  preload="auto"
+  width="640"
+  height="264"
+  poster="MY_VIDEO_POSTER.jpg"
+  data-setup="{}"
+>
+  <source src="https://s-delivery38.mxcontent.net/d/gje4x81judop86/mq6i9l3o1rbizpctqo2sjtalqql7ym?ab=0&r=https%3A%2F%2Fmixdrop.my%2Ff%2Fgje4x81judop86" type="video/mp4" />
+  <source src="https://s-delivery38.mxcontent.net/d/gje4x81judop86/mq6i9l3o1rbizpctqo2sjtalqql7ym?ab=0&r=https%3A%2F%2Fmixdrop.my%2Ff%2Fgje4x81judop86" type="video/webm" />
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a
+    web browser that
+    <a href="https://videojs.com/html5-video-support/" target="_blank"
+      >supports HTML5 video</a
+    >
+  </p>
+</video>
+    </div>
+  </div>
+ <script src="https://vjs.zencdn.net/8.22.0/video.min.js"></script>
+</body>
+</html>
