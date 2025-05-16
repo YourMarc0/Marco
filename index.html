@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marco - Movie Streaming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">Marco</a>
+    <form class="search-bar" onsubmit="event.preventDefault(); searchMovies();">
+      <input type="text" id="search-input" placeholder="Search movies, genres, actors..." autocomplete="off">
+      <button type="submit">Search</button>
+    </form>
+  </header>
+  <main>
+    <h2>Latest Uploads</h2>
+    <div id="latest-uploads"></div>
+    <div id="search-section" style="display:none;">
+      <h2>Search Results</h2>
+      <div id="search-results"></div>
+    </div>
+  </main>
+  <footer>
+    <div class="contact-section">
+      <h3>Contact Us</h3>
+      <form onsubmit="event.preventDefault(); alert('Thank you for contacting us!');">
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <label for="message">Message</label>
+        <textarea id="message" rows="4" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <div style="margin-top:1rem;">&copy; 2024 Marco Movie Streaming</div>
+  </footer>
+  <script src="index.js"></script>
+</body>
+</html>
