@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marco - Movie Streaming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #181818;
+      color: #fff;
+    }
+    header {
+      background: #141414;
+      padding: 1.5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: #e50914;
+      text-decoration: none;
+    }
+    header .search-bar {
+      display: flex;
+      align-items: center;
+    }
+    header .search-bar input {
+      padding: 0.5rem 1rem;
+      border-radius: 4px 0 0 4px;
+      border: none;
+      font-size: 1rem;
+    }
+    header .search-bar button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background: #e50914;
+      color: #fff;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    main {
+      padding: 2rem;
+    }
+    h2 {
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+    #latest-uploads,
+    #search-results {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
+    }
+    @media (max-width:600px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      main {
+        padding: 1rem;
+      }
+      #latest-uploads,
+      #search-results {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      }
+    }
+    .movie-card {
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .movie-card:hover {
+      transform: scale(1.05);
+    }
+    .movie-thumb {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+    .movie-info {
+      padding: 0.8rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .movie-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .movie-meta {
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+    .no-results {
+      grid-column: 1/-1;
+      text-align: center;
+      color: #bbb;
+      font-size: 1.2rem;
+      margin-top: 2rem;
+    }
+    footer {
+      background: #141414;
+      color: #bbb;
+      text-align: center;
+      padding: 2rem 1rem 1rem 1rem;
+      margin-top: 3rem;
+    }
+    .contact-section {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #222;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .contact-section h3 {
+      margin-top: 0;
+      color: #e50914;
+    }
+    .contact-section label {
+      display: block;
+      margin: 0.5rem 0 0.2rem 0;
+      font-size: 1rem;
+    }
+    .contact-section input,
+    .contact-section textarea {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: none;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      background: #181818;
+      color: #fff;
+    }
+    .contact-section button {
+      background: #e50914;
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo">Marco</a>
+    <form class="search-bar" onsubmit="event.preventDefault(); searchMovies();">
+      <input type="text" id="search-input" placeholder="Search movies, genres, actors..." autocomplete="off">
+      <button type="submit">Search</button>
+    </form>
+  </header>
+  <main>
+    <h2>Latest Uploads</h2>
+    <div id="latest-uploads"></div>
+    <div id="search-section" style="display:none;">
+      <h2>Search Results</h2>
+      <div id="search-results"></div>
+    </div>
+  </main>
+  <footer>
+    <div class="contact-section">
+      <h3>Contact Us</h3>
+      <form onsubmit="event.preventDefault(); alert('Thank you for contacting us!');">
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <label for="message">Message</label>
+        <textarea id="message" rows="4" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <div style="margin-top:1rem;">&copy; 2024 Marco Movie Streaming</div>
+  </footer>
+  <script>
+    // Demo movie data (replace with backend/API in production)
+    const movies = [
+      {
+        title: "The Lost City",
+        genre: "Adventure",
+        actors: ["Sandra Bullock", "Channing Tatum"],
+        thumb: "https://image.tmdb.org/t/p/w500/1.jpg",
+        year: 2022
+      },
+      {
+        title: "Night Hunter",
+        genre: "Thriller",
+        actors: ["Henry Cavill"],
+        thumb: "https://image.tmdb.org/t/p/w500/2.jpg",
+        year: 2021
+      },
+      {
+        title: "Cosmic Dawn",
+        genre: "Sci-Fi",
+        actors: ["Camille Rowe"],
+        thumb: "https://image.tmdb.org/t/p/w500/3.jpg",
+        year: 2023
+      },
+      {
+        title: "Jungle Cruise",
+        genre: "Adventure",
+        actors: ["Dwayne Johnson", "Emily Blunt"],
+        thumb: "https://image.tmdb.org/t/p/w500/4.jpg",
+        year: 2021
+      },
+      {
+        title: "Red Notice",
+        genre: "Action",
+        actors: ["Gal Gadot", "Ryan Reynolds"],
+        thumb: "https://image.tmdb.org/t/p/w500/5.jpg",
+        year: 2022
+      },
+      {
+        title: "The Batman",
+        genre: "Action",
+        actors: ["Robert Pattinson"],
+        thumb: "https://image.tmdb.org/t/p/w500/6.jpg",
+        year: 2022
+      },
+      {
+        title: "Encanto",
+        genre: "Animation",
+        actors: ["Stephanie Beatriz"],
+        thumb: "https://image.tmdb.org/t/p/w500/7.jpg",
+        year: 2021
+      },
+      {
+        title: "Spider-Man: No Way Home",
+        genre: "Action",
+        actors: ["Tom Holland"],
+        thumb: "https://image.tmdb.org/t/p/w500/8.jpg",
+        year: 2021
+      }
+    ];
+
+    // Render latest uploads
+    function renderLatest() {
+      const container = document.getElementById('latest-uploads');
+      container.innerHTML = movies.slice(0, 8).map(function(movie) {
+        return `
+          <div class="movie-card">
+            <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
+            <div class="movie-info">
+              <div class="movie-title">${movie.title}</div>
+              <div class="movie-meta">${movie.genre} | ${movie.year}</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    renderLatest();
+
+    // Search functionality
+    function searchMovies() {
+      const query = document.getElementById('search-input').value.trim().toLowerCase();
+      const results = movies.filter(function(movie) {
+        return movie.title.toLowerCase().includes(query) ||
+               movie.genre.toLowerCase().includes(query) ||
+               movie.actors.some(function(actor) {
+                 return actor.toLowerCase().includes(query);
+               });
+      });
+      const section = document.getElementById('search-section');
+      const container = document.getElementById('search-results');
+      if (query === "") {
+        section.style.display = 'none';
+        return;
+      }
+      section.style.display = 'block';
+      if (results.length === 0) {
+        container.innerHTML = '<div class="no-results">No movies found.</div>';
+      } else {
+        container.innerHTML = results.map(function(movie) {
+          return `
+            <div class="movie-card">
+              <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
+              <div class="movie-info">
+                <div class="movie-title">${movie.title}</div>
+                <div class="movie-meta">${movie.genre} | ${movie.year}</div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+  </script>
+</body>
+</html>
