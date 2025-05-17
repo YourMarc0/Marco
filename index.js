@@ -1,60 +1,24 @@
 // Demo movie data (replace with backend/API in production)
 const movies = [
   {
-    title: "The Lost City",
-    genre: "Adventure",
-    actors: ["Sandra Bullock", "Channing Tatum"],
-    thumb: "https://image.tmdb.org/t/p/w500/1.jpg",
-    year: 2022
+    title: "Thunderbolts (2025)",
+    genre: "Action, Adventure, Superhero",
+    actors: ["Florence Pugh", "Sebastian Stan", "David Harbour"],
+    thumb: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSe5hUGbdfpD9GerQdpjIDe6HgB8Kry2mzGejX7f30FqY2tUqi-",
+    year: 2025,
+    page: "thunderbolts.html"
   },
   {
-    title: "Night Hunter",
-    genre: "Thriller",
-    actors: ["Henry Cavill"],
-    thumb: "https://image.tmdb.org/t/p/w500/2.jpg",
-    year: 2021
-  },
-  {
-    title: "Cosmic Dawn",
-    genre: "Sci-Fi",
-    actors: ["Camille Rowe"],
-    thumb: "https://image.tmdb.org/t/p/w500/3.jpg",
-    year: 2023
-  },
-  {
-    title: "Jungle Cruise",
-    genre: "Adventure",
-    actors: ["Dwayne Johnson", "Emily Blunt"],
-    thumb: "https://image.tmdb.org/t/p/w500/4.jpg",
-    year: 2021
-  },
-  {
-    title: "Red Notice",
-    genre: "Action",
-    actors: ["Gal Gadot", "Ryan Reynolds"],
-    thumb: "https://image.tmdb.org/t/p/w500/5.jpg",
-    year: 2022
-  },
-  {
-    title: "The Batman",
-    genre: "Action",
-    actors: ["Robert Pattinson"],
-    thumb: "https://image.tmdb.org/t/p/w500/6.jpg",
-    year: 2022
-  },
-  {
-    title: "Encanto",
-    genre: "Animation",
-    actors: ["Stephanie Beatriz"],
-    thumb: "https://image.tmdb.org/t/p/w500/7.jpg",
-    year: 2021
-  },
-  {
-    title: "Spider-Man: No Way Home",
-    genre: "Action",
-    actors: ["Tom Holland"],
-    thumb: "https://image.tmdb.org/t/p/w500/8.jpg",
-    year: 2021
+    title: "Final Destination (2000)",
+    genre: "Horror, Thriller, Supernatural",
+    actors: [
+      "Devon Sawa", "Ali Larter", "Kerr Smith", "Kristen Cloke",
+      "Seann William Scott", "Chad Donella", "Amanda Detmer",
+      "Daniel Roebuck", "Roger Guenveur Smith"
+    ],
+    thumb: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSRY-xDKrIC0cj-mHHeX9A6K3s3fXn4FjsycWtbRBx2Jd3HcuF",
+    year: 2000,
+    page: "finaldestination.html"
   }
 ];
 
@@ -62,35 +26,11 @@ const movies = [
 function renderLatest() {
   const container = document.getElementById('latest-uploads');
   container.innerHTML = movies.slice(0, 8).map(function(movie) {
-    if (movie.title === "Jungle Cruise") {
-      return `
-        <div class="movie-card">
-          <a href="final-destination-bloodlines.html">
-            <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
-          </a>
-          <div class="movie-info">
-            <div class="movie-title">${movie.title}</div>
-            <div class="movie-meta">${movie.genre} | ${movie.year}</div>
-          </div>
-        </div>
-      `;
-    }
-    if (movie.title === "The Batman") {
-      return `
-        <div class="movie-card">
-          <a href="finaldestination.html">
-            <img class="movie-thumb" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNFSPlzSzvfDieqjCJXOU717GcZj0yyBPmDS_UGc0G6qS9TjEn-9xgruwmGbgt4-v_zCsCZg" alt="${movie.title}">
-          </a>
-          <div class="movie-info">
-            <div class="movie-title">${movie.title}</div>
-            <div class="movie-meta">${movie.genre} | ${movie.year}</div>
-          </div>
-        </div>
-      `;
-    }
     return `
       <div class="movie-card">
-        <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
+        <a href="${movie.page}">
+          <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
+        </a>
         <div class="movie-info">
           <div class="movie-title">${movie.title}</div>
           <div class="movie-meta">${movie.genre} | ${movie.year}</div>
