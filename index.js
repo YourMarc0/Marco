@@ -6,7 +6,7 @@ const movies = [
     actors: ["Florence Pugh", "Sebastian Stan", "David Harbour"],
     thumb: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSe5hUGbdfpD9GerQdpjIDe6HgB8Kry2mzGejX7f30FqY2tUqi-",
     year: 2025,
-    page: "thunderbolts.html"
+    page: "https://imthemarco.blogspot.com/2025/05/final-destination.html"
   },
   {
     title: "Final Destination (2000)",
@@ -18,7 +18,21 @@ const movies = [
     ],
     thumb: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSRY-xDKrIC0cj-mHHeX9A6K3s3fXn4FjsycWtbRBx2Jd3HcuF",
     year: 2000,
-    page: "finaldestination.html"
+    page: "https://imthemarco.blogspot.com/2025/05/final-destination-2000-watch-online.html"
+  },
+  {
+    title: "Nosferatu (1922)",
+    genre: "Horror, Classic, Supernatural",
+    actors: [
+      "Max Schreck",
+      "Gustav von Wangenheim",
+      "Greta Schröder",
+      "Alexander Granach",
+      "Ruth Landshoff"
+    ],
+    thumb: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS8xN-4LYoDze_4xWRyGORMfbVxkC5J_X27fAdmEsLvKxVaRkK2",
+    year: 1922,
+    page: "https://imthemarco.blogspot.com/2025/05/nosferatu-1922-watch-online-root.html"
   }
 ];
 
