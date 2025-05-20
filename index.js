@@ -81,7 +81,7 @@ const movies = [
       "Javier Molina",
       "Jimmy Gonzales"
     ],
-    thumb: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaY1jXhY5_LIZWQud4Xp-V2F0f4WaZWuZnexHrw7_u6AnyNsjXAv0tFxQi0O_RpcFubm3kmovie",
+    thumb: "https://resizing.flixster.com/MI4gB_erP2feQJ7f-yynf5HbSK8=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p28068782_v_v13_ac.jpg",
     year: 2024,
     page: "https://imthemarco.blogspot.com/2025/05/absolution.html",
     director: "Hans Petter Moland",
