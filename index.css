@@ -293,3 +293,38 @@ footer {
     height: 140px;
   }
 }
+.genre-menu ul { 
+   list-style: none; 
+   margin: 0; 
+   padding: 0; 
+   display: flex; 
+   gap: 2rem; 
+ } 
+ .genre-item { 
+   position: relative; 
+   cursor: pointer; 
+   padding: 0.5rem 1rem; 
+   color: #fff; 
+   font-weight: bold; 
+ } 
+ .genre-dropdown { 
+   position: absolute; 
+   top: 2rem; 
+   left: 0; 
+   background: #232526; 
+   border-radius: 6px; 
+   box-shadow: 0 2px 8px rgba(0,0,0,0.3); 
+   display: none; 
+   min-width: 120px; 
+   z-index: 10; 
+ } 
+ .genre-dropdown li { 
+   padding: 0.7rem 1.2rem; 
+   color: #fff; 
+   cursor: pointer; 
+   transition: background 0.2s; 
+ } 
+ .genre-dropdown li:hover { 
+   background: #e50914; 
+   color: #fff; 
+ }
