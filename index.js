@@ -147,3 +147,28 @@ function searchMovies() {
     `;
   }
 }
+
+function showGenreMenu() {
+  document.getElementById('genre-dropdown').style.display = 'block';
+}
+function hideGenreMenu() {
+  document.getElementById('genre-dropdown').style.display = 'none';
+}
+function filterByGenre(genre) {
+  const filtered = movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()));
+  const container = document.getElementById('latest-uploads');
+  container.innerHTML = filtered.map(function(movie) {
+    return `
+      <div class="movie-card">
+        <a href="${movie.page}">
+          <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
+        </a>
+        <div class="movie-info">
+          <div class="movie-title">${movie.title}</div>
+          <div class="movie-meta">${movie.genre} | ${movie.year}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  hideGenreMenu();
+}
