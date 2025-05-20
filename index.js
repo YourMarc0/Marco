@@ -33,6 +33,26 @@ const movies = [
     thumb: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS8xN-4LYoDze_4xWRyGORMfbVxkC5J_X27fAdmEsLvKxVaRkK2",
     year: 1922,
     page: "https://imthemarco.blogspot.com/2025/05/nosferatu-1922-watch-online-root.html"
+  },
+  {
+    title: "The Karate Kid (1984)",
+    genre: "Action, Drama, Sport",
+    actors: [
+      "Ralph Macchio",
+      "Pat Morita",
+      "Elisabeth Shue"
+    ],
+    thumb: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn1.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcS3_ZveMBrYaAsRJM8oBm0yUhhixMIhJL9t42G7kyDBsQGu0wZ3&psig=AOvVaw36AehMn_SLaKZHnHuXnVWj&ust=1747807193947000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPCIw6qvsY0DFQAAAAAdAAAAABAE",
+    year: 1984,
+    page: "https://imthemarco.blogspot.com/2025/05/karatekid.html"
+  },
+  {
+    title: "The Bhootnii (2025)",
+    genre: "Horror, Comedy, Supernatural",
+    actors: ["Unknown"],
+    thumb: "https://m.media-amazon.com/images/M/MV5BYTllODlhMGUtNTRlOC00Y2U3LTlmZWUtZDExM2I0ZDkwMTZkXkEyXkFqcGc@._V1_.jpg",
+    year: 2025,
+    page: "https://imthemarco.blogspot.com/2025/05/the-bhootni.html"
   }
 ];
 
@@ -69,22 +89,25 @@ function searchMovies() {
   const container = document.getElementById('search-results');
   if (query === "") {
     section.style.display = 'none';
+    container.innerHTML = "";
     return;
   }
   section.style.display = 'block';
   if (results.length === 0) {
     container.innerHTML = '<div class="no-results">No movies found.</div>';
   } else {
-    container.innerHTML = results.map(function(movie) {
-      return `
-        <div class="movie-card">
-          <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
-          <div class="movie-info">
-            <div class="movie-title">${movie.title}</div>
-            <div class="movie-meta">${movie.genre} | ${movie.year}</div>
-          </div>
-        </div>
-      `;
-    }).join('');
+    // Show as a dropdown list with image and icon like in the reference
+    container.innerHTML = `
+      <div class="search-dropdown">
+        ${results.map(function(movie) {
+          return `
+            <a class="search-result-item" href="${movie.page}">
+              <img class="search-thumb" src="${movie.thumb}" alt="${movie.title}">
+              <span class="search-title">${movie.title}</span>
+            </a>
+          `;
+        }).join('')}
+      </div>
+    `;
   }
 }
