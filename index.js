@@ -53,6 +53,42 @@ const movies = [
     thumb: "https://m.media-amazon.com/images/M/MV5BYTllODlhMGUtNTRlOC00Y2U3LTlmZWUtZDExM2I0ZDkwMTZkXkEyXkFqcGc@._V1_.jpg",
     year: 2025,
     page: "https://imthemarco.blogspot.com/2025/05/the-bhootni.html"
+  },
+  {
+    title: "Heretic (2024)",
+    genre: "Horror, Thriller",
+    actors: [
+      "Hugh Grant",
+      "Sophie Thatcher",
+      "Chloe East",
+      "Topher Grace"
+    ],
+    thumb: "https://www.google.com/url?sa=i&url=https%3A%2F%2Fencrypted-tbn2.gstatic.com%2Fimages%3Fq%3Dtbn%3AANd9GcQT6Z8iVA_F6OAUgbSkV7dAZmV5rY-zUp_4lNbqChfu4qlf8mH4&psig=AOvVaw04ewySql7vIGWzWcAfTzUM&ust=1747816483544000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCLCt-vfRsY0DFQAAAAAdAAAAABAE",
+    year: 2024,
+    page: "https://imthemarco.blogspot.com/2025/05/heretic.html",
+    director: "Scott Beck",
+    runtime: "1h 29m",
+    description: "Two young religious women are drawn into a game of cat-and-mouse in the house of a strange man.",
+    review: "A tense, atmospheric horror-thriller with strong performances and chilling suspense.",
+    download: "https://drive.google.com/file/d/1dcyR7i-Vpl2T-Q4iuQ3W5jSA5leNrxWK/view?usp=sharing"
+  },
+  {
+    title: "Absolution (2024) Hindi Dubbed Movie",
+    genre: "Action, Crime, Drama",
+    actors: [
+      "Liam Neeson",
+      "Daniel Diemer",
+      "Javier Molina",
+      "Jimmy Gonzales"
+    ],
+    thumb: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaY1jXhY5_LIZWQud4Xp-V2F0f4WaZWuZnexHrw7_u6AnyNsjXAv0tFxQi0O_RpcFubm3kmovie",
+    year: 2024,
+    page: "https://imthemarco.blogspot.com/2025/05/absolution.html",
+    director: "Hans Petter Moland",
+    runtime: "1h 44m",
+    description: "An aging gangster attempts to reconnect with his children and rectify the mistakes in his past, but the criminal underworld won't loosen their grip willingly.",
+    review: "\"Absolution\" delivers a gritty crime drama with strong performances, especially from Liam Neeson. While the plot treads familiar ground, the emotional stakes and action sequences keep viewers engaged.",
+    download: "https://drive.google.com/file/d/1Ymxbq312ipkc-dFvc3zwQtJWTm0M_Jrc/view?usp=sharing"
   }
 ];
 
