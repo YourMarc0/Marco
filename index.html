@@ -5,10 +5,47 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marco - Movie Streaming</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
+  <!-- Netflix-style intro animation overlay -->
+  <div id="marco-intro">
+    <div class="tron-bike tron-bike-left">
+      <svg width="100" height="40" viewBox="0 0 100 40">
+        <ellipse cx="25" cy="30" rx="15" ry="15" fill="#ff003c" filter="url(#glowL)" />
+        <ellipse cx="75" cy="30" rx="15" ry="15" fill="#ff003c" filter="url(#glowL)" />
+        <rect x="25" y="18" width="50" height="12" rx="6" fill="#ff003c" filter="url(#glowL)" />
+        <defs>
+          <filter id="glowL">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+    <div class="tron-bike tron-bike-right">
+      <svg width="100" height="40" viewBox="0 0 100 40">
+        <ellipse cx="25" cy="30" rx="15" ry="15" fill="#ff003c" filter="url(#glowR)" />
+        <ellipse cx="75" cy="30" rx="15" ry="15" fill="#ff003c" filter="url(#glowR)" />
+        <rect x="25" y="18" width="50" height="12" rx="6" fill="#ff003c" filter="url(#glowR)" />
+        <defs>
+          <filter id="glowR">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+    <div id="crash-flash"></div>
+    <span class="marco-logo-anim tron-glow" id="marco-logo">Marco</span>
+  </div>
   <header>
     <a href="#" class="logo">Marco</a>
     <div class="search-bar">
@@ -18,6 +55,19 @@
         <div id="search-results"></div>
       </div>
     </div>
+    <nav class="genre-menu">
+      <ul>
+        <li class="genre-item" onmouseenter="showGenreMenu()" onmouseleave="hideGenreMenu()">
+          Genres
+          <ul class="genre-dropdown" id="genre-dropdown" style="display:none;">
+            <li onclick="filterByGenre('Action')">Action</li>
+            <li onclick="filterByGenre('Horror')">Horror</li>
+            <li onclick="filterByGenre('Drama')">Drama</li>
+            <!-- Add more genres as needed -->
+          </ul>
+        </li>
+      </ul>
+    </nav>
   </header>
   <main>
     <h2>Latest Uploads</h2>
@@ -39,5 +89,136 @@
     <div style="margin-top:1rem;">&copy; 2024 Marco Movie Streaming</div>
   </footer>
   <script src="index.js"></script>
+  <style>
+    #marco-intro {
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at center, #2d0303 0%, #1a0000 80%, #000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: opacity 0.7s;
+      animation: fadeOutIntro 1s forwards 3.7s;
+    }
+    .tron-bike {
+      position: absolute;
+      top: 50%;
+      width: 100px;
+      height: 40px;
+      transform: translateY(-50%);
+      z-index: 2;
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+    .tron-bike-left {
+      left: -120px;
+      animation: bikeLeftMove 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    .tron-bike-right {
+      right: -120px;
+      animation: bikeRightMove 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    @keyframes bikeLeftMove {
+      0% { left: -120px; }
+      80% { left: 38%; }
+      100% { left: 46%; }
+    }
+    @keyframes bikeRightMove {
+      0% { right: -120px; }
+      80% { right: 38%; }
+      100% { right: 46%; }
+    }
+    #crash-flash {
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 50% 50%, #fff 0%, #ff003c 40%, transparent 80%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .crash-active #crash-flash {
+      animation: crashFlash 0.25s;
+    }
+    @keyframes crashFlash {
+      0% { opacity: 0; }
+      40% { opacity: 0.85; }
+      100% { opacity: 0; }
+    }
+    .crash-active {
+      animation: shake 0.25s;
+    }
+    @keyframes shake {
+      0% { transform: translate(0,0);}
+      20% { transform: translate(-8px, 0);}
+      40% { transform: translate(8px, 0);}
+      60% { transform: translate(-4px, 0);}
+      80% { transform: translate(4px, 0);}
+      100% { transform: translate(0,0);}
+    }
+    #marco-logo {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      opacity: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 700;
+      color: #ff003c;
+      letter-spacing: 0.18em;
+      text-shadow:
+        0 0 32px #ff003c,
+        0 0 8px #fff,
+        0 2px 24px #ff003c,
+        0 0 80px #ff003c;
+      text-transform: uppercase;
+      filter: blur(6px) brightness(1.5);
+      z-index: 4;
+      transition: opacity 0.2s, filter 0.2s, transform 0.2s;
+    }
+    .logo-reveal #marco-logo {
+      animation: logoAppear 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    @keyframes logoAppear {
+      0% { opacity: 0; filter: blur(18px) brightness(2.5); transform: translate(-50%, -50%) scale(0.7);}
+      60% { opacity: 1; filter: blur(2px) brightness(2); transform: translate(-50%, -50%) scale(1.05);}
+      100% { opacity: 1; filter: blur(0) brightness(1.5); transform: translate(-50%, -50%) scale(1);}
+    }
+    .logo-blast #marco-logo {
+      animation: logoBlast 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    @keyframes logoBlast {
+      0% { opacity: 1; filter: blur(0) brightness(1.5); transform: translate(-50%, -50%) scale(1);}
+      60% { opacity: 1; filter: blur(8px) brightness(2.5); transform: translate(-50%, -50%) scale(1.5);}
+      100% { opacity: 0; filter: blur(18px) brightness(3); transform: translate(-50%, -50%) scale(2);}
+    }
+  </style>
+  <script>
+    // Animation sequence controller
+    window.addEventListener('DOMContentLoaded', function() {
+      // After bikes "crash"
+      setTimeout(function() {
+        document.getElementById('marco-intro').classList.add('crash-active');
+        setTimeout(function() {
+          document.getElementById('marco-intro').classList.remove('crash-active');
+          document.getElementById('marco-intro').classList.add('logo-reveal');
+          // Hide bikes
+          document.querySelector('.tron-bike-left').style.opacity = 0;
+          document.querySelector('.tron-bike-right').style.opacity = 0;
+          // After logo reveal, blast it
+          setTimeout(function() {
+            document.getElementById('marco-intro').classList.remove('logo-reveal');
+            document.getElementById('marco-intro').classList.add('logo-blast');
+            // Remove overlay after blast
+            setTimeout(function() {
+              var intro = document.getElementById('marco-intro');
+              if(intro) intro.style.display = 'none';
+            }, 600);
+          }, 900);
+        }, 300);
+      }, 1200);
+    });
+  </script>
 </body>
 </html>
