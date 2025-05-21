@@ -68,6 +68,11 @@
         </li>
       </ul>
     </nav>
+    <!-- Movie Slideshow Start -->
+    <div class="movie-slideshow-wrapper">
+      <div class="movie-slideshow" id="movie-slideshow"></div>
+    </div>
+    <!-- Movie Slideshow End -->
   </header>
   <main>
     <h2>Latest Uploads</h2>
@@ -193,6 +198,73 @@
       60% { opacity: 1; filter: blur(8px) brightness(2.5); transform: translate(-50%, -50%) scale(1.5);}
       100% { opacity: 0; filter: blur(18px) brightness(3); transform: translate(-50%, -50%) scale(2);}
     }
+    .movie-slideshow-wrapper {
+      width: 100%;
+      overflow: hidden;
+      margin: 0 auto 1.5rem auto;
+      padding: 0.5rem 0;
+      background: rgba(30,0,10,0.15);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(255,0,60,0.08);
+      position: relative;
+      max-width: 1100px;
+    }
+    .movie-slideshow {
+      display: flex;
+      gap: 1.2rem;
+      animation: slideshow-move 18s linear infinite;
+      will-change: transform;
+    }
+    .movie-card-slideshow {
+      min-width: 140px;
+      max-width: 140px;
+      background: #181818;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
+      position: relative;
+      border: 2px solid #ff003c22;
+    }
+    .movie-card-slideshow:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 6px 24px 2px #ff003c55;
+      border-color: #ff003c;
+      z-index: 2;
+    }
+    .movie-card-slideshow img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .movie-card-title-slideshow {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      padding: 0.5rem 0.7rem 0.4rem 0.7rem;
+      font-family: 'Montserrat', sans-serif;
+      text-shadow: 0 2px 8px #000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @keyframes slideshow-move {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (max-width: 900px) {
+      .movie-slideshow-wrapper { max-width: 98vw; }
+      .movie-card-slideshow { min-width: 110px; max-width: 110px; }
+      .movie-card-slideshow img { height: 120px; }
+    }
+    @media (max-width: 600px) {
+      .movie-slideshow-wrapper { max-width: 100vw; }
+      .movie-card-slideshow { min-width: 90px; max-width: 90px; }
+      .movie-card-slideshow img { height: 90px; }
+      .movie-card-title-slideshow { font-size: 0.8rem; }
+    }
   </style>
   <script>
     // Animation sequence controller
@@ -219,6 +291,38 @@
         }, 300);
       }, 1200);
     });
+    // Movie Slideshow from existing cards
+    function renderSlideshowFromExisting() {
+      const latest = document.getElementById('latest-uploads');
+      const slideshow = document.getElementById('movie-slideshow');
+      if (!latest || !slideshow) return;
+      // Find all movie cards in latest uploads
+      const cards = Array.from(latest.querySelectorAll('.movie-card'));
+      if (cards.length === 0) {
+        slideshow.innerHTML = '<div style="color:#fff;padding:1rem;">No movies available for slideshow.</div>';
+        return;
+      }
+      // Use up to 10 cards, duplicate for seamless loop
+      let showCards = cards.slice(0, 10);
+      let html = '';
+      for (let i = 0; i < 2; i++) { // duplicate for loop
+        showCards.forEach(card => {
+          // Clone card content for slideshow
+          const img = card.querySelector('img');
+          const title = card.querySelector('.movie-card-title') || card.querySelector('.title') || {textContent:""};
+          html += `
+            <div class="movie-card-slideshow">
+              <img src="${img ? img.src : ''}" alt="${img ? img.alt : ''}">
+              <div class="movie-card-title-slideshow">${title.textContent || ''}</div>
+            </div>
+          `;
+        });
+      }
+      slideshow.innerHTML = html;
+    }
+    // Run after DOM loaded and whenever latest uploads change
+    document.addEventListener('DOMContentLoaded', renderSlideshowFromExisting);
+    // If you dynamically update #latest-uploads, call renderSlideshowFromExisting() after update.
   </script>
 </body>
 </html>
