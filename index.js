@@ -89,6 +89,23 @@ const movies = [
     description: "An aging gangster attempts to reconnect with his children and rectify the mistakes in his past, but the criminal underworld won't loosen their grip willingly.",
     review: "\"Absolution\" delivers a gritty crime drama with strong performances, especially from Liam Neeson. While the plot treads familiar ground, the emotional stakes and action sequences keep viewers engaged.",
     download: "https://drive.google.com/file/d/1Ymxbq312ipkc-dFvc3zwQtJWTm0M_Jrc/view?usp=sharing"
+  },
+  {
+    title: "Bogota City of the Lost (2025) Hindi Dubbed",
+    genre: "Crime, Thriller, Drama",
+    actors: [
+      "Song Joong-ki",
+      "Lee Hee-joon",
+      "Kwon Hae-hyo"
+    ],
+    thumb: "https://resizing.flixster.com/uTfj1yJwOT57A0i6GNWpp9WbaEQ=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzE1NjFjMzBlLWE2MzgtNGIwNC05ZTkxLWEwZTVhMmU0YTRmMy5qcGc=",
+    year: 2025,
+    page: "https://imthemarco.blogspot.com/2025/05/bogota-city-of-lost.html",
+    director: "Kim Seong-je",
+    runtime: "1h 53m",
+    description: "A gripping crime thriller set in 1990s Colombia, following a group of Korean immigrants struggling to survive.",
+    review: "A tense, atmospheric drama with strong performances and a unique setting.",
+    download: "https://drive.google.com/file/d/1lkzGGl9Bod0rprSia35H51P07rABW5Rm/view?usp=drive_link"
   }
 ];
 
