@@ -47,7 +47,37 @@
     <span class="marco-logo-anim tron-glow" id="marco-logo">Marco</span>
   </div>
   <header>
-    <a href="#" class="logo">Marco</a>
+    <a href="https://yourmarc0.github.io/Marco/" class="logo" id="glowing-logo">Marco</a>
+    <style>
+      @keyframes randomGlow {
+        0% { text-shadow: none; }
+        50% { text-shadow: 0 0 10px #ff003c, 0 0 20px #ff003c, 0 0 30px #ff003c; }
+        100% { text-shadow: none; }
+      }
+      
+      .glow-effect {
+        animation: randomGlow 1s ease-in-out;
+      }
+    </style>
+    <script>
+      (function() {
+        const logo = document.getElementById('glowing-logo');
+        if (!logo) return; // Prevent errors if the element is missing
+        
+        function triggerGlow() {
+          logo.classList.add('glow-effect');
+          setTimeout(() => {
+            logo.classList.remove('glow-effect');
+          }, 1000);
+          
+          // Set next random interval between 1-5 seconds
+          setTimeout(triggerGlow, Math.random() * 4000 + 1000);
+        }
+        
+        // Start the random glow effect
+        setTimeout(triggerGlow, Math.random() * 4000 + 1000);
+      })();
+    </script>
     <div class="search-bar">
       <input type="text" id="search-input" placeholder="Search movies, genres, actors..." autocomplete="off" oninput="searchMovies()">
       <button type="button" onclick="searchMovies()">Search</button>
@@ -222,7 +252,7 @@
       border-radius: 10px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.18);
       overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
+      transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
       cursor: pointer;
       position: relative;
       border: 2px solid #ff003c22;

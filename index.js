@@ -106,13 +106,51 @@ const movies = [
     description: "A gripping crime thriller set in 1990s Colombia, following a group of Korean immigrants struggling to survive.",
     review: "A tense, atmospheric drama with strong performances and a unique setting.",
     download: "https://drive.google.com/file/d/1lkzGGl9Bod0rprSia35H51P07rABW5Rm/view?usp=drive_link"
+  },
+  {
+    title: "Mission Impossible The Final Reckoning (2025)",
+    genre: "Action, Thriller, Spy",
+    actors: ["Tom Cruise", "Hayley Atwell", "Ving Rhames", "Simon Pegg"], // Update with actual cast if known
+    thumb: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS1KzgP3ubLzquySUERfhx0ZTs-v3IVwifHZnQQw5CwiSYfmSomi8pUUhEEzr0cw73Lgiz6",
+    year: 2025,
+    page: "https://imthemarco.blogspot.com/2025/05/mission-impossible-final-reckoning-2025.html",
+    director: "Christopher McQuarrie", // Update if different
+    runtime: "TBA",
+    rating: "NR",
+    language: "Hindi & English",
+    subtitle: "YES / English",
+    size: "11GB",
+    quality: "480p || 720p || 1080p",
+    format: "MKV",
+    description: "Mission Impossible The Final Reckoning is the latest installment in the legendary action franchise. Ethan Hunt and his team face their most dangerous mission yet, with the fate of the world hanging in the balance.",
+    download: "https://nexdrive.xyz/genfxm/20108",
+    play: "https://nexdrive.xyz/genfxm/20108"
+  },
+  {
+    title: "The Devil’s Plan Death Room (Season 1)",
+    genre: "Reality, Game Show, Survival",
+    actors: ["Unknown"], // Update if you have cast info
+    thumb: "https://images.ctfassets.net/4cd45et68cgf/YZtrXZMbcSKvAu3qg1oT9/65785e88520431b68300bf5115472789/The_Devil-s_Plan_Death_Room.jpg?w=1200",
+    year: 2025,
+    page: "https://imthemarco.blogspot.com/2025/05/the-devils-plan-death-room.html",
+    director: "Unknown", // Update if you have director info
+    runtime: "12 Episodes",
+    rating: "NR",
+    language: "Hindi DD5.1 + Korean [DUAL AUDIO SERIES]",
+    subtitle: "YES / English",
+    size: "240MB / 340MB || 700MB / 700MB || 1.5GB / 4.5GB – Each Episodes",
+    quality: "480p || 720p || 1080p – WEB-DL",
+    format: "MKV",
+    description: "“THE DEVIL’S PLAN: DEATH ROOM” – A Netflix Original South Korean Reality TV Survival Game Show – It’s the ultimate showdown of wits, brains, strategy, and alliances for a chance to win 500 million won.",
+    download: "https://nexdrive.xyz/genfxm/20395",
+    play: "https://nexdrive.xyz/genfxm/20395"
   }
 ];
 
 // Render latest uploads
 function renderLatest() {
   const container = document.getElementById('latest-uploads');
-  container.innerHTML = movies.slice(0, 8).map(function(movie) {
+  container.innerHTML = movies.slice().reverse().map(function(movie) {
     return `
       <div class="movie-card">
         <a href="${movie.page}">
@@ -189,3 +227,33 @@ function filterByGenre(genre) {
   }).join('');
   hideGenreMenu();
 }
+
+function shuffleArray(array) {
+  // Fisher-Yates shuffle
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function renderSlideshowFromMovies() {
+  const slideshow = document.getElementById('movie-slideshow');
+  if (!slideshow) return;
+  // Shuffle a copy of the movies array
+  const shuffled = shuffleArray([...movies]);
+  // Duplicate for seamless loop
+  let html = '';
+  for (let i = 0; i < 2; i++) {
+    shuffled.forEach(movie => {
+      html += `
+        <div class="movie-card-slideshow">
+          <img src="${movie.thumb}" alt="${movie.title}">
+          <div class="movie-card-title-slideshow">${movie.title}</div>
+        </div>
+      `;
+    });
+  }
+  slideshow.innerHTML = html;
+}
+document.addEventListener('DOMContentLoaded', renderSlideshowFromMovies);
