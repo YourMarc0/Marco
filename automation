@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Code Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px 15px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            white-space: pre-wrap; /* Preserve whitespace */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Code Generator</h1>
+        
+        <h2>Input Movie Details</h2>
+        <input type="text" id="movie_title" placeholder="Movie Title">
+        <input type="text" id="poster_url" placeholder="Poster Image URL">
+        <input type="text" id="play_link" placeholder="Play Button URL">
+        <input type="text" id="download_link" placeholder="Download Button URL">
+        <input type="text" id="alternate_download_link" placeholder="Alternate Download Button URL">
+        <input type="text" id="genre" placeholder="Genre (e.g., Action, Thriller, Spy)">
+        <input type="text" id="runtime" placeholder="Runtime (e.g., TBA)">
+        <input type="text" id="subtitle" placeholder="Subtitle (e.g., YES / English)">
+        <input type="text" id="size" placeholder="File Size (e.g., 11GB)">
+        <input type="text" id="quality" placeholder="Quality (e.g., 480p || 720p || 1080p)">
+        <input type="text" id="format" placeholder="Format (e.g., MKV)">
+        <input type="text" id="director" placeholder="Director Name">
+        <input type="text" id="cast" placeholder="Cast List">
+        <textarea id="description" placeholder="Movie Description" rows="4"></textarea>
+        
+        <button onclick="generateMovieCode()">Generate Complete HTML Code</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function generateMovieCode() {
+            const movieTitle = document.getElementById('movie_title').value;
+            const posterUrl = document.getElementById('poster_url').value;
+            const playLink = document.getElementById('play_link').value;
+            const downloadLink = document.getElementById('download_link').value;
+            const alternateDownloadLink = document.getElementById('alternate_download_link').value;
+            const genre = document.getElementById('genre').value;
+            const runtime = document.getElementById('runtime').value;
+            const subtitle = document.getElementById('subtitle').value;
+            const size = document.getElementById('size').value;
+            const quality = document.getElementById('quality').value;
+            const format = document.getElementById('format').value;
+            const director = document.getElementById('director').value;
+            const cast = document.getElementById('cast').value;
+            const description = document.getElementById('description').value;
+
+            const result = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${movieTitle} - Watch Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --netflix-red: #e50914;
+            --netflix-dark: #141414;
+            --netflix-bg: #181818;
+            --netflix-grey: #232526;
+            --netflix-light: #fff;
+            --netflix-shadow: 0 4px 24px rgba(0,0,0,0.4);
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', Arial, sans-serif;
+            background: var(--netflix-bg);
+            color: var(--netflix-light);
+            min-height: 100vh;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(120deg, rgba(20,20,20,0.7) 60%, rgba(35,37,38,0.9) 100%);
+            z-index: -1;
+        }
+        .header {
+            background: var(--netflix-dark);
+            padding: 0.7rem 1.2rem 0.7rem 3.5rem;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .logo {
+            font-size: 2.4rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            color: var(--netflix-red);
+            text-decoration: none;
+            text-shadow: 2px 2px 12px #000, 0 0 8px var(--netflix-red);
+            font-family: 'Bebas Neue', cursive, sans-serif;
+            margin-left: 0.5rem;
+            padding: 0.1rem 1.2rem;
+            border-radius: 8px;
+            background: linear-gradient(90deg, rgba(229,9,20,0.15) 0%, rgba(20,20,20,0.7) 100%);
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            border: 2px solid var(--netflix-red);
+            display: inline-block;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 2.5rem auto 1.5rem auto;
+            background: rgba(20,20,20,0.98);
+            border-radius: 16px;
+            box-shadow: var(--netflix-shadow);
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            position: relative;
+            align-items: flex-start;
+        }
+        .movie-poster {
+            width: 340px;
+            min-width: 180px;
+            border-radius: 12px;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.5);
+            object-fit: cover;
+            background: #222;
+            transition: transform 0.2s;
+            margin-bottom: 1rem;
+        }
+        .movie-details {
+            flex: 1;
+            min-width: 260px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .movie-title {
+            font-family: 'Bebas Neue', cursive, sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 12px #000, 0 0 8px var(--netflix-red);
+            line-height: 1.1;
+        }
+        .rating-badge {
+            display: inline-block;
+            background: var(--netflix-red);
+            color: #fff;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 6px;
+            padding: 0.3rem 0.9rem;
+            margin-bottom: 0.7rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+            letter-spacing: 1px;
+        }
+        .movie-info-list {
+            margin: 0 0 1.2rem 0;
+            padding: 0;
+            list-style: none;
+            color: #fff;
+            font-size: 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.2rem;
+        }
+        .movie-info-list li {
+            background: var(--netflix-grey);
+            border-radius: 4px;
+            padding: 0.2rem 0.7rem;
+            margin-bottom: 0.3rem;
+            font-size: 0.98rem;
+            color: #fff;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+        .action-buttons {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            padding: 0.7rem 1.6rem;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            transition: background 0.2s, color 0.2s;
+            text-decoration: none;
+        }
+        .btn-play { background: var(--netflix-red); color: #fff; }
+        .btn-download { background: #222; color: #fff; border: 1px solid var(--netflix-red); }
+        .section-title { font-size: 1.3rem; font-weight: 700; color: var(--netflix-red); margin: 1.2rem 0 0.5rem 0; letter-spacing: 1px; font-family: 'Bebas Neue', cursive, sans-serif; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-btn" title="Back">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;">
+                <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+        </a>
+        <a href="https://yourmarc0.github.io/Marco/" class="logo">Marco</a>
+    </div>
+    <div class="container">
+        <img class="movie-poster" src="${posterUrl}" alt="${movieTitle} Poster">
+        <div class="movie-details">
+            <div class="movie-title">${movieTitle}</div>
+            <span class="rating-badge">NR</span>
+            <div class="movie-meta">Release Year: 2025 | Language: Hindi & English</div>
+            <div class="action-buttons">
+                <button class="btn btn-play" onclick="window.open('${playLink}', '_blank')">▶ Play</button>
+                <button class="btn btn-download" onclick="window.open('${downloadLink}', '_blank')">⬇ Download</button>
+                <button class="btn btn-download" onclick="window.open('${alternateDownloadLink}', '_blank')">⬇ Alternate Download</button>
+                <button class="btn btn-trailer" onclick="alert('Trailer coming soon!')">🎬 Trailer</button>
+            </div>
+            <ul class="movie-info-list">
+                <li><b>Genre:</b> ${genre}</li>
+                <li><b>Runtime:</b> ${runtime}</li>
+                <li><b>Subtitle:</b> ${subtitle}</li>
+                <li><b>Size:</b> ${size}</li>
+                <li><b>Quality:</b> ${quality}</li>
+                <li><b>Format:</b> ${format}</li>
+                <li><b>Director:</b> ${director}</li>
+                <li><b>Cast:</b> ${cast}</li>
+            </ul>
+            <div class="section-title">Description</div>
+            <div>${description}</div>
+        </div>
+    </div>
+    <script type='text/javascript' src='//pl26661033.profitableratecpm.com/dc/a9/18/dca9186668c861dc6e9f765e0e2d29a6.js'></script>
+</body>
+</html>
+            `;
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
