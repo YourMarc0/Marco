@@ -197,7 +197,24 @@ const movies = [
     description: "“THE DEVIL’S PLAN: DEATH ROOM” – A Netflix Original South Korean Reality TV Survival Game Show – It’s the ultimate showdown of wits, brains, strategy, and alliances for a chance to win 500 million won.",
     download: "https://nexdrive.xyz/genfxm/20395",
     play: "https://nexdrive.xyz/genfxm/20395"
-  }
+  },
+   {
+        title: " I Am Number Four 2011",
+        genre: "Action, Adventure, Superhero",
+        actors: ["Florence Pugh", "Sebastian Stan", "David Harbour"],
+        thumb: "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p8329406_p_v8_ad.jpg",
+        year: 2025,
+        page: "https://imthemarco.blogspot.com/2025/05/i-am-number-four-2011.html"
+      },
+     {
+          title: " Bhool Chuk Maaf (2025)",
+          genre: "Fantasy, Romantic Comedy",
+          actors: ["Rajkummar Rao", "Wamiqa Gabbi", "Seema Pahwa"],
+          thumb: "https://m.media-amazon.com/images/M/MV5BZTAwNjIzZjEtZjk1MC00NTI5LTg0MjctZTBkMWVhMWMzMjg5XkEyXkFqcGc@._V1_QL75_UX298.5_.jpg",
+          year: 2025,
+          page: "https://imthemarco.blogspot.com/2025/05/bhool-chuk-maaf-2025.html"
+        }
+    
 ];
 
 // Render latest uploads
