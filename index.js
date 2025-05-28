@@ -213,7 +213,34 @@ const movies = [
           thumb: "https://m.media-amazon.com/images/M/MV5BZTAwNjIzZjEtZjk1MC00NTI5LTg0MjctZTBkMWVhMWMzMjg5XkEyXkFqcGc@._V1_QL75_UX298.5_.jpg",
           year: 2025,
           page: "https://imthemarco.blogspot.com/2025/05/bhool-chuk-maaf-2025.html"
-        }
+        },
+      {
+        title: "CRUEL WAR",
+        genre: "",
+        actors: [],
+        thumb: `https://i.mydramalist.com/RB36kr_4c.jpg`,
+        year: 2024,
+        page: `https://imthemarco.blogspot.com/2025/05/cruelwars.html`
+      },
+      {
+        title: "L2: Empuraan",
+        genre: "Action, Thriller, Political",
+        actors: ["Mohanlal", "Prithviraj Sukumaran", "Tovino Thomas", "Indrajith Sukumaran"],
+        thumb: "https://upload.wikimedia.org/wikipedia/en/3/35/L2_-_Empuraan_poster.jpg",
+        year: 2025,
+        page: "https://imthemarco.blogspot.com/2025/05/l2-empuraan.html",
+        director: "Prithviraj Sukumaran",
+        runtime: "TBA",
+        rating: "NR",
+        language: "Hindi & English",
+        subtitle: "YES / English",
+        size: "11GB",
+        quality: "480p || 720p || 1080p",
+        format: "MKV",
+        description: "L2: Empuraan is the highly anticipated sequel to the blockbuster *Lucifer*. The film delves deeper into the mysterious world of Khureshi-Ab'ram, played by Mohanlal, as he expands his political and criminal empire on a global scale.",
+        download: "https://gofile.io/d/r3HDLz",
+        play: "https://gofile.io/d/r3HDLz"
+      }
     
 ];
 
@@ -222,15 +249,13 @@ function renderLatest() {
   const container = document.getElementById('latest-uploads');
   container.innerHTML = movies.slice().reverse().map(function(movie) {
     return `
-      <div class="movie-card">
-        <a href="${movie.page}">
-          <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
-        </a>
+      <a href="${movie.page}" class="movie-card">
+        <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
         <div class="movie-info">
           <div class="movie-title">${movie.title}</div>
           <div class="movie-meta">${movie.genre} | ${movie.year}</div>
         </div>
-      </div>
+      </a>
     `;
   }).join('');
 }
@@ -284,15 +309,13 @@ function filterByGenre(genre) {
   const container = document.getElementById('latest-uploads');
   container.innerHTML = filtered.map(function(movie) {
     return `
-      <div class="movie-card">
-        <a href="${movie.page}">
-          <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
-        </a>
+      <a href="${movie.page}" class="movie-card">
+        <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
         <div class="movie-info">
           <div class="movie-title">${movie.title}</div>
           <div class="movie-meta">${movie.genre} | ${movie.year}</div>
         </div>
-      </div>
+      </a>
     `;
   }).join('');
   hideGenreMenu();
