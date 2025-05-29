@@ -85,19 +85,7 @@
         <div id="search-results"></div>
       </div>
     </div>
-    <nav class="genre-menu">
-      <ul>
-        <li class="genre-item" onmouseenter="showGenreMenu()" onmouseleave="hideGenreMenu()">
-          Genres
-          <ul class="genre-dropdown" id="genre-dropdown" style="display:none;">
-            <li onclick="filterByGenre('Action')">Action</li>
-            <li onclick="filterByGenre('Horror')">Horror</li>
-            <li onclick="filterByGenre('Drama')">Drama</li>
-            <!-- Add more genres as needed -->
-          </ul>
-        </li>
-      </ul>
-    </nav>
+    <!-- Removed old genre menu -->
     <!-- Movie Slideshow Start -->
     <div class="movie-slideshow-wrapper">
       <div class="movie-slideshow" id="movie-slideshow"></div>
@@ -105,6 +93,33 @@
     <!-- Movie Slideshow End -->
   </header>
   <main>
+    <!-- Platform Menu Bar -->
+    <nav class="platform-menu">
+      <ul>
+        <li class="platform-item" onmouseenter="showDropdown('genre-dropdown')" onmouseleave="hideDropdown('genre-dropdown')">
+          Genre
+          <ul class="platform-dropdown genre-dropdown" id="genre-dropdown" style="display:none;">
+            <!-- Genre options will be populated by JavaScript -->
+          </ul>
+        </li>
+        <li class="platform-item" onmouseenter="showDropdown('year-dropdown')" onmouseleave="hideDropdown('year-dropdown')">
+          Year
+          <ul class="platform-dropdown year-dropdown" id="year-dropdown" style="display:none;">
+            <!-- Year options will be populated by JavaScript -->
+          </ul>
+        </li>
+        <li class="platform-item" onmouseenter="showDropdown('rating-dropdown')" onmouseleave="hideDropdown('rating-dropdown')">
+          Rating
+          <ul class="platform-dropdown rating-dropdown" id="rating-dropdown" style="display:none;">
+            <!-- Rating options will be populated by JavaScript -->
+          </ul>
+        </li>
+        <li class="platform-item">
+          <a href="#" onclick="showRecommendations()">Recommendations</a>
+        </li>
+      </ul>
+    </nav>
+
     <h2>Latest Uploads</h2>
     <div id="latest-uploads"></div>
   </main>

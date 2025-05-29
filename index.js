@@ -17,7 +17,7 @@ const movies = [
       "Daniel Roebuck", "Roger Guenveur Smith"
     ],
     thumb: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSRY-xDKrIC0cj-mHHeX9A6K3s3fXn4FjsycWtbRBx2Jd3HcuF",
-    year: 2000,
+    year: 2024,
     page: "https://imthemarco.blogspot.com/2025/05/final-destination-2000-watch-online.html"
   },
   {
@@ -180,68 +180,95 @@ const movies = [
     play: "https://nexdrive.xyz/genfxm/20108"
   },
   {
-    title: "The Devil’s Plan Death Room (Season 1)",
+    title: "The Devil's Plan Death Room (Season 1)",
     genre: "Reality, Game Show, Survival",
-    actors: ["Unknown"], // Update if you have cast info
+    actors: ["Unknown"],
     thumb: "https://images.ctfassets.net/4cd45et68cgf/YZtrXZMbcSKvAu3qg1oT9/65785e88520431b68300bf5115472789/The_Devil-s_Plan_Death_Room.jpg?w=1200",
     year: 2025,
     page: "https://imthemarco.blogspot.com/2025/05/the-devils-plan-death-room.html",
-    director: "Unknown", // Update if you have director info
+    director: "Unknown",
     runtime: "12 Episodes",
     rating: "NR",
     language: "Hindi DD5.1 + Korean [DUAL AUDIO SERIES]",
     subtitle: "YES / English",
-    size: "240MB / 340MB || 700MB / 700MB || 1.5GB / 4.5GB – Each Episodes",
-    quality: "480p || 720p || 1080p – WEB-DL",
+    size: "240MB / 340MB || 700MB / 700MB || 1.5GB / 4.5GB - Each Episodes",
+    quality: "480p || 720p || 1080p - WEB-DL",
     format: "MKV",
-    description: "“THE DEVIL’S PLAN: DEATH ROOM” – A Netflix Original South Korean Reality TV Survival Game Show – It’s the ultimate showdown of wits, brains, strategy, and alliances for a chance to win 500 million won.",
+    description: "'THE DEVIL'S PLAN: DEATH ROOM' - A Netflix Original South Korean Reality TV Survival Game Show - It's the ultimate showdown of wits, brains, strategy, and alliances for a chance to win 500 million won.",
     download: "https://nexdrive.xyz/genfxm/20395",
     play: "https://nexdrive.xyz/genfxm/20395"
   },
-   {
-        title: " I Am Number Four 2011",
-        genre: "Action, Adventure, Superhero",
-        actors: ["Florence Pugh", "Sebastian Stan", "David Harbour"],
-        thumb: "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p8329406_p_v8_ad.jpg",
-        year: 2025,
-        page: "https://imthemarco.blogspot.com/2025/05/i-am-number-four-2011.html"
-      },
-     {
-          title: " Bhool Chuk Maaf (2025)",
-          genre: "Fantasy, Romantic Comedy",
-          actors: ["Rajkummar Rao", "Wamiqa Gabbi", "Seema Pahwa"],
-          thumb: "https://m.media-amazon.com/images/M/MV5BZTAwNjIzZjEtZjk1MC00NTI5LTg0MjctZTBkMWVhMWMzMjg5XkEyXkFqcGc@._V1_QL75_UX298.5_.jpg",
-          year: 2025,
-          page: "https://imthemarco.blogspot.com/2025/05/bhool-chuk-maaf-2025.html"
-        },
-      {
-        title: "CRUEL WAR",
-        genre: "",
-        actors: [],
-        thumb: `https://i.mydramalist.com/RB36kr_4c.jpg`,
-        year: 2024,
-        page: `https://imthemarco.blogspot.com/2025/05/cruelwars.html`
-      },
-      {
-        title: "L2: Empuraan",
-        genre: "Action, Thriller, Political",
-        actors: ["Mohanlal", "Prithviraj Sukumaran", "Tovino Thomas", "Indrajith Sukumaran"],
-        thumb: "https://upload.wikimedia.org/wikipedia/en/3/35/L2_-_Empuraan_poster.jpg",
-        year: 2025,
-        page: "https://imthemarco.blogspot.com/2025/05/l2-empuraan.html",
-        director: "Prithviraj Sukumaran",
-        runtime: "TBA",
-        rating: "NR",
-        language: "Hindi & English",
-        subtitle: "YES / English",
-        size: "11GB",
-        quality: "480p || 720p || 1080p",
-        format: "MKV",
-        description: "L2: Empuraan is the highly anticipated sequel to the blockbuster *Lucifer*. The film delves deeper into the mysterious world of Khureshi-Ab'ram, played by Mohanlal, as he expands his political and criminal empire on a global scale.",
-        download: "https://gofile.io/d/r3HDLz",
-        play: "https://gofile.io/d/r3HDLz"
-      }
-    
+  {
+    title: "The Seed of the Sacred Fig",
+    genre: "Drama, Thriller, Crime",
+    actors: ["Soheila Golestani", "Setareh Maleki", "Niousha Akhshi", "Shiva Ordooie", "Mohammad Kamal Alavi", "Barat Azimi", "Parisa Mohyedini", "Amineh Mazrouie Arani", "Reza Akhlaghirad", "Mahsa Rostami", "Missagh Zareh"],
+    thumb: "https://vegamovies.uy/uploads/posts/covers/Poster-The-Sed-of-the-sacred-fig-2024.webp",
+    year: 2024,
+    page: "https://imthemarco.blogspot.com/2025/05/the-sed-of-sacred-fig-2024.html",
+    director: "Mohammad Rasoulof",
+    runtime: "2h 47m",
+    rating: "NR",
+    language: "Hindi & English",
+    subtitle: "YES / English",
+    size: "770MB - 1.4GB - 2.6GB",
+    quality: "WEB-DL 480p - 720p - 1080p",
+    format: "MKV",
+    description: "**The Seed of the Sacred Fig** (2024) is a critically acclaimed Iranian drama-thriller directed by Mohammad Rasoulof. The film explores the story of a judge working within Iran's judiciary system who begins to experience deep mistrust and paranoia after a political protest leads to nationwide unrest. As surveillance and suspicion invade his personal life, the conflict between duty, conscience, and family loyalty intensifies. Known for its bold commentary on authoritarianism and justice, the film has received praise for its compelling narrative and powerful performances.",
+    download: "https://fast-dl.lol/dl/c2edfb",
+    play: "https://fast-dl.lol/dl/c2edfb"
+  },
+  {
+    title: "I Am Number Four 2011",
+    genre: "Action, Adventure, Superhero",
+    actors: ["Florence Pugh", "Sebastian Stan", "David Harbour"],
+    thumb: "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p8329406_p_v8_ad.jpg",
+    year: 2025,
+    page: "https://imthemarco.blogspot.com/2025/05/i-am-number-four-2011.html"
+  },
+  {
+    title: " Bhool Chuk Maaf (2025)",
+    genre: "Fantasy, Romantic Comedy",
+    actors: ["Rajkummar Rao", "Wamiqa Gabbi", "Seema Pahwa"],
+    thumb: "https://m.media-amazon.com/images/M/MV5BZTAwNjIzZjEtZjk1MC00NTI5LTg0MjctZTBkMWVhMWMzMjg5XkEyXkFqcGc@._V1_QL75_UX298.5_.jpg",
+    year: 2025,
+    page: "https://imthemarco.blogspot.com/2025/05/bhool-chuk-maaf-2025.html"
+  },
+  {
+    title: "CRUEL WAR",
+    genre: "",
+    actors: [],
+    thumb: `https://i.mydramalist.com/RB36kr_4c.jpg`,
+    year: 2024,
+    page: `https://imthemarco.blogspot.com/2025/05/cruelwars.html`
+  },
+  {
+    title: "Eternity (2012)",
+    genre: "Science Fiction, Mystery",
+    actors: ["Elliot Travers", "Dean Knowsley", "Amy Usherwood", "Alan Brunton", "Felicity Cozens", "Alex Galvin", "Luke Hawker", "Ralph Johnson", "Energy Lewis", "Jessica Manins", "Sam Lee", "Alana Henderson", "Nigel Harbrow", "Ben Fransham", "Rachel Clentworth", "Geraldine Brophy", "Liz Kirkman", "Amy Tsang"],
+    thumb: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCFO-gMYvhK-Op70l2ECbbaIfS2wqu0glq9CWsfqRLxjvdfkiM-BKoxYNVfIvw8UVS1lg&usqp=CAU`,
+    year: 2012,
+    page: `https://imthemarco.blogspot.com/2025/05/eternity-2012.html`
+  },
+  {
+    title: "L2: Empuraan",
+    genre: "Action, Thriller, Political",
+    actors: ["Mohanlal", "Prithviraj Sukumaran", "Tovino Thomas", "Indrajith Sukumaran"],
+    thumb: "https://upload.wikimedia.org/wikipedia/en/3/35/L2_-_Empuraan_poster.jpg",
+    year: 2025,
+    page: "https://imthemarco.blogspot.com/2025/05/l2-empuraan.html",
+    director: "Prithviraj Sukumaran",
+    runtime: "TBA",
+    rating: "NR",
+    language: "Hindi & English",
+    subtitle: "YES / English",
+    size: "11GB",
+    quality: "480p || 720p || 1080p",
+    format: "MKV",
+    description: "L2: Empuraan is the highly anticipated sequel to the blockbuster *Lucifer*. The film delves deeper into the mysterious world of Khureshi-Ab'ram, played by Mohanlal, as he expands his political and criminal empire on a global scale.",
+    download: "https://gofile.io/d/r3HDLz",
+    play: "https://gofile.io/d/r3HDLz"
+  }
+
 ];
 
 // Render latest uploads
@@ -267,9 +294,9 @@ function searchMovies() {
   const results = movies.filter(function(movie) {
     return movie.title.toLowerCase().includes(query) ||
            movie.genre.toLowerCase().includes(query) ||
-           movie.actors.some(function(actor) {
+           (movie.actors && movie.actors.some(function(actor) {
              return actor.toLowerCase().includes(query);
-           });
+           }));
   });
   const section = document.getElementById('search-section');
   const container = document.getElementById('search-results');
@@ -298,28 +325,107 @@ function searchMovies() {
   }
 }
 
-function showGenreMenu() {
-  document.getElementById('genre-dropdown').style.display = 'block';
+// Platform Menu Functionality
+
+// Populate dropdowns
+function populateDropdowns() {
+  populateGenreDropdown();
+  populateYearDropdown();
+  populateRatingDropdown();
 }
-function hideGenreMenu() {
-  document.getElementById('genre-dropdown').style.display = 'none';
+
+function populateGenreDropdown() {
+  const genreDropdown = document.getElementById('genre-dropdown');
+  const genres = [...new Set(movies.flatMap(movie => movie.genre ? movie.genre.split(',').map(g => g.trim()) : []))].sort();
+  genreDropdown.innerHTML = genres.map(genre => `<a href="#" onclick="filterMovies('genre', '${genre}')">${genre}</a>`).join('');
 }
-function filterByGenre(genre) {
-  const filtered = movies.filter(movie => movie.genre.toLowerCase().includes(genre.toLowerCase()));
-  const container = document.getElementById('latest-uploads');
-  container.innerHTML = filtered.map(function(movie) {
-    return `
-      <a href="${movie.page}" class="movie-card">
-        <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
-        <div class="movie-info">
-          <div class="movie-title">${movie.title}</div>
-          <div class="movie-meta">${movie.genre} | ${movie.year}</div>
-        </div>
-      </a>
-    `;
-  }).join('');
-  hideGenreMenu();
+
+function populateYearDropdown() {
+  const yearDropdown = document.getElementById('year-dropdown');
+  const years = [...new Set(movies.map(movie => movie.year).filter(year => year !== undefined))].sort((a, b) => b - a);
+  yearDropdown.innerHTML = years.map(year => `<a href="#" onclick="filterMovies('year', '${year}')">${year}</a>`).join('');
 }
+
+function populateRatingDropdown() {
+  const ratingDropdown = document.getElementById('rating-dropdown');
+  const ratings = [...new Set(movies.map(movie => movie.rating).filter(rating => rating !== undefined && rating !== 'NR'))].sort();
+  ratingDropdown.innerHTML = ratings.map(rating => `<a href="#" onclick="filterMovies('rating', '${rating}')">${rating}</a>`).join('');
+}
+
+// Filter movies based on type and value
+function filterMovies(filterType, filterValue) {
+  let filteredMovies = movies;
+
+  if (filterType === 'genre') {
+    filteredMovies = movies.filter(movie => movie.genre && movie.genre.toLowerCase().includes(filterValue.toLowerCase()));
+  } else if (filterType === 'year') {
+    filteredMovies = movies.filter(movie => movie.year && movie.year === parseInt(filterValue));
+  } else if (filterType === 'rating') {
+    filteredMovies = movies.filter(movie => movie.rating && movie.rating.toLowerCase() === filterValue.toLowerCase());
+  }
+
+  renderFilteredMovies(filteredMovies);
+  hideAllDropdowns();
+}
+
+// Render filtered movies (can reuse renderLatest's structure or create a new one)
+function renderFilteredMovies(filteredMovies) {
+  const container = document.getElementById('latest-uploads'); // Or a new container for filtered results
+  if (filteredMovies.length === 0) {
+    container.innerHTML = '<div class="no-results">No movies found for this filter.</div>';
+  } else {
+    container.innerHTML = filteredMovies.map(function(movie) {
+      return `
+        <a href="${movie.page}" class="movie-card">
+          <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
+          <div class="movie-info">
+            <div class="movie-title">${movie.title}</div>
+            <div class="movie-meta">${movie.genre} | ${movie.year}</div>
+          </div>
+        </a>
+      `;
+    }).join('');
+  }
+}
+
+// Show/Hide Dropdown Menus
+function showDropdown(id) {
+  document.getElementById(id).style.display = 'block';
+}
+
+function hideDropdown(id) {
+  document.getElementById(id).style.display = 'none';
+}
+
+function hideAllDropdowns() {
+  hideDropdown('genre-dropdown');
+  hideDropdown('year-dropdown');
+  hideDropdown('rating-dropdown');
+}
+
+// Function to show recommended movies (rating > 8)
+function showRecommendations() {
+  hideAllDropdowns(); // Hide any open dropdowns
+  const recommendedMovies = movies.filter(movie => {
+    // Ensure rating exists and is a number before comparing
+    return movie.rating && !isNaN(movie.rating) && parseFloat(movie.rating) > 8;
+  });
+  renderFilteredMovies(recommendedMovies);
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.platform-button')) {
+    hideAllDropdowns();
+  }
+});
+
+// Initial population of dropdowns when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  renderLatest();
+  renderSlideshowFromMovies();
+  populateDropdowns();
+});
 
 function shuffleArray(array) {
   // Fisher-Yates shuffle
@@ -349,4 +455,3 @@ function renderSlideshowFromMovies() {
   }
   slideshow.innerHTML = html;
 }
-document.addEventListener('DOMContentLoaded', renderSlideshowFromMovies);

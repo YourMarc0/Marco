@@ -331,3 +331,113 @@ footer {
    background: #e50914; 
    color: #fff; 
  }
+/* Platform Menu Bar Styles */
+.platform-menu {
+  background: linear-gradient(90deg, rgba(229,9,20,0.8) 0%, rgba(20,20,20,0.8) 100%);
+  padding: 0.8rem 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  margin-bottom: 2rem;
+  border-top: 1px solid rgba(255,0,0,0.5);
+  border-bottom: 1px solid rgba(255,0,0,0.5);
+  position: relative;
+  z-index: 10;
+}
+
+.platform-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+}
+
+.platform-item {
+  position: relative;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.3s, text-shadow 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.platform-item:hover {
+  color: var(--netflix-red);
+  text-shadow: 0 0 8px var(--netflix-red);
+}
+
+.platform-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20,20,20,0.95);
+  border: 1px solid var(--netflix-red);
+  border-radius: 8px;
+  min-width: 180px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  padding: 0.5rem 0;
+  list-style: none;
+  display: none; /* Hidden by default */
+  z-index: 20;
+}
+
+.platform-dropdown li {
+  padding: 0.8rem 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.platform-dropdown li:hover {
+  background-color: var(--netflix-red);
+  color: #fff;
+}
+
+/* Crystal-like effect for the strip */
+.platform-menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255,0,0,0.1) 0%, rgba(255,0,0,0.3) 50%, rgba(255,0,0,0.1) 100%);
+  pointer-events: none;
+  z-index: -1;
+  filter: blur(2px);
+  opacity: 0.7;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .platform-menu ul {
+    gap: 1.5rem;
+  }
+  .platform-item {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .platform-menu ul {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .platform-dropdown {
+    position: static;
+    transform: translateX(0);
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: none;
+  }
+  .platform-dropdown li {
+    text-align: center;
+  }
+}
