@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>marco - Your World of Entertainment</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head> 
+<body>
+    <div class="smoke-background"></div> 
+
+    <header class="site-header">
+        <div class="header-top-row">
+            <a href="#share" class="header-button share-button">
+                <i class="fas fa-share-alt"></i> Share Website
+            </a>
+            <div class="logo-container">
+                <img src="https://i.ibb.co/JRd69LKg/Chat-GPT-Image-May-31-2025-07-22-48-PM.png" alt="marco Logo" class="logo">
+            </div>
+            <a href="#feedback" class="header-button feedback-button">
+                <i class="fas fa-comment-dots"></i> Give Feedback
+            </a>
+        </div>
+        <p class="site-description">marco is the best movie downloading website and much more.</p>
+        <p class="site-tagline">Your World of Entertainment, Effortlessly.</p>
+    </header>
+    <main class="content-grid">
+        <div class="category-container">
+            <a href="#hollywood" class="category-item" data-category="hollywood">
+                <div class="category-card">
+                    <div class="category-image hollywood-bg"></div>
+                    <div class="overlay">
+                        <span class="category-title">Hollywood</span>
+                        <div class="category-description">
+                            <p>Explore the latest blockbusters and classics</p>
+                            <i class="fas fa-film category-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#bollywood" class="category-item" data-category="bollywood">
+                <div class="category-card">
+                    <div class="category-image bollywood-bg"></div>
+                    <div class="overlay">
+                        <span class="category-title">Bollywood</span>
+                        <div class="category-description">
+                            <p>Experience Indian cinema at its finest</p>
+                            <i class="fas fa-video category-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#webseries" class="category-item" data-category="webseries">
+                <div class="category-card">
+                    <div class="category-image webseries-bg"></div>
+                    <div class="overlay">
+                        <span class="category-title">Web Series</span>
+                        <div class="category-description">
+                            <p>Binge-worthy series from around the globe</p>
+                            <i class="fas fa-tv category-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#animated" class="category-item" data-category="animated">
+                <div class="category-card">
+                    <div class="category-image animated-bg"></div>
+                    <div class="overlay">
+                        <span class="category-title">Animated</span>
+                        <div class="category-description">
+                            <p>Magic of animation for all ages</p>
+                            <i class="fas fa-dragon category-icon"></i>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </main>
+
+    <style>
+        .content-grid {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .category-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-item {
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease-in-out;
+            perspective: 1000px;
+        }
+
+        .category-card {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+
+        .category-item:hover .category-card {
+            transform: scale(1.05) rotateY(10deg);
+        }
+
+        .category-image {
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .hollywood-bg { background-image: url('path/to/hollywood-image.jpg'); }
+        .bollywood-bg { background-image: url('path/to/bollywood-image.jpg'); }
+        .webseries-bg { background-image: url('path/to/webseries-image.jpg'); }
+        .animated-bg { background-image: url('path/to/animated-image.jpg'); }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.3),
+                rgba(0, 0, 0, 0.8)
+            );
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            transform: translateZ(20px);
+        }
+
+        .category-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .category-description {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .category-item:hover .category-description {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .category-icon {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .category-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .category-card {
+                height: 250px;
+            }
+        }
+    </style>
+
+    <footer class="site-footer">
+        <nav>
+            <a href="#about">About Us</a>
+            <a href="#contact">Contact</a>
+            <a href="#faq">FAQ</a>
+            <a href="#terms">Terms of Service</a>
+            <a href="#privacy">Privacy Policy</a>
+        </nav>
+        <p>&copy; 2025 marco. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Video Player at the bottom -->
+    <div class="video-player-container">
+        <iframe
+            src="https://vimeo.com/1089335957?share=copy"
+            frameborder="0"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen
+        ></iframe>
+    </div>
+
+</body>
+</html>
