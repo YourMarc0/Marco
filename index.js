@@ -1,1 +1,0 @@
-// This file is now empty as image handling is moved to CSS.
