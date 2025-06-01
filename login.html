@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marco - Admin Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0f1014;
+        }
+        
+        .login-form {
+            background-color: #1a1c22;
+            padding: 30px;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ffffff;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #cccccc;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #2a2c32;
+            background-color: #2a2c32;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .login-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <form class="login-form" id="loginForm">
+            <h2>MARCO ADMIN LOGIN</h2>
+            
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Login</button>
+            
+            <div class="error-message" id="errorMessage">Invalid username or password</div>
+            
+            <a href="index.html" class="back-link">Back to Website</a>
+        </form>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('loginForm');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Set up admin credentials in localStorage if not already set
+            if (!localStorage.getItem('adminCredentials')) {
+                // Default credentials (in a real app, this would be set up securely)
+                const defaultCredentials = {
+                    username: 'admin',
+                    // Simple hash of 'password123' (in a real app, use proper hashing)
+                    passwordHash: '482c811da5d5b4bc6d497ffa98491e38'
+                };
+                localStorage.setItem('adminCredentials', JSON.stringify(defaultCredentials));
+            }
+            
+            // Add the new admin user 'garry'
+            const adminUsers = JSON.parse(localStorage.getItem('adminUsers')) || [];
+            
+            // Check if user already exists
+            if (!adminUsers.some(user => user.username === 'garry')) {
+                // Simple hash function (for demo purposes only)
+                function simpleHash(str) {
+                    let hash = 0;
+                    for (let i = 0; i < str.length; i++) {
+                        const char = str.charCodeAt(i);
+                        hash = ((hash << 5) - hash) + char;
+                        hash = hash & hash; // Convert to 32bit integer
+                    }
+                    return hash.toString(16);
+                }
+                
+                // Add new admin user
+                adminUsers.push({
+                    username: 'garry',
+                    passwordHash: simpleHash('20372037')
+                });
+                
+                localStorage.setItem('adminUsers', JSON.stringify(adminUsers));
+            }
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // Get stored credentials
+                const storedCredentials = JSON.parse(localStorage.getItem('adminCredentials'));
+                const adminUsers = JSON.parse(localStorage.getItem('adminUsers')) || [];
+                
+                // Simple hash function (for demo purposes only)
+                function simpleHash(str) {
+                    let hash = 0;
+                    for (let i = 0; i < str.length; i++) {
+                        const char = str.charCodeAt(i);
+                        hash = ((hash << 5) - hash) + char;
+                        hash = hash & hash; // Convert to 32bit integer
+                    }
+                    return hash.toString(16);
+                }
+                
+                // Check main admin credentials
+                let isValidLogin = username === storedCredentials.username && 
+                    simpleHash(password) === storedCredentials.passwordHash;
+                    
+                // Check additional admin users
+                if (!isValidLogin) {
+                    const matchedUser = adminUsers.find(user => user.username === username);
+                    if (matchedUser && matchedUser.passwordHash === simpleHash(password)) {
+                        isValidLogin = true;
+                    }
+                }
+                
+                if (isValidLogin) {
+                    // Set session
+                    sessionStorage.setItem('adminLoggedIn', 'true');
+                    sessionStorage.setItem('adminUsername', username);
+                    
+                    // Redirect to admin page
+                    window.location.href = 'admin.html';
+                } else {
+                    // Failed login
+                    errorMessage.style.display = 'block';
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

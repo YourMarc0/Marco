@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genre - Marco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>MARCO</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="user-actions">
+            <a href="login.html" class="admin-btn">Admin</a>
+            <a href="#" class="login-btn">Login</a>
+        </div>
+    </header>
+
+    <!-- Replace the sidebar navigation section with this -->
+    <nav class="sidebar">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="topimdb.html"><i class="fas fa-star"></i> Top IMDB</a></li>
+            <li><a href="movies.html"><i class="fas fa-film"></i> Movies</a></li>
+            <li><a href="tvshows.html"><i class="fas fa-tv"></i> TV Shows</a></li>
+            <li class="category-header">Genres</li>
+            <li><a href="genre.html?genre=action" class="genre-link" data-genre="action">Action</a></li>
+            <li><a href="genre.html?genre=adventure" class="genre-link" data-genre="adventure">Adventure</a></li>
+            <li><a href="genre.html?genre=animation" class="genre-link" data-genre="animation">Animation</a></li>
+            <li><a href="genre.html?genre=comedy" class="genre-link" data-genre="comedy">Comedy</a></li>
+            <li><a href="genre.html?genre=crime" class="genre-link" data-genre="crime">Crime</a></li>
+            <li><a href="genre.html?genre=drama" class="genre-link" data-genre="drama">Drama</a></li>
+            <li><a href="genre.html?genre=fantasy" class="genre-link" data-genre="fantasy">Fantasy</a></li>
+            <li><a href="genre.html?genre=horror" class="genre-link" data-genre="horror">Horror</a></li>
+            <li><a href="genre.html?genre=mystery" class="genre-link" data-genre="mystery">Mystery</a></li>
+            <li><a href="genre.html?genre=romance" class="genre-link" data-genre="romance">Romance</a></li>
+            <li><a href="genre.html?genre=scifi" class="genre-link" data-genre="scifi">Sci-Fi</a></li>
+            <li><a href="genre.html?genre=thriller" class="genre-link" data-genre="thriller">Thriller</a></li>
+            <li><a href="genre.html?genre=war" class="genre-link" data-genre="war">War</a></li>
+            <li><a href="genre.html?genre=western" class="genre-link" data-genre="western">Western</a></li>
+            <li class="category-header">Country</li>
+            <li><a href="genre.html?country=argentina" class="country-link" data-country="argentina">Argentina</a></li>
+            <li><a href="genre.html?country=australia" class="country-link" data-country="australia">Australia</a></li>
+            <li><a href="genre.html?country=brazil" class="country-link" data-country="brazil">Brazil</a></li>
+            <li><a href="genre.html?country=canada" class="country-link" data-country="canada">Canada</a></li>
+            <li><a href="genre.html?country=china" class="country-link" data-country="china">China</a></li>
+            <li><a href="genre.html?country=france" class="country-link" data-country="france">France</a></li>
+            <li><a href="genre.html?country=germany" class="country-link" data-country="germany">Germany</a></li>
+            <li><a href="genre.html?country=india" class="country-link" data-country="india">India</a></li>
+            <li><a href="genre.html?country=japan" class="country-link" data-country="japan">Japan</a></li>
+            <li><a href="genre.html?country=korea" class="country-link" data-country="korea">Korea</a></li>
+            <li><a href="genre.html?country=mexico" class="country-link" data-country="mexico">Mexico</a></li>
+            <li><a href="genre.html?country=russia" class="country-link" data-country="russia">Russia</a></li>
+            <li><a href="genre.html?country=spain" class="country-link" data-country="spain">Spain</a></li>
+            <li><a href="genre.html?country=uk" class="country-link" data-country="uk">UK</a></li>
+            <li><a href="genre.html?country=usa" class="country-link" data-country="usa">USA</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section class="section-title">
+            <h2>Genre: All Movies</h2>
+        </section>
+        
+        <section class="movie-section">
+            <div class="movie-grid" id="genreMovieGrid">
+                <!-- Movies will be loaded here via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all genre links
+            const genreLinks = document.querySelectorAll('.genre-link');
+            const countryLinks = document.querySelectorAll('.country-link');
+            const moviesLink = document.querySelector('.movies-link');
+            const tvshowsLink = document.querySelector('.tvshows-link');
+            const topImdbLink = document.createElement('a');
+            topImdbLink.href = '#';
+            topImdbLink.innerHTML = '<i class="fas fa-star"></i> Top IMDB';
+            topImdbLink.classList.add('topimdb-link');
+            
+            // Insert Top IMDB link after Home
+            const homeLink = document.querySelector('.sidebar ul li:first-child');
+            const topImdbLi = document.createElement('li');
+            topImdbLi.appendChild(topImdbLink);
+            homeLink.parentNode.insertBefore(topImdbLi, homeLink.nextSibling);
+            
+            // Function to filter movies by genre
+            function filterByGenre(genre) {
+                const movies = JSON.parse(localStorage.getItem('marcoMovies')) || [];
+                const filteredMovies = movies.filter(movie => 
+                    movie.genre && movie.genre.map(g => g.toLowerCase()).includes(genre.toLowerCase())
+                );
+                
+                displayMovies(filteredMovies);
+                document.querySelector('.section-title h2').textContent = `Genre: ${genre.charAt(0).toUpperCase() + genre.slice(1)}`;
+            }
+            
+            // Function to filter movies by country
+            function filterByCountry(country) {
+                const movies = JSON.parse(localStorage.getItem('marcoMovies')) || [];
+                const filteredMovies = movies.filter(movie => 
+                    movie.country && movie.country.toLowerCase() === country.toLowerCase()
+                );
+                
+                displayMovies(filteredMovies);
+                document.querySelector('.section-title h2').textContent = `Country: ${country.charAt(0).toUpperCase() + country.slice(1)}`;
+            }
+            
+            // Function to filter by Top IMDB
+            function filterByTopIMDB() {
+                const movies = JSON.parse(localStorage.getItem('marcoMovies')) || [];
+                const filteredMovies = movies.filter(movie => movie.topImdb === 'yes');
+                
+                displayMovies(filteredMovies);
+                document.querySelector('.section-title h2').textContent = 'Top IMDB Movies';
+            }
+            
+            // Function to filter by movie type
+            function filterByType(type) {
+                const movies = JSON.parse(localStorage.getItem('marcoMovies')) || [];
+                const filteredMovies = movies.filter(movie => movie.type === type);
+                
+                displayMovies(filteredMovies);
+                document.querySelector('.section-title h2').textContent = type === 'movie' ? 'Movies' : 'TV Shows';
+            }
+            
+            // Function to display movies
+            function displayMovies(movies) {
+                const movieGrid = document.getElementById('genreMovieGrid');
+                movieGrid.innerHTML = '';
+                
+                if (movies.length === 0) {
+                    movieGrid.innerHTML = '<p class="no-results">No movies found</p>';
+                    return;
+                }
+                
+                movies.forEach(movie => {
+                    const movieCard = document.createElement('div');
+                    movieCard.className = 'movie-card';
+                    movieCard.dataset.movieId = movie.id;
+                    
+                    movieCard.innerHTML = `
+                        <div class="movie-poster">
+                            <img src="${movie.posterUrl}" alt="${movie.title}">
+                            <div class="movie-overlay">
+                                <div class="play-button"><i class="fas fa-play"></i></div>
+                            </div>
+                            <div class="${movie.quality === 'hd' ? 'hd-tag' : 'cam-tag'}">${movie.quality.toUpperCase()}</div>
+                        </div>
+                        <div class="movie-info">
+                            <h3>${movie.title}</h3>
+                            <div class="movie-meta">
+                                <span class="year">${movie.year}</span>
+                                <span class="duration">${movie.duration}m</span>
+                            </div>
+                        </div>
+                    `;
+                    
+                    movieGrid.appendChild(movieCard);
+                });
+                
+                // Add click event to movie cards
+                const movieCards = document.querySelectorAll('.movie-card');
+                movieCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        const movieId = card.dataset.movieId;
+                        if (movieId) {
+                            window.location.href = `movie-details.html?id=${movieId}`;
+                        }
+                    });
+                });
+            }
+            
+            // Add event listeners to genre links
+            genreLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const genre = this.dataset.genre;
+                    filterByGenre(genre);
+                    
+                    // Update active class
+                    document.querySelectorAll('.sidebar ul li').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    this.parentElement.classList.add('active');
+                });
+            });
+            
+            // Add event listeners to country links
+            countryLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const country = this.dataset.country;
+                    filterByCountry(country);
+                    
+                    // Update active class
+                    document.querySelectorAll('.sidebar ul li').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    this.parentElement.classList.add('active');
+                });
+            });
+            
+            // Add event listener to Top IMDB link
+            topImdbLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                filterByTopIMDB();
+                
+                // Update active class
+                document.querySelectorAll('.sidebar ul li').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.parentElement.classList.add('active');
+            });
+            
+            // Add event listeners to Movies and TV Shows links
+            moviesLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                filterByType('movie');
+                
+                // Update active class
+                document.querySelectorAll('.sidebar ul li').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.parentElement.classList.add('active');
+            });
+            
+            tvshowsLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                filterByType('tvshow');
+                
+                // Update active class
+                document.querySelectorAll('.sidebar ul li').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.parentElement.classList.add('active');
+            });
+            // Add this inside the DOMContentLoaded event handler in genre.html
+            // Check for URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchTerm = urlParams.get('search');
+            const genreParam = urlParams.get('genre');
+            const countryParam = urlParams.get('country');
+            
+            if (searchTerm) {
+                const movies = JSON.parse(localStorage.getItem('marcoMovies')) || [];
+                const searchResults = movies.filter(movie => {
+                    return (
+                        movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        (movie.description && movie.description.toLowerCase().includes(searchTerm.toLowerCase())) ||
+                        (movie.genre && movie.genre.some(g => g.toLowerCase().includes(searchTerm.toLowerCase()))) ||
+                        (movie.country && movie.country.toLowerCase().includes(searchTerm.toLowerCase()))
+                    );
+                });
+                
+                displayMovies(searchResults);
+                document.querySelector('.section-title h2').textContent = `Search Results for: ${searchTerm}`;
+            } else if (genreParam) {
+                filterByGenre(genreParam);
+                // Highlight the active genre in sidebar
+                document.querySelectorAll('.genre-link').forEach(link => {
+                    if (link.dataset.genre === genreParam.toLowerCase()) {
+                        link.parentElement.classList.add('active');
+                    }
+                });
+            } else if (countryParam) {
+                filterByCountry(countryParam);
+                // Highlight the active country in sidebar
+                document.querySelectorAll('.country-link').forEach(link => {
+                    if (link.dataset.country === countryParam.toLowerCase()) {
+                        link.parentElement.classList.add('active');
+                    }
+                });
+            } else {
+                // Load all movies by default if no parameters
+                const movies = JSON.parse(localStorage.getItem('marcoMovies')) || [];
+                displayMovies(movies);
+            }
+        });
+    </script>
+</body>
+</html>

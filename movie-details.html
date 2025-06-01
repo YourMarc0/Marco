@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details - Marco</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .movie-details-container {
+            display: flex;
+            margin-top: 30px;
+            gap: 30px;
+        }
+        
+        .movie-poster-large {
+            flex: 0 0 300px;
+        }
+        
+        .movie-poster-large img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        
+        .movie-info-large {
+            flex: 1;
+        }
+        
+        .movie-title {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .movie-meta-large {
+            display: flex;
+            margin-bottom: 20px;
+            color: #888888;
+        }
+        
+        .movie-meta-large span {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .movie-meta-large i {
+            margin-right: 5px;
+        }
+        
+        .movie-description {
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: #ffffff;
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        .download-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .genre-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .genre-tag {
+            background-color: #2a2c32;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>MARCO</h1>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="user-actions">
+            <a href="login.html" class="admin-btn">Admin</a>
+            <a href="#" class="login-btn">Login</a>
+        </div>
+    </header>
+
+    <!-- Replace the sidebar navigation section with this -->
+    <nav class="sidebar">
+        <ul>
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="topimdb.html"><i class="fas fa-star"></i> Top IMDB</a></li>
+            <li><a href="movies.html"><i class="fas fa-film"></i> Movies</a></li>
+            <li><a href="tvshows.html"><i class="fas fa-tv"></i> TV Shows</a></li>
+            <li class="category-header">Genres</li>
+            <li><a href="genre.html?genre=action">Action</a></li>
+            <li><a href="genre.html?genre=adventure">Adventure</a></li>
+            <li><a href="genre.html?genre=animation">Animation</a></li>
+            <li><a href="genre.html?genre=comedy">Comedy</a></li>
+            <li><a href="genre.html?genre=crime">Crime</a></li>
+            <li><a href="genre.html?genre=drama">Drama</a></li>
+            <li><a href="genre.html?genre=fantasy">Fantasy</a></li>
+            <li><a href="genre.html?genre=horror">Horror</a></li>
+            <li><a href="genre.html?genre=mystery">Mystery</a></li>
+            <li><a href="genre.html?genre=romance">Romance</a></li>
+            <li><a href="genre.html?genre=scifi">Sci-Fi</a></li>
+            <li><a href="genre.html?genre=thriller">Thriller</a></li>
+            <li><a href="genre.html?genre=war">War</a></li>
+            <li><a href="genre.html?genre=western">Western</a></li>
+            <li class="category-header">Country</li>
+            <li><a href="genre.html?country=argentina">Argentina</a></li>
+            <li><a href="genre.html?country=australia">Australia</a></li>
+            <li><a href="genre.html?country=brazil">Brazil</a></li>
+            <li><a href="genre.html?country=canada">Canada</a></li>
+            <li><a href="genre.html?country=china">China</a></li>
+            <li><a href="genre.html?country=france">France</a></li>
+            <li><a href="genre.html?country=germany">Germany</a></li>
+            <li><a href="genre.html?country=india">India</a></li>
+            <li><a href="genre.html?country=japan">Japan</a></li>
+            <li><a href="genre.html?country=korea">Korea</a></li>
+            <li><a href="genre.html?country=mexico">Mexico</a></li>
+            <li><a href="genre.html?country=russia">Russia</a></li>
+            <li><a href="genre.html?country=spain">Spain</a></li>
+            <li><a href="genre.html?country=uk">UK</a></li>
+            <li><a href="genre.html?country=usa">USA</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div id="movieDetailsContainer" class="movie-details-container">
+            <!-- Movie details will be loaded here via JavaScript -->
+        </div>
+        
+        <section class="social-share">
+            <button class="share-btn facebook"><i class="fab fa-facebook-f"></i> Like</button>
+            <button class="share-btn twitter"><i class="fab fa-twitter"></i> Tweet</button>
+            <button class="share-btn whatsapp"><i class="fab fa-whatsapp"></i> Share</button>
+            <button class="share-btn telegram"><i class="fab fa-telegram"></i> Send</button>
+            <button class="share-btn reddit"><i class="fab fa-reddit-alien"></i> Reddit</button>
+            <button class="share-btn pinterest"><i class="fab fa-pinterest-p"></i> Pin</button>
+        </section>
+        
+        <!-- You May Also Like Section -->
+        <section class="related-movies">
+            <h2>You May Also Like</h2>
+            <div class="movie-grid" id="relatedMoviesGrid">
+                <!-- Related movies will be loaded here via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get movie ID from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const movieId = urlParams.get('id');
+            
+            if (movieId) {
+                // Get movies from localStorage
+                const movies = JSON.parse(localStorage.getItem('marcoMovies')) || [];
+                const movie = movies.find(m => m.id === movieId);
+                
+                if (movie) {
+                    // Update page title
+                    document.title = `${movie.title} - Marco`;
+                    
+                    // Display movie details
+                    const movieDetailsContainer = document.getElementById('movieDetailsContainer');
+                    
+                    // Create genre tags HTML
+                    const genreTagsHtml = movie.genre.map(genre => {
+                        return `<span class="genre-tag">${genre.charAt(0).toUpperCase() + genre.slice(1)}</span>`;
+                    }).join('');
+                    
+                    movieDetailsContainer.innerHTML = `
+                        <div class="movie-poster-large">
+                            <img src="${movie.posterUrl}" alt="${movie.title}">
+                        </div>
+                        <div class="movie-info-large">
+                            <h1 class="movie-title">${movie.title}</h1>
+                            <div class="movie-meta-large">
+                                <span><i class="fas fa-calendar"></i> ${movie.year}</span>
+                                <span><i class="fas fa-clock"></i> ${movie.duration} min</span>
+                                <span><i class="fas fa-globe"></i> ${movie.country.charAt(0).toUpperCase() + movie.country.slice(1)}</span>
+                                <span><i class="fas fa-video"></i> ${movie.quality.toUpperCase()}</span>
+                            </div>
+                            <div class="genre-tags">
+                                ${genreTagsHtml}
+                            </div>
+                            <p class="movie-description">${movie.description}</p>
+                            
+                            ${movie.trailerUrl ? `
+                            <div class="trailer-container">
+                                <h3>Watch Trailer</h3>
+                                <div class="video-container">
+                                    <iframe width="560" height="315" 
+                                        src="https://www.youtube.com/embed/${getYouTubeId(movie.trailerUrl)}" 
+                                        frameborder="0" 
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
+                            ` : ''}
+                            
+                            <div class="download-section" style="margin-top: 20px;">
+                                <a href="${movie.downloadUrl}" class="download-btn" target="_blank"><i class="fas fa-download"></i> Download Movie</a>
+                                
+                                ${movie.alternateDownloads && movie.alternateDownloads.length > 0 ? 
+                                    `<div class="alternate-downloads">
+                                        <h4>Alternate Downloads:</h4>
+                                        <div class="alternate-download-links">
+                                            ${movie.alternateDownloads.map(link => 
+                                                `<a href="${link.url}" class="alternate-download-btn" target="_blank">
+                                                    <i class="fas fa-download"></i> ${link.label}
+                                                </a>`
+                                            ).join('')}
+                                        </div>
+                                    </div>` : ''
+                                }
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Load related movies (same genre)
+                    loadRelatedMovies(movie);
+                } else {
+                    // Movie not found
+                    document.getElementById('movieDetailsContainer').innerHTML = '<h2>Movie not found</h2>';
+                }
+            } else {
+                // No movie ID provided
+                document.getElementById('movieDetailsContainer').innerHTML = '<h2>No movie selected</h2>';
+            }
+            
+            // Social Share Buttons Functionality
+            const shareBtns = document.querySelectorAll('.share-btn');
+            
+            shareBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const platform = btn.classList[1];
+                    alert(`Sharing via ${platform}. This would typically open a share dialog.`);
+                });
+            });
+            
+            // Add related movies section
+            if (movie) {
+                // Function to load related movies
+                function loadRelatedMovies(currentMovie) {
+                    const movies = JSON.parse(localStorage.getItem('marcoMovies')) || [];
+                    
+                    // Filter movies with at least one matching genre, excluding current movie
+                    const relatedMovies = movies.filter(movie => {
+                        if (movie.id === currentMovie.id) return false;
+                        
+                        // Check for genre match
+                        return movie.genre.some(genre => 
+                            currentMovie.genre.includes(genre)
+                        );
+                    });
+                    
+                    // Limit to 30 related movies
+                    const limitedRelatedMovies = relatedMovies.slice(0, 30);
+                    
+                    // Display related movies
+                    const relatedMoviesGrid = document.getElementById('relatedMoviesGrid');
+                    
+                    if (limitedRelatedMovies.length === 0) {
+                        relatedMoviesGrid.innerHTML = '<p>No related movies found</p>';
+                        return;
+                    }
+                    
+                    limitedRelatedMovies.forEach(movie => {
+                        const movieCard = document.createElement('div');
+                        movieCard.className = 'movie-card';
+                        movieCard.dataset.movieId = movie.id;
+                        
+                        movieCard.innerHTML = `
+                            <div class="movie-poster">
+                                <img src="${movie.posterUrl}" alt="${movie.title}">
+                                <div class="movie-overlay">
+                                    <div class="play-button"><i class="fas fa-play"></i></div>
+                                </div>
+                                <div class="${movie.quality === 'hd' ? 'hd-tag' : 'cam-tag'}">${movie.quality.toUpperCase()}</div>
+                            </div>
+                            <div class="movie-info">
+                                <h3>${movie.title}</h3>
+                                <div class="movie-meta">
+                                    <span class="year">${movie.year}</span>
+                                    <span class="duration">${movie.duration}m</span>
+                                </div>
+                            </div>
+                        `;
+                        
+                        relatedMoviesGrid.appendChild(movieCard);
+                    });
+                    
+                    // Add click event to movie cards
+                    const movieCards = document.querySelectorAll('#relatedMoviesGrid .movie-card');
+                    movieCards.forEach(card => {
+                        card.addEventListener('click', () => {
+                            const movieId = card.dataset.movieId;
+                            if (movieId) {
+                                window.location.href = `movie-details.html?id=${movieId}`;
+                            }
+                        });
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+
+    <script>
+        // Function to extract YouTube video ID from URL
+        function getYouTubeId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+        
+        // ... existing code ...
