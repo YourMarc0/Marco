@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marco - Movie Streaming</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="hollywood.css">
+  <link rel="stylesheet" href="bollywood.css">
 </head>
 <body>
   <!-- Netflix-style intro animation overlay -->
@@ -47,7 +47,7 @@
     <span class="marco-logo-anim tron-glow" id="marco-logo">Marco</span>
   </div>
   <header>
-    <a href="https://yourmarc0.github.io/Marco/" class="logo" id="glowing-logo">Marco</a>
+    <a href="https://yourmarc0.github.io/Marco/" class="logo" id="glowing-logo">Marco Bollywood</a>
     <style>
       @keyframes randomGlow {
         0% { text-shadow: none; }
@@ -91,6 +91,7 @@
       <div class="movie-slideshow" id="movie-slideshow"></div>
     </div>
     <!-- Movie Slideshow End -->
+    <!-- Add this right before the closing </header> tag -->
    
   </header>
   <main>
@@ -120,7 +121,30 @@
         </li>
       </ul>
     </nav>
-
+    <div class="back-button-container">
+      <a href="index.html" class="back-button">Back to Main Page</a>
+    </div>
+    <style>
+      .back-button-container {
+        text-align: center;
+        margin: 1rem 0;
+      }
+      .back-button {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background-color: #ff003c;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+      .back-button:hover {
+        background-color: #d60033;
+        transform: scale(1.05);
+        box-shadow: 0 0 15px rgba(255, 0, 60, 0.5);
+      }
+    </style>
     <h2>Latest Uploads</h2>
     <div id="latest-uploads"></div>
   </main>
@@ -139,7 +163,7 @@
     </div>
     <div style="margin-top:1rem;">&copy; 2024 Marco Movie Streaming</div>
   </footer>
-  <script src="hollywood.js"></script>
+  <script src="bollywood.js"></script>
   <style>
     #marco-intro {
       position: fixed;

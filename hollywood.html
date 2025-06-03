@@ -47,7 +47,7 @@
     <span class="marco-logo-anim tron-glow" id="marco-logo">Marco</span>
   </div>
   <header>
-    <a href="https://yourmarc0.github.io/Marco/" class="logo" id="glowing-logo">Marco</a>
+    <a href="https://yourmarc0.github.io/Marco/" class="logo" id="glowing-logo">Marco Hollywood</a>
     <style>
       @keyframes randomGlow {
         0% { text-shadow: none; }
@@ -121,7 +121,33 @@
         </li>
       </ul>
     </nav>
+    <div class="back-button-container">
+      <a href="index.html" class="back-button">Back to Main Page</a>
+    </div>
+    <style>
+      .back-button-container {
+        text-align: center;
+        margin: 1rem 0;
+      }
+      
+      .back-button {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background-color: #ff003c;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(255, 0, 60, 0.3);
+      }
 
+      .back-button:hover {
+        background-color: #d10032;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 0, 60, 0.4);
+      }
+    </style>
     <h2>Latest Uploads</h2>
     <div id="latest-uploads"></div>
   </main>
