@@ -1,0 +1,458 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marco - Movie Streaming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <!-- Netflix-style intro animation overlay -->
+  <div id="marco-intro">
+    <div class="tron-bike tron-bike-left">
+      <svg width="100" height="40" viewBox="0 0 100 40">
+        <ellipse cx="25" cy="30" rx="15" ry="15" fill="#ff003c" filter="url(#glowL)" />
+        <ellipse cx="75" cy="30" rx="15" ry="15" fill="#ff003c" filter="url(#glowL)" />
+        <rect x="25" y="18" width="50" height="12" rx="6" fill="#ff003c" filter="url(#glowL)" />
+        <defs>
+          <filter id="glowL">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+    <div class="tron-bike tron-bike-right">
+      <svg width="100" height="40" viewBox="0 0 100 40">
+        <ellipse cx="25" cy="30" rx="15" ry="15" fill="#ff003c" filter="url(#glowR)" />
+        <ellipse cx="75" cy="30" rx="15" ry="15" fill="#ff003c" filter="url(#glowR)" />
+        <rect x="25" y="18" width="50" height="12" rx="6" fill="#ff003c" filter="url(#glowR)" />
+        <defs>
+          <filter id="glowR">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+            <feMerge>
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+    <div id="crash-flash"></div>
+    <span class="marco-logo-anim tron-glow" id="marco-logo">Marco</span>
+  </div>
+  <header>
+    <a href="https://yourmarc0.github.io/Marco/" class="logo" id="glowing-logo">Marco</a>
+    <style>
+      @keyframes randomGlow {
+        0% { text-shadow: none; }
+        50% { text-shadow: 0 0 10px #ff003c, 0 0 20px #ff003c, 0 0 30px #ff003c; }
+        100% { text-shadow: none; }
+      }
+      
+      .glow-effect {
+        animation: randomGlow 1s ease-in-out;
+      }
+    </style>
+    <script>
+      (function() {
+        const logo = document.getElementById('glowing-logo');
+        if (!logo) return; // Prevent errors if the element is missing
+        
+        function triggerGlow() {
+          logo.classList.add('glow-effect');
+          setTimeout(() => {
+            logo.classList.remove('glow-effect');
+          }, 1000);
+          
+          // Set next random interval between 1-5 seconds
+          setTimeout(triggerGlow, Math.random() * 4000 + 1000);
+        }
+        
+        // Start the random glow effect
+        setTimeout(triggerGlow, Math.random() * 4000 + 1000);
+      })();
+    </script>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search movies, genres, actors..." autocomplete="off" oninput="searchMovies()">
+      <button type="button" onclick="searchMovies()">Search</button>
+      <div id="search-section" style="display:none;">
+        <div id="search-results"></div>
+      </div>
+    </div>
+    <!-- Removed old genre menu -->
+    <!-- Movie Slideshow Start -->
+    <div class="movie-slideshow-wrapper">
+      <div class="movie-slideshow" id="movie-slideshow"></div>
+    </div>
+    <!-- Movie Slideshow End -->
+    <!-- Add this right before the closing </header> tag -->
+    
+  </header>
+  <main>
+    <!-- Platform Menu Bar -->
+    <nav class="platform-menu">
+      <ul>
+        <li class="platform-item" onmouseenter="showDropdown('genre-dropdown')" onmouseleave="hideDropdown('genre-dropdown')">
+          Genre
+          <ul class="platform-dropdown genre-dropdown" id="genre-dropdown" style="display:none;">
+            <!-- Genre options will be populated by JavaScript -->
+          </ul>
+        </li>
+        <li class="platform-item" onmouseenter="showDropdown('year-dropdown')" onmouseleave="hideDropdown('year-dropdown')">
+          Year
+          <ul class="platform-dropdown year-dropdown" id="year-dropdown" style="display:none;">
+            <!-- Year options will be populated by JavaScript -->
+          </ul>
+        </li>
+        <li class="platform-item" onmouseenter="showDropdown('rating-dropdown')" onmouseleave="hideDropdown('rating-dropdown')">
+          Rating
+          <ul class="platform-dropdown rating-dropdown" id="rating-dropdown" style="display:none;">
+            <!-- Rating options will be populated by JavaScript -->
+          </ul>
+        </li>
+        <li class="platform-item">
+          <a href="#" onclick="showRecommendations()">Recommendations</a>
+        </li>
+      </ul>
+    </nav>
+<div class="movie-category-buttons">
+  <a href="index.html" class="category-btn home-btn">Home</a>
+  <a href="hollywood.html" class="category-btn hollywood-btn">Hollywood</a>
+  <a href="bollywood.html" class="category-btn bollywood-btn">Bollywood</a>
+</div>
+
+<style>
+.movie-category-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.category-btn {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-btn {
+  background: linear-gradient(45deg, #1a1a1a, #333);
+  color: #fff;
+  border: 2px solid #444;
+}
+
+.hollywood-btn {
+  background: linear-gradient(45deg, #ff003c, #ff2b5c);
+  color: #fff;
+  border: 2px solid #ff003c;
+}
+
+.bollywood-btn {
+  background: linear-gradient(45deg, #ffd700, #ffa500);
+  color: #000;
+  border: 2px solid #ffd700;
+}
+
+.category-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.category-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.category-btn:hover::before {
+  left: 100%;
+}
+
+.home-btn:hover {
+  background: linear-gradient(45deg, #333, #1a1a1a);
+}
+
+.hollywood-btn:hover {
+  background: linear-gradient(45deg, #ff2b5c, #ff003c);
+}
+
+.bollywood-btn:hover {
+  background: linear-gradient(45deg, #ffa500, #ffd700);
+}
+</style>
+    
+    <h2>Latest Uploads</h2>
+    <div id="latest-uploads"></div>
+  </main>
+  <footer>
+    <div class="contact-section">
+      <h3>Contact Us</h3>
+      <form onsubmit="event.preventDefault(); alert('Thank you for contacting us!');">
+        <label for="name">Name</label>
+        <input type="text" id="name" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" required>
+        <label for="message">Message</label>
+        <textarea id="message" rows="4" required></textarea>
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <div style="margin-top:1rem;">&copy; 2024 Marco Movie Streaming</div>
+  </footer>
+  <script src="index.js"></script>
+  <style>
+    #marco-intro {
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at center, #2d0303 0%, #1a0000 80%, #000 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      transition: opacity 0.7s;
+      animation: fadeOutIntro 1s forwards 3.7s;
+    }
+    .tron-bike {
+      position: absolute;
+      top: 50%;
+      width: 100px;
+      height: 40px;
+      transform: translateY(-50%);
+      z-index: 2;
+      opacity: 1;
+      transition: opacity 0.2s;
+    }
+    .tron-bike-left {
+      left: -120px;
+      animation: bikeLeftMove 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    .tron-bike-right {
+      right: -120px;
+      animation: bikeRightMove 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    @keyframes bikeLeftMove {
+      0% { left: -120px; }
+      80% { left: 38%; }
+      100% { left: 46%; }
+    }
+    @keyframes bikeRightMove {
+      0% { right: -120px; }
+      80% { right: 38%; }
+      100% { right: 46%; }
+    }
+    #crash-flash {
+      position: absolute;
+      left: 0; top: 0; right: 0; bottom: 0;
+      background: radial-gradient(circle at 50% 50%, #fff 0%, #ff003c 40%, transparent 80%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .crash-active #crash-flash {
+      animation: crashFlash 0.25s;
+    }
+    @keyframes crashFlash {
+      0% { opacity: 0; }
+      40% { opacity: 0.85; }
+      100% { opacity: 0; }
+    }
+    .crash-active {
+      animation: shake 0.25s;
+    }
+    @keyframes shake {
+      0% { transform: translate(0,0);}
+      20% { transform: translate(-8px, 0);}
+      40% { transform: translate(8px, 0);}
+      60% { transform: translate(-4px, 0);}
+      80% { transform: translate(4px, 0);}
+      100% { transform: translate(0,0);}
+    }
+    #marco-logo {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%) scale(0.7);
+      opacity: 0;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 4.5rem;
+      font-weight: 700;
+      color: #ff003c;
+      letter-spacing: 0.18em;
+      text-shadow:
+        0 0 32px #ff003c,
+        0 0 8px #fff,
+        0 2px 24px #ff003c,
+        0 0 80px #ff003c;
+      text-transform: uppercase;
+      filter: blur(6px) brightness(1.5);
+      z-index: 4;
+      transition: opacity 0.2s, filter 0.2s, transform 0.2s;
+    }
+    .logo-reveal #marco-logo {
+      animation: logoAppear 0.7s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    @keyframes logoAppear {
+      0% { opacity: 0; filter: blur(18px) brightness(2.5); transform: translate(-50%, -50%) scale(0.7);}
+      60% { opacity: 1; filter: blur(2px) brightness(2); transform: translate(-50%, -50%) scale(1.05);}
+      100% { opacity: 1; filter: blur(0) brightness(1.5); transform: translate(-50%, -50%) scale(1);}
+    }
+    .logo-blast #marco-logo {
+      animation: logoBlast 0.5s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+    }
+    @keyframes logoBlast {
+      0% { opacity: 1; filter: blur(0) brightness(1.5); transform: translate(-50%, -50%) scale(1);}
+      60% { opacity: 1; filter: blur(8px) brightness(2.5); transform: translate(-50%, -50%) scale(1.5);}
+      100% { opacity: 0; filter: blur(18px) brightness(3); transform: translate(-50%, -50%) scale(2);}
+    }
+    .movie-slideshow-wrapper {
+      width: 100%;
+      overflow: hidden;
+      margin: 0 auto 1.5rem auto;
+      padding: 0.5rem 0;
+      background: rgba(30,0,10,0.15);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(255,0,60,0.08);
+      position: relative;
+      max-width: 1100px;
+    }
+    .movie-slideshow {
+      display: flex;
+      gap: 1.2rem;
+      animation: slideshow-move 18s linear infinite;
+      will-change: transform;
+    }
+    .movie-card-slideshow {
+      min-width: 140px;
+      max-width: 140px;
+      background: #181818;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.25,.8,.25,1), box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
+      cursor: pointer;
+      position: relative;
+      border: 2px solid #ff003c22;
+    }
+    .movie-card-slideshow:hover {
+      transform: scale(1.08) rotate(-2deg);
+      box-shadow: 0 6px 24px 2px #ff003c55;
+      border-color: #ff003c;
+      z-index: 2;
+    }
+    .movie-card-slideshow img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .movie-card-title-slideshow {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      padding: 0.5rem 0.7rem 0.4rem 0.7rem;
+      font-family: 'Montserrat', sans-serif;
+      text-shadow: 0 2px 8px #000;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @keyframes slideshow-move {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (max-width: 900px) {
+      .movie-slideshow-wrapper { max-width: 98vw; }
+      .movie-card-slideshow { min-width: 110px; max-width: 110px; }
+      .movie-card-slideshow img { height: 120px; }
+    }
+    @media (max-width: 600px) {
+      .movie-slideshow-wrapper { max-width: 100vw; }
+      .movie-card-slideshow { min-width: 90px; max-width: 90px; }
+      .movie-card-slideshow img { height: 90px; }
+      .movie-card-title-slideshow { font-size: 0.8rem; }
+    }
+  </style>
+  <script>
+    // Animation sequence controller
+    window.addEventListener('DOMContentLoaded', function() {
+      // After bikes "crash"
+      setTimeout(function() {
+        document.getElementById('marco-intro').classList.add('crash-active');
+        setTimeout(function() {
+          document.getElementById('marco-intro').classList.remove('crash-active');
+          document.getElementById('marco-intro').classList.add('logo-reveal');
+          // Hide bikes
+          document.querySelector('.tron-bike-left').style.opacity = 0;
+          document.querySelector('.tron-bike-right').style.opacity = 0;
+          // After logo reveal, blast it
+          setTimeout(function() {
+            document.getElementById('marco-intro').classList.remove('logo-reveal');
+            document.getElementById('marco-intro').classList.add('logo-blast');
+            // Remove overlay after blast
+            setTimeout(function() {
+              var intro = document.getElementById('marco-intro');
+              if(intro) intro.style.display = 'none';
+            }, 600);
+          }, 900);
+        }, 300);
+      }, 1200);
+    });
+    // Movie Slideshow from existing cards
+    function renderSlideshowFromExisting() {
+      const latest = document.getElementById('latest-uploads');
+      const slideshow = document.getElementById('movie-slideshow');
+      if (!latest || !slideshow) return;
+      // Find all movie cards in latest uploads
+      const cards = Array.from(latest.querySelectorAll('.movie-card'));
+      if (cards.length === 0) {
+        slideshow.innerHTML = '<div style="color:#fff;padding:1rem;">No movies available for slideshow.</div>';
+        return;
+      }
+      // Use up to 10 cards, duplicate for seamless loop
+      let showCards = cards.slice(0, 10);
+      let html = '';
+      for (let i = 0; i < 2; i++) { // duplicate for loop
+        showCards.forEach(card => {
+          // Clone card content for slideshow
+          const img = card.querySelector('img');
+          const title = card.querySelector('.movie-card-title') || card.querySelector('.title') || {textContent:""};
+          html += `
+            <div class="movie-card-slideshow">
+              <img src="${img ? img.src : ''}" alt="${img ? img.alt : ''}">
+              <div class="movie-card-title-slideshow">${title.textContent || ''}</div>
+            </div>
+          `;
+        });
+      }
+      slideshow.innerHTML = html;
+    }
+    // Run after DOM loaded and whenever latest uploads change
+    document.addEventListener('DOMContentLoaded', renderSlideshowFromExisting);
+    // If you dynamically update #latest-uploads, call renderSlideshowFromExisting() after update.
+  </script>
+</body>
+</html>
