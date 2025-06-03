@@ -225,14 +225,7 @@ const movies = [
     year: 2025,
     page: "https://imthemarco.blogspot.com/2025/05/i-am-number-four-2011.html"
   },
-  {
-    title: " Bhool Chuk Maaf (2025)",
-    genre: "Fantasy, Romantic Comedy",
-    actors: ["Rajkummar Rao", "Wamiqa Gabbi", "Seema Pahwa"],
-    thumb: "https://m.media-amazon.com/images/M/MV5BZTAwNjIzZjEtZjk1MC00NTI5LTg0MjctZTBkMWVhMWMzMjg5XkEyXkFqcGc@._V1_QL75_UX298.5_.jpg",
-    year: 2025,
-    page: "https://imthemarco.blogspot.com/2025/05/bhool-chuk-maaf-2025.html"
-  },
+ 
   {
     title: "CRUEL WAR",
     genre: "",
@@ -249,25 +242,7 @@ const movies = [
     year: 2012,
     page: `https://imthemarco.blogspot.com/2025/05/eternity-2012.html`
   },
-  {
-    title: "L2: Empuraan",
-    genre: "Action, Thriller, Political",
-    actors: ["Mohanlal", "Prithviraj Sukumaran", "Tovino Thomas", "Indrajith Sukumaran"],
-    thumb: "https://upload.wikimedia.org/wikipedia/en/3/35/L2_-_Empuraan_poster.jpg",
-    year: 2025,
-    page: "https://imthemarco.blogspot.com/2025/05/l2-empuraan.html",
-    director: "Prithviraj Sukumaran",
-    runtime: "TBA",
-    rating: "NR",
-    language: "Hindi & English",
-    subtitle: "YES / English",
-    size: "11GB",
-    quality: "480p || 720p || 1080p",
-    format: "MKV",
-    description: "L2: Empuraan is the highly anticipated sequel to the blockbuster *Lucifer*. The film delves deeper into the mysterious world of Khureshi-Ab'ram, played by Mohanlal, as he expands his political and criminal empire on a global scale.",
-    download: "https://gofile.io/d/r3HDLz",
-    play: "https://gofile.io/d/r3HDLz"
-  }
+  
 
 ];
 
@@ -510,21 +485,69 @@ function showAllMovies() {
   renderLatest();
 }
 
-// Function to show recommended movies (rating > 8)
-function showRecommendations() {
+// Function to show random recommended movies with filtering
+function showRecommendations(filterOptions = {}) {
   hideAllDropdowns();
-  const recommendedMovies = movies.filter(movie => {
-    return movie.rating && !isNaN(movie.rating) && parseFloat(movie.rating) > 8;
+  
+  // Filter movies based on provided criteria
+  let filteredMovies = movies.filter(movie => {
+    let matches = true;
+    
+    // Filter by genre if specified
+    if (filterOptions.genre) {
+      matches = matches && movie.genre && movie.genre.toLowerCase().includes(filterOptions.genre.toLowerCase());
+    }
+    
+    // Filter by year if specified
+    if (filterOptions.year) {
+      matches = matches && movie.year === filterOptions.year;
+    }
+    
+    // Filter by rating if specified
+    if (filterOptions.rating) {
+      matches = matches && movie.rating === filterOptions.rating;
+    }
+    
+    return matches;
   });
+
+  // Shuffle the filtered movies
+  const shuffledMovies = [...filteredMovies].sort(() => Math.random() - 0.5);
+  
+  // Take up to 8 movies as recommendations
+  const recommendedMovies = shuffledMovies.slice(0, 8);
+  
   const container = document.getElementById('latest-uploads');
   container.innerHTML = `
-    <h3 style="color: #E50914; margin-bottom: 20px;">Recommended Movies</h3>
+    <div class="recommendations-header">
+      <h3 style="color: #E50914; margin-bottom: 20px;">Recommended Movies</h3>
+      <div class="filter-controls">
+        <select onchange="updateRecommendations('genre', this.value)">
+          <option value="">Filter by Genre</option>
+          ${[...new Set(movies.flatMap(m => m.genre ? m.genre.split(',').map(g => g.trim()) : []))].map(genre => 
+            `<option value="${genre}">${genre}</option>`
+          ).join('')}
+        </select>
+        <select onchange="updateRecommendations('year', parseInt(this.value))">
+          <option value="">Filter by Year</option>
+          ${[...new Set(movies.map(m => m.year))].sort((a,b) => b-a).map(year =>
+            `<option value="${year}">${year}</option>`
+          ).join('')}
+        </select>
+        <select onchange="updateRecommendations('rating', this.value)">
+          <option value="">Filter by Rating</option>
+          ${[...new Set(movies.map(m => m.rating).filter(Boolean))].map(rating =>
+            `<option value="${rating}">${rating}</option>`
+          ).join('')}
+        </select>
+      </div>
+    </div>
     <div class="recommendations-grid" style="
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 20px;
     ">
-      ${recommendedMovies.map(movie => `
+      ${recommendedMovies.length ? recommendedMovies.map(movie => `
         <a href="${movie.page}" class="movie-card" style="
           position: relative;
           transition: transform 0.3s ease;
@@ -547,14 +570,29 @@ function showRecommendations() {
             border-radius: 0 0 4px 4px;
           ">
             <div class="movie-title" style="color: #fff; font-weight: bold;">${movie.title}</div>
-            <div class="movie-meta" style="color: #ccc; font-size: 0.9em;">${movie.genre} | ${movie.year}</div>
+            <div class="movie-meta" style="color: #ccc; font-size: 0.9em;">
+              ${movie.genre || 'N/A'} | ${movie.year || 'N/A'}
+              ${movie.rating ? `| ${movie.rating}` : ''}
+            </div>
           </div>
         </a>
-      `).join('')}
+      `).join('') : '<p style="color: #fff; text-align: center; grid-column: 1/-1;">No movies found matching the selected filters</p>'}
     </div>
   `;
 }
 
+// Helper function to update recommendations based on filter changes
+function updateRecommendations(filterType, value) {
+  const currentFilters = {};
+  document.querySelectorAll('.filter-controls select').forEach(select => {
+    const filterName = select.onchange.toString().match(/updateRecommendations\('(\w+)'/)[1];
+    if (select.value) {
+      currentFilters[filterName] = filterType === filterName ? value : 
+        filterName === 'year' ? parseInt(select.value) : select.value;
+    }
+  });
+  showRecommendations(currentFilters);
+}
 // Close dropdowns when clicking outside
 document.addEventListener('click', function(event) {
   if (!event.target.closest('.platform-button')) {

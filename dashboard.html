@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devilish Login</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a0f0f 0%, #3d0000 100%);
+            font-family: 'Times New Roman', serif;
+        }
+
+        .login-container {
+            background: rgba(20, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3),
+                        0 0 40px rgba(0, 0, 0, 0.5);
+            border: 2px solid #660000;
+        }
+
+        h2 {
+            color: #ff0000;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #800000;
+            color: #ffffff;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #ff0000;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, #800000, #ff0000);
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #ff0000, #800000);
+            transform: scale(1.05);
+        }
+
+        .error {
+            color: #ff0000;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>🔥 Diabolic Login 🔥</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="password" id="password" placeholder="Password" required>
+            </div>
+            <button type="submit">Enter the Realm</button>
+        </form>
+        <p id="error" class="error">Invalid credentials!</p>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const error = document.getElementById('error');
+
+            if ((username === 'garry' && password === 'garry@meow') ||
+                (username === 'garry' && password === 'rythm@meow')) {
+                window.location.href = 'code green.html';
+            } else {
+                error.style.display = 'block';
+                setTimeout(() => {
+                    error.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Webpage & JSON Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Tailwind gray-900 */
+            color: #f3f4f6; /* Tailwind gray-100 */
+        }
+        .form-section {
+            background-color: #1f2937; /* Tailwind gray-800 */
+            padding: 2rem;
+            border-radius: 0.75rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        .form-section h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #60a5fa; /* Tailwind blue-400 */
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #374151; /* Tailwind gray-700 */
+            padding-bottom: 0.75rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #d1d5db; /* Tailwind gray-300 */
+        }
+        input[type="text"], input[type="url"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+            border: 1px solid #374151; /* Tailwind gray-700 */
+            background-color: #374151; /* Tailwind gray-700 */
+            color: #f3f4f6; /* Tailwind gray-100 */
+            margin-bottom: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input[type="text"]::placeholder, input[type="url"]::placeholder, input[type="number"]::placeholder, textarea::placeholder {
+            color: #9ca3af; /* Tailwind gray-400 */
+            opacity: 1;
+        }
+        input[type="text"]:focus, input[type="url"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #60a5fa; /* Tailwind blue-400 */
+            box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
+        }
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            border: none;
+        }
+        .btn-primary {
+            background-color: #3b82f6; /* Tailwind blue-500 */
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb; /* Tailwind blue-600 */
+        }
+        .btn-secondary {
+            background-color: #4b5563; /* Tailwind gray-600 */
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #374151; /* Tailwind gray-700 */
+        }
+        .btn:active {
+            transform: translateY(1px);
+        }
+        .output-area {
+            background-color: #1f2937; /* Tailwind gray-800 */
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+            border: 1px solid #374151; /* Tailwind gray-700 */
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.875rem;
+        }
+        .grid-cols-fill {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        }
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #22c55e; /* Tailwind green-500 */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .toast.show {
+            opacity: 1;
+        }
+        .error-message {
+            background-color: #ef4444; /* Tailwind red-500 */
+            color: white;
+            padding: 1rem;
+            border-radius: 0.375rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .thumbnail-preview {
+            width: 150px; /* Adjust as needed */
+            height: auto;
+            border-radius: 0.375rem;
+            margin-top: 0.5rem;
+            border: 1px solid #4b5563; /* Tailwind gray-600 */
+            background-color: #374151; /* Tailwind gray-700 */
+        }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+        <a href="index.html" class="fixed top-4 right-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow transition duration-200">
+            Back to Home
+        </a>
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-white">Movie Webpage & JSON Generator</h1>
+            <p class="text-lg text-gray-400 mt-2">Fill in the details below to generate your movie page HTML and JSON data.</p>
+        </header>
+
+        <div id="adminForm">
+            <section class="form-section">
+                <h2>General Website Settings</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="websiteName">Your Website Name (for Logo)</label>
+                        <input type="text" id="websiteName" placeholder="e.g., Marco's Movies">
+                    </div>
+                    <div>
+                        <label for="websiteUrl">Your Website URL (for Logo & Share)</label>
+                        <input type="url" id="websiteUrl" placeholder="e.g., https://yourmarc0.github.io/Marco/">
+                    </div>
+                    <div>
+                        <label for="backButtonLink">Back Button Link</label>
+                        <input type="text" id="backButtonLink" placeholder="e.g., index.html or /">
+                    </div>
+                    <div>
+                        <label for="pageUrlForSharing">Page URL for Sharing (for JSON)</label>
+                        <input type="url" id="pageUrlForSharing" placeholder="e.g., https://yourdomain.com/movie-title.html">
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>Movie Core Details</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="movieTitle">Movie Title</label>
+                        <input type="text" id="movieTitle" placeholder="e.g., The Matrix">
+                    </div>
+                    <div>
+                        <label for="releaseYear">Release Year</label>
+                        <input type="number" id="releaseYear" placeholder="e.g., 1999">
+                    </div>
+                    <div>
+                        <label for="posterImgUrl">Poster Image URL</label>
+                        <input type="url" id="posterImgUrl" placeholder="e.g., https://example.com/poster.jpg">
+                        <img id="posterPreview" src="https://placehold.co/150x225/374151/9ca3af?text=Preview" alt="Poster Preview" class="thumbnail-preview mt-2">
+                    </div>
+                    <div>
+                        <label for="ratingBadge">Rating Badge</label>
+                        <input type="text" id="ratingBadge" placeholder="e.g., R, PG-13, NR">
+                    </div>
+                    <div>
+                        <label for="language">Language(s)</label>
+                        <input type="text" id="language" placeholder="e.g., English, Spanish">
+                    </div>
+                     <div>
+                        <label for="runtime">Runtime</label>
+                        <input type="text" id="runtime" placeholder="e.g., 2h 16m">
+                    </div>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>Movie Meta, Links & Actions</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="play480pLink">Play/Download 480p Link</label>
+                        <input type="url" id="play480pLink" placeholder="https://example.com/play/480p">
+                    </div>
+                    <div>
+                        <label for="download480pLink">Download 480p Link</label>
+                        <input type="url" id="download480pLink" placeholder="https://example.com/download/480p">
+                    </div>
+                    <div>
+                        <label for="download720pLink">Alternate Download 720p Link</label>
+                        <input type="url" id="download720pLink" placeholder="https://example.com/download/720p_alt">
+                    </div>
+                    <div>
+                        <label for="download1080pLink">Alternate Download 1080p Link</label>
+                        <input type="url" id="download1080pLink" placeholder="https://example.com/download/1080p_alt">
+                    </div>
+                    <div>
+                        <label for="myListOnclick">"My List" Button Onclick Action</label>
+                        <input type="text" id="myListOnclick" placeholder="e.g., customShowAlert('Added to My List!')">
+                    </div>
+                    <div>
+                        <label for="trailerOnclick">"Trailer" Button Onclick Action</label>
+                        <input type="text" id="trailerOnclick" placeholder="e.g., customShowAlert('Trailer coming soon!')">
+                    </div>
+                 </div>
+            </section>
+
+            <section class="form-section">
+                <h2>Movie Info List Items</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div>
+                        <label for="genre">Genre (comma-separated)</label>
+                        <input type="text" id="genre" placeholder="e.g., Action, Sci-Fi">
+                    </div>
+                    <div>
+                        <label for="subtitleInfo">Subtitle Info</label>
+                        <input type="text" id="subtitleInfo" placeholder="e.g., YES / English, French">
+                    </div>
+                    <div>
+                        <label for="sizeInfo">Size Info</label>
+                        <input type="text" id="sizeInfo" placeholder="e.g., 1.2GB - 2.5GB">
+                    </div>
+                    <div>
+                        <label for="qualityInfo">Quality Info</label>
+                        <input type="text" id="qualityInfo" placeholder="e.g., BluRay 720p - 1080p">
+                    </div>
+                    <div>
+                        <label for="formatInfo">Format Info</label>
+                        <input type="text" id="formatInfo" placeholder="e.g., MKV, MP4">
+                    </div>
+                    <div>
+                        <label for="director">Director(s) (comma-separated)</label>
+                        <input type="text" id="director" placeholder="e.g., Lana Wachowski, Lilly Wachowski">
+                    </div>
+                </div>
+                <div>
+                    <label for="cast">Cast (comma-separated)</label>
+                    <input type="text" id="cast" placeholder="e.g., Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss">
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>Description & IMDb</h2>
+                <div>
+                    <label for="descriptionText">Description (HTML allowed)</label>
+                    <textarea id="descriptionText" placeholder="Enter movie description here. You can use HTML tags like <strong>, <br>, etc.&#10;e.g., A computer hacker learns from mysterious rebels about the true nature of his reality...&#10;<br><br>👉 <strong>IMDb Rating:</strong> 8.7/10"></textarea>
+                </div>
+            </section>
+
+            <section class="form-section">
+                <h2>Ad Scripts</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="adScript1Src">Ad Script 1 Source URL</label>
+                        <input type="text" id="adScript1Src" placeholder="//adnetwork.com/script1.js">
+                    </div>
+                    <div>
+                        <label for="adScript1ContainerId">Ad Script 1 Container ID</label>
+                        <input type="text" id="adScript1ContainerId" placeholder="container-ad1-id">
+                    </div>
+                </div>
+                <div>
+                    <label for="adScript2Src">Ad Script 2 Source URL</label>
+                    <input type="text" id="adScript2Src" placeholder="//adnetwork.com/script2.js">
+                </div>
+            </section>
+
+            <div id="generationError" class="error-message hidden"></div>
+
+            <div class="my-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <button id="generateBtn" class="btn btn-primary w-full sm:w-auto text-lg">Generate Webpage & JSON</button>
+            </div>
+        </div>
+
+        <div id="outputSection" class="hidden">
+            <section class="form-section">
+                <h2 class="text-2xl">Generated Movie Webpage HTML</h2>
+                <textarea id="generatedHtmlOutput" class="output-area w-full h-96 bg-gray-900 text-sm" readonly></textarea>
+                <div class="mt-4 flex gap-4">
+                    <button id="copyHtmlBtn" class="btn btn-secondary">Copy HTML</button>
+                    <button id="downloadHtmlBtn" class="btn btn-secondary">Download HTML</button>
+                </div>
+            </section>
+
+            <section class="form-section mt-8">
+                <h2 class="text-2xl">Generated Movie JSON Data</h2>
+                <pre id="generatedJsonOutput" class="output-area bg-gray-900 text-sm"></pre>
+                <div class="mt-4">
+                    <button id="copyJsonBtn" class="btn btn-secondary">Copy JSON</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="toastNotification" class="toast">Copied to clipboard!</div>
+
+<script>
+    const posterImgUrlInput = document.getElementById('posterImgUrl');
+    const posterPreview = document.getElementById('posterPreview');
+    const generateBtn = document.getElementById('generateBtn');
+    const outputSection = document.getElementById('outputSection');
+    const generatedHtmlOutput = document.getElementById('generatedHtmlOutput');
+    const generatedJsonOutput = document.getElementById('generatedJsonOutput');
+    const copyHtmlBtn = document.getElementById('copyHtmlBtn');
+    const downloadHtmlBtn = document.getElementById('downloadHtmlBtn');
+    const copyJsonBtn = document.getElementById('copyJsonBtn');
+    const toastNotification = document.getElementById('toastNotification');
+    const generationErrorDiv = document.getElementById('generationError');
+
+    const defaultPreviewSize = { width: 150, height: 225 };
+    const placeholderPreviewSrc = `https://placehold.co/${defaultPreviewSize.width}x${defaultPreviewSize.height}/374151/9ca3af?text=Preview`;
+
+    // Function to update poster preview
+    function updatePosterPreview() {
+        const url = posterImgUrlInput.value.trim();
+        if (url) {
+            posterPreview.src = url;
+        } else {
+            posterPreview.src = placeholderPreviewSrc;
+        }
+    }
+
+    // Event listener for poster URL input
+    posterImgUrlInput.addEventListener('input', updatePosterPreview);
+    posterImgUrlInput.addEventListener('change', updatePosterPreview); // For pasting
+
+    // Handle image loading errors for the preview
+    posterPreview.onerror = function() {
+        this.src = `https://placehold.co/${defaultPreviewSize.width}x${defaultPreviewSize.height}/374151/ef4444?text=Load+Error`; // Red background for error
+    };
+    // Set initial state for preview
+    posterPreview.src = placeholderPreviewSrc;
+
+
+    // Helper function to get form value
+    const val = id => document.getElementById(id).value.trim();
+
+    function showToast(message = "Copied to clipboard!") {
+        toastNotification.textContent = message;
+        toastNotification.classList.add('show');
+        setTimeout(() => {
+            toastNotification.classList.remove('show');
+        }, 2000);
+    }
+
+    function copyToClipboard(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text)
+                .then(() => showToast())
+                .catch(err => {
+                    console.warn("Async clipboard copy failed, falling back:", err);
+                    fallbackCopyToClipboard(text);
+                });
+        } else {
+            console.warn("Async clipboard API not available, falling back.");
+            fallbackCopyToClipboard(text);
+        }
+    }
+
+    function fallbackCopyToClipboard(text) {
+        const textArea = document.createElement('textarea');
+        textArea.value = text;
+        textArea.style.position = 'fixed'; 
+        textArea.style.opacity = '0'; 
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            const successful = document.execCommand('copy');
+            if (successful) {
+                showToast();
+            } else {
+                showToast("Copy failed. Please copy manually.");
+                console.error('Fallback: Oops, unable to copy');
+            }
+        } catch (err) {
+            showToast("Copy failed. Please copy manually.");
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+        document.body.removeChild(textArea);
+    }
+
+
+    generateBtn.addEventListener('click', () => {
+        generationErrorDiv.classList.add('hidden'); 
+        generationErrorDiv.textContent = '';
+        outputSection.classList.add('hidden'); 
+
+        try {
+            const movieTitleValue = val('movieTitle') || "Untitled Movie";
+            const data = {
+                websiteName: val('websiteName') || "My Website", 
+                websiteUrl: val('websiteUrl') || "#",
+                backButtonLink: val('backButtonLink') || "index.html",
+                pageUrlForSharing: val('pageUrlForSharing'), 
+                movieTitle: movieTitleValue,
+                releaseYear: val('releaseYear') || new Date().getFullYear().toString(),
+                posterImgUrl: val('posterImgUrl') || `https://placehold.co/340x510/222222/FFFFFF?text=${encodeURIComponent(movieTitleValue)}`,
+                ratingBadge: val('ratingBadge') || "NR",
+                language: val('language') || "N/A",
+                runtime: val('runtime') || "N/A",
+                play480pLink: val('play480pLink'),
+                download480pLink: val('download480pLink'),
+                download720pLink: val('download720pLink'),
+                download1080pLink: val('download1080pLink'),
+                myListOnclick: val('myListOnclick') || "customShowAlert('Action not configured')", 
+                trailerOnclick: val('trailerOnclick') || "customShowAlert('Action not configured')", 
+                genre: val('genre'),
+                subtitleInfo: val('subtitleInfo'),
+                sizeInfo: val('sizeInfo'),
+                qualityInfo: val('qualityInfo'),
+                formatInfo: val('formatInfo'),
+                director: val('director'),
+                cast: val('cast'),
+                descriptionText: document.getElementById('descriptionText').value || "<p>No description available.</p>", 
+                adScript1Src: val('adScript1Src'),
+                adScript1ContainerId: val('adScript1ContainerId'),
+                adScript2Src: val('adScript2Src'),
+            };
+
+            const myListJs = data.myListOnclick.includes('customShowAlert') ? data.myListOnclick : data.myListOnclick.replace(/\balert\s*\(([^)]*)\)/g, 'customShowAlert($1)');
+            const trailerJs = data.trailerOnclick.includes('customShowAlert') ? data.trailerOnclick : data.trailerOnclick.replace(/\balert\s*\(([^)]*)\)/g, 'customShowAlert($1)');
+
+            const generatedHtml = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${data.movieTitle} (${data.releaseYear}) - Watch Online</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --netflix-red: #e50914; --netflix-dark: #141414; --netflix-bg: #181818; --netflix-grey: #232526; --netflix-light: #fff; --netflix-shadow: 0 4px 24px rgba(0,0,0,0.4); }
+        html, body { margin: 0; padding: 0; font-family: 'Roboto', Arial, sans-serif; background: var(--netflix-bg); color: var(--netflix-light); min-height: 100vh; }
+        body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(120deg, rgba(20,20,20,0.7) 60%, rgba(35,37,38,0.9) 100%); z-index: -1; }
+        .header { background: var(--netflix-dark); padding: 0.7rem 1.2rem 0.7rem 3.5rem; display: flex; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); position: relative; }
+        .back-btn { position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; display: flex; align-items: center; color: var(--netflix-red); font-size: 1.7rem; padding: 0.2rem 0.5rem; transition: color 0.2s; }
+        .back-btn:hover { color: #fff; background: var(--netflix-red); border-radius: 50%; }
+        .logo { font-size: 2.4rem; font-weight: 900; letter-spacing: 3px; color: var(--netflix-red); text-decoration: none; text-shadow: 2px 2px 12px #000, 0 0 8px var(--netflix-red); font-family: 'Bebas Neue', cursive, sans-serif; margin-left: 0.5rem; padding: 0.1rem 1.2rem; border-radius: 8px; background: linear-gradient(90deg, rgba(229,9,20,0.15) 0%, rgba(20,20,20,0.7) 100%); transition: background 0.2s, color 0.2s, box-shadow 0.2s; border: 2px solid var(--netflix-red); display: inline-block; }
+        .logo:hover { color: #fff; background: var(--netflix-red); box-shadow: 0 0 18px 2px #e50914; text-shadow: 2px 2px 16px #000; border-color: #fff; }
+        .container { max-width: 1100px; margin: 2.5rem auto 1.5rem auto; background: rgba(20,20,20,0.98); border-radius: 16px; box-shadow: var(--netflix-shadow); padding: 2.5rem 2rem; display: flex; flex-wrap: wrap; gap: 2.5rem; position: relative; align-items: flex-start; }
+        .movie-poster { width: 340px; min-width: 180px; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.5); object-fit: cover; background: #222; transition: transform 0.2s; margin-bottom: 1rem; }
+        .movie-poster:hover { transform: scale(1.03); }
+        .movie-details { flex: 1; min-width: 260px; display: flex; flex-direction: column; justify-content: flex-start; }
+        .movie-title { font-family: 'Bebas Neue', cursive, sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; letter-spacing: 2px; text-shadow: 2px 2px 12px #000, 0 0 8px var(--netflix-red); line-height: 1.1; }
+        .rating-badge { display: inline-block; background: var(--netflix-red); color: #fff; font-weight: 700; font-size: 1rem; border-radius: 6px; padding: 0.3rem 0.9rem; margin-bottom: 0.7rem; box-shadow: 0 1px 4px rgba(0,0,0,0.18); letter-spacing: 1px; }
+        .movie-meta { font-size: 1.1rem; color: #bbb; margin-bottom: 1.1rem; }
+        .movie-info-list { margin: 0 0 1.2rem 0; padding: 0; list-style: none; color: #fff; font-size: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; }
+        .movie-info-list li { background: var(--netflix-grey); border-radius: 4px; padding: 0.2rem 0.7rem; margin-bottom: 0.3rem; font-size: 0.98rem; color: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
+        .action-buttons { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
+        .btn { font-family: 'Roboto', sans-serif; font-size: 1.1rem; font-weight: 700; border: none; border-radius: 6px; padding: 0.7rem 1.6rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); margin-right: 0.5rem; margin-bottom: 0.5rem; transition: background 0.2s, color 0.2s; font-family: 'Roboto', sans-serif; text-decoration: none; }
+        .btn-play { background: var(--netflix-red); color: #fff; } .btn-play:hover { background: #b0060f; }
+        .btn-download { background: #222; color: #fff; border: 1px solid var(--netflix-red); } .btn-download:hover { background: var(--netflix-red); color: #fff; }
+        .btn-list { background: #fff; color: #222; } .btn-list:hover { background: #e5e5e5; }
+        .btn-share { background: #232526; color: #fff; border: 1px solid #444; } .btn-share:hover { background: #444; }
+        .btn-trailer { background: #fff; color: var(--netflix-red); } .btn-trailer:hover { background: var(--netflix-red); color: #fff; }
+        .section-title { font-size: 1.3rem; font-weight: 700; color: var(--netflix-red); margin: 1.2rem 0 0.5rem 0; letter-spacing: 1px; font-family: 'Bebas Neue', cursive, sans-serif; }
+        .custom-alert-box { position: fixed; left: 50%; top: 20px; transform: translateX(-50%); padding: 10px 20px; background: #333; color: white; border: 1px solid var(--netflix-red); border-radius: 5px; z-index: 2000; box-shadow: var(--netflix-shadow); transition: opacity 0.3s; opacity: 1; }
+        @media (max-width: 900px) { .container { flex-direction: column; align-items: center; padding: 1.2rem 0.5rem; } .movie-poster { width: 100%; max-width: 320px; } }
+        @media (max-width: 600px) { .header { padding: 0.7rem 0.5rem 0.7rem 2.7rem; } .logo { font-size: 1.3rem; } .container { padding: 0.5rem 0.2rem; } .movie-title { font-size: 1.5rem; } .movie-poster { width: 100%; max-width: 220px; } .btn { font-size: 0.95rem; padding: 0.5rem 1.1rem; } .section-title { font-size: 1rem; } }
+    </style>
+    <script>
+        function customShowAlert(message) {
+            let alertBox = document.querySelector('.custom-alert-box');
+            if (alertBox) { 
+                alertBox.remove();
+            }
+            alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert-box';
+            alertBox.textContent = message;
+            document.body.appendChild(alertBox);
+            setTimeout(() => {
+                if (alertBox) alertBox.style.opacity = '0';
+                setTimeout(() => { if (alertBox) alertBox.remove(); }, 300);
+            }, 2500);
+        }
+    <\/script>
+</head>
+<body>
+    <div class="header">
+        <a href="${data.backButtonLink}" class="back-btn" title="Back">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+        <a href="${data.websiteUrl}" class="logo">${data.websiteName}</a>
+    </div>
+
+    <div class="container">
+        <img class="movie-poster" src="${data.posterImgUrl}" alt="${data.movieTitle}" onerror="this.src='https://placehold.co/340x510/222222/FFFFFF?text=${encodeURIComponent(data.movieTitle)}+Poster+Not+Found'; this.onerror=null;">
+        <div class="movie-details">
+            <div class="movie-title">${data.movieTitle}</div>
+            <span class="rating-badge">${data.ratingBadge}</span>
+            <div class="movie-meta">Release Year: ${data.releaseYear} &nbsp;|&nbsp; Language: ${data.language}</div>
+            <div class="action-buttons">
+                ${data.play480pLink ? `<button class="btn btn-play" onclick="window.open('${data.play480pLink}', '_blank')"> ▶ 480p </button>` : ''}
+                ${myListJs ? `<button class="btn btn-list" onclick="${myListJs}"> + My List </button>` : ''}
+                ${data.download480pLink ? `<button class="btn btn-download" onclick="window.open('${data.download480pLink}', '_blank')"> ⬇ Download 480p</button>` : ''}
+                ${data.download1080pLink ? `<button class="btn btn-download" onclick="window.open('${data.download1080pLink}', '_blank')"> ⬇ Alternate Download 1080p</button>` : ''}
+                ${data.download720pLink ? `<button class="btn btn-download" onclick="window.open('${data.download720pLink}', '_blank')"> ⬇ Alternate Download 720p</button>` : ''}
+                ${trailerJs ? `<button class="btn btn-trailer" onclick="${trailerJs}"> 🎬 Trailer </button>` : ''}
+                <button class="btn btn-share" onclick="window.open('${data.websiteUrl}', '_blank')"> 🌐 Share This Website </button>
+                <button class="btn btn-share" onclick="navigator.clipboard.writeText(window.location.href).then(() => { const B=this,T=B.innerHTML; B.innerHTML='Link Copied!'; setTimeout(() => {B.innerHTML=T},2000);}).catch(e=>{console.error('Failed to copy link:',e); customShowAlert('Failed to copy link: ' + e.message)})"> ⤴ Share </button>
+            </div>
+            <ul class="movie-info-list">
+                ${data.genre ? `<li><b>Genre:</b> ${data.genre}</li>` : ''}
+                ${data.runtime ? `<li><b>Runtime:</b> ${data.runtime}</li>` : ''}
+                ${data.subtitleInfo ? `<li><b>Subtitle:</b> ${data.subtitleInfo}</li>` : ''}
+                ${data.sizeInfo ? `<li><b>Size:</b> ${data.sizeInfo}</li>` : ''}
+                ${data.qualityInfo ? `<li><b>Quality:</b> ${data.qualityInfo}</li>` : ''}
+                ${data.formatInfo ? `<li><b>Format:</b> ${data.formatInfo}</li>` : ''}
+                ${data.director ? `<li><b>Director:</b> ${data.director}</li>` : ''}
+                ${data.cast ? `<li><b>Cast:</b> ${data.cast}</li>` : ''}
+            </ul>
+
+            <div class="section-title">Description</div>
+            <div>
+                ${data.descriptionText}
+            </div>
+        </div>
+    </div>
+
+    ${data.adScript1Src ? `<script async="async" data-cfasync="false" src="${data.adScript1Src}"><\/script>` : ''}
+    ${data.adScript1ContainerId && data.adScript1Src ? `<div id="${data.adScript1ContainerId}"></div>` : ''}
+    ${data.adScript2Src ? `<script type='text/javascript' src='${data.adScript2Src}'><\/script>` : ''}
+</body>
+</html>`;
+            generatedHtmlOutput.value = generatedHtml;
+
+            const generatedJson = {
+                title: `${data.movieTitle} (${data.releaseYear})`,
+                genre: data.genre || null,
+                actors: data.cast ? data.cast.split(',').map(actor => actor.trim()).filter(actor => actor) : [],
+                thumb: data.posterImgUrl,
+                year: parseInt(data.releaseYear, 10) || null, 
+                page: data.pageUrlForSharing || null 
+            };
+            generatedJsonOutput.textContent = JSON.stringify(generatedJson, null, 2);
+
+            outputSection.classList.remove('hidden');
+            outputSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        } catch (error) {
+            console.error("Error during generation:", error);
+            generationErrorDiv.textContent = `An error occurred: ${error.message}. Please check your inputs or the browser console for more details.`;
+            generationErrorDiv.classList.remove('hidden');
+            outputSection.classList.add('hidden'); 
+        }
+    });
+
+    copyHtmlBtn.addEventListener('click', () => {
+        copyToClipboard(generatedHtmlOutput.value);
+    });
+
+    downloadHtmlBtn.addEventListener('click', () => {
+        const filenameBase = (val('movieTitle') || 'movie').replace(/[^a-z0-9]/gi, '_').toLowerCase();
+        const filename = `${filenameBase}.html`;
+        const blob = new Blob([generatedHtmlOutput.value], { type: 'text/html' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        URL.revokeObjectURL(link.href); 
+        showToast("HTML file download initiated!");
+    });
+
+    copyJsonBtn.addEventListener('click', () => {
+        copyToClipboard(generatedJsonOutput.textContent);
+    });
+
+</script>
+</body>
+</html>

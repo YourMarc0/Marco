@@ -122,9 +122,33 @@
       </ul>
     </nav>
 <div class="movie-category-buttons">
-  <a href="index.html" class="category-btn home-btn">Home</a>
-  <a href="hollywood.html" class="category-btn hollywood-btn">Hollywood</a>
-  <a href="bollywood.html" class="category-btn bollywood-btn">Bollywood</a>
+  <a href="index.html" class="category-btn home-btn" style="padding: 8px 16px; font-size: 0.9rem;">Home</a>
+  <a href="hollywood.html" class="category-btn hollywood-btn" style="padding: 8px 16px; font-size: 0.9rem;">Hollywood</a>
+  <a href="bollywood.html" class="category-btn bollywood-btn" style="padding: 8px 16px; font-size: 0.9rem;">Bollywood</a>
+  <a href="dashboard.html" class="category-btn admin-btn" style="padding: 8px 16px; font-size: 0.9rem;">
+    <span class="crown" style="font-size: 1rem;">👑</span>
+    Admin's Chamber
+  </a>
+
+  <style>
+    .admin-btn {
+      background: linear-gradient(45deg, #ffd700, #daa520);
+      color: #000;
+      border: 2px solid #ffd700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .admin-btn:hover {
+      background: linear-gradient(45deg, #daa520, #ffd700);
+    }
+
+    .crown {
+      font-size: 1.2em;
+      filter: drop-shadow(0 0 2px #fff);
+    }
+  </style>
 </div>
 
 <style>
