@@ -9,6 +9,23 @@ const movies = [
     page: "https://imthemarco.blogspot.com/2025/05/final-destination.html"
   },
   {
+    "title": "The Extraordinary Adventures of Adèle Blanc-Sec",
+    "genre": "Fantasy, Adventure, Action, Mystery",
+    "actors": [
+      "Louise Bourgoin",
+      "Gilles Lellouche",
+      "Jacky Nercessian",
+      "Nicolas Giraud"
+    ],
+    "thumb": "https://vegamovies.uy/uploads/posts/covers/Poster-The-Extraordinary-Adventures-2010.webp",
+    "year": 2010,
+    "page": "https://imthemarco.blogspot.com/2025/06/the-extraordinary-adventures-of-adele.html",
+    "director": "Luc Besson",
+    "runtime": "1.47",
+    "rating": "PG-13",
+    "format": "MKV"
+  },
+  {
     title: "Final Destination (2000)",
     genre: "Horror, Thriller, Supernatural",
     actors: [
@@ -208,14 +225,8 @@ const movies = [
     director: "Mohammad Rasoulof",
     runtime: "2h 47m",
     rating: "NR",
-    language: "Hindi & English",
-    subtitle: "YES / English",
-    size: "770MB - 1.4GB - 2.6GB",
-    quality: "WEB-DL 480p - 720p - 1080p",
     format: "MKV",
-    description: "**The Seed of the Sacred Fig** (2024) is a critically acclaimed Iranian drama-thriller directed by Mohammad Rasoulof. The film explores the story of a judge working within Iran's judiciary system who begins to experience deep mistrust and paranoia after a political protest leads to nationwide unrest. As surveillance and suspicion invade his personal life, the conflict between duty, conscience, and family loyalty intensifies. Known for its bold commentary on authoritarianism and justice, the film has received praise for its compelling narrative and powerful performances.",
-    download: "https://fast-dl.lol/dl/c2edfb",
-    play: "https://fast-dl.lol/dl/c2edfb"
+ 
   },
   {
     title: "I Am Number Four 2011",
@@ -267,6 +278,35 @@ const movies = [
     description: "L2: Empuraan is the highly anticipated sequel to the blockbuster *Lucifer*. The film delves deeper into the mysterious world of Khureshi-Ab'ram, played by Mohanlal, as he expands his political and criminal empire on a global scale.",
     download: "https://gofile.io/d/r3HDLz",
     play: "https://gofile.io/d/r3HDLz"
+  },
+  {
+    "title": "Conclave (2025)",
+    "genre": "Drama, Thriller",
+    "actors": [
+      "Ralph Fiennes",
+      "Jacek Koman",
+      "Lucian Msamati",
+      "Stanley Tucci"
+    ],
+    "thumb": "https://www.mp4moviez.audio/cover/conclave-(2024)-hindi-dubbed-movie.jpg",
+    "year": 2025,
+    "page": "https://imthemarco.blogspot.com/2025/06/conclave.html"
+  },
+  {
+    "title": "Sinners (2025)",
+    "genre": "Horror, Thriller",
+    "actors": [
+      "Michael B. Jordan",
+      "Saul Williams",
+      "Jack O'Connell",
+      "Dave Maldonado",
+      "Helena Hu",
+      "Sam Malone",
+      "Li Jun Li"
+    ],
+    "thumb": "https://vegamovies.uy/uploads/posts/covers/Poster-Sinners-220225.webp",
+    "year": 2025,
+    "page": "https://imthemarco.blogspot.com/2025/06/sinners.html"
   }
 
 ];
@@ -274,7 +314,7 @@ const movies = [
 // Render latest uploads
 function renderLatest() {
   const container = document.getElementById('latest-uploads');
-  container.innerHTML = movies.slice().reverse().map(function(movie) {
+  container.innerHTML = movies.map(function(movie) {
     return `
       <a href="${movie.page}" class="movie-card">
         <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
@@ -288,7 +328,7 @@ function renderLatest() {
 }
 renderLatest();
 
-// Search functionality
+// Search functionality  
 function searchMovies() {
   const query = document.getElementById('search-input').value.trim().toLowerCase();
   const results = movies.filter(function(movie) {

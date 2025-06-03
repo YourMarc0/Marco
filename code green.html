@@ -27,7 +27,7 @@
             border-bottom: 1px solid #374151; /* Tailwind gray-700 */
             padding-bottom: 0.75rem;
         }
-        label {
+        label, .label-like {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
@@ -43,18 +43,29 @@
             margin-bottom: 1rem;
             transition: border-color 0.2s, box-shadow 0.2s;
         }
+        input[readonly] {
+            background-color: #2d3748; 
+            color: #a0aec0; 
+            cursor: not-allowed;
+        }
         input[type="text"]::placeholder, input[type="url"]::placeholder, input[type="number"]::placeholder, textarea::placeholder {
-            color: #9ca3af; /* Tailwind gray-400 */
+            color: #9ca3af; 
             opacity: 1;
         }
         input[type="text"]:focus, input[type="url"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #60a5fa; /* Tailwind blue-400 */
+            border-color: #60a5fa; 
             box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
         }
+        input[readonly]:focus { 
+            border-color: #374151;
+            box-shadow: none;
+        }
         textarea {
-            min-height: 120px;
+            min-height: 100px; /* Adjusted for ad blocks */
             resize: vertical;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
         }
         .btn {
             padding: 0.75rem 1.5rem;
@@ -65,28 +76,28 @@
             border: none;
         }
         .btn-primary {
-            background-color: #3b82f6; /* Tailwind blue-500 */
+            background-color: #3b82f6; 
             color: white;
         }
         .btn-primary:hover {
-            background-color: #2563eb; /* Tailwind blue-600 */
+            background-color: #2563eb; 
         }
         .btn-secondary {
-            background-color: #4b5563; /* Tailwind gray-600 */
+            background-color: #4b5563; 
             color: white;
         }
         .btn-secondary:hover {
-            background-color: #374151; /* Tailwind gray-700 */
+            background-color: #374151; 
         }
         .btn:active {
             transform: translateY(1px);
         }
         .output-area {
-            background-color: #1f2937; /* Tailwind gray-800 */
+            background-color: #1f2937; 
             padding: 1rem;
             border-radius: 0.375rem;
             margin-top: 1rem;
-            border: 1px solid #374151; /* Tailwind gray-700 */
+            border: 1px solid #374151; 
             white-space: pre-wrap;
             word-break: break-all;
             max-height: 400px;
@@ -94,15 +105,12 @@
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.875rem;
         }
-        .grid-cols-fill {
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        }
         .toast {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #22c55e; /* Tailwind green-500 */
+            background-color: #22c55e; 
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -115,7 +123,7 @@
             opacity: 1;
         }
         .error-message {
-            background-color: #ef4444; /* Tailwind red-500 */
+            background-color: #ef4444; 
             color: white;
             padding: 1rem;
             border-radius: 0.375rem;
@@ -123,20 +131,34 @@
             margin-bottom: 1rem;
         }
         .thumbnail-preview {
-            width: 150px; /* Adjust as needed */
+            width: 150px; 
             height: auto;
+            min-height: 75px; 
             border-radius: 0.375rem;
             margin-top: 0.5rem;
-            border: 1px solid #4b5563; /* Tailwind gray-600 */
-            background-color: #374151; /* Tailwind gray-700 */
+            border: 1px solid #4b5563; 
+            background-color: #374151; 
+            object-fit: cover; 
+        }
+        .checkbox-group div {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.5rem;
+            margin-bottom: 0; /* Override default input margin */
+        }
+        .checkbox-group label {
+            margin-bottom: 0; /* Override default label margin */
+            font-weight: 400; /* Lighter font for checkbox labels */
+            color: #e5e7eb; /* Lighter text for checkbox labels */
         }
     </style>
 </head>
 <body class="p-4 md:p-8">
     <div class="max-w-6xl mx-auto">
-        <a href="index.html" class="fixed top-4 right-4 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded shadow transition duration-200">
-            Back to Home
-        </a>
         <header class="mb-8 text-center">
             <h1 class="text-4xl font-bold text-white">Movie Webpage & JSON Generator</h1>
             <p class="text-lg text-gray-400 mt-2">Fill in the details below to generate your movie page HTML and JSON data.</p>
@@ -148,15 +170,15 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label for="websiteName">Your Website Name (for Logo)</label>
-                        <input type="text" id="websiteName" placeholder="e.g., Marco's Movies">
+                        <input type="text" id="websiteName" value="MARCO" readonly>
                     </div>
                     <div>
                         <label for="websiteUrl">Your Website URL (for Logo & Share)</label>
-                        <input type="url" id="websiteUrl" placeholder="e.g., https://yourmarc0.github.io/Marco/">
+                        <input type="url" id="websiteUrl" value="https://yourmarc0.github.io/Marco/" readonly>
                     </div>
                     <div>
                         <label for="backButtonLink">Back Button Link</label>
-                        <input type="text" id="backButtonLink" placeholder="e.g., index.html or /">
+                        <input type="text" id="backButtonLink" value="https://yourmarc0.github.io/Marco/" readonly>
                     </div>
                     <div>
                         <label for="pageUrlForSharing">Page URL for Sharing (for JSON)</label>
@@ -182,8 +204,24 @@
                         <img id="posterPreview" src="https://placehold.co/150x225/374151/9ca3af?text=Preview" alt="Poster Preview" class="thumbnail-preview mt-2">
                     </div>
                     <div>
-                        <label for="ratingBadge">Rating Badge</label>
-                        <input type="text" id="ratingBadge" placeholder="e.g., R, PG-13, NR">
+                        <label for="ratingBadgeSelect">Rating Badge</label>
+                        <select id="ratingBadgeSelect" class="mb-2">
+                            <option value="NR">NR (Not Rated)</option>
+                            <option value="G">G (General Audiences)</option>
+                            <option value="PG">PG (Parental Guidance Suggested)</option>
+                            <option value="PG-13">PG-13 (Parents Strongly Cautioned)</option>
+                            <option value="R">R (Restricted)</option>
+                            <option value="NC-17">NC-17 (Adults Only)</option>
+                            <option value="Unrated">Unrated</option>
+                            <option value="TV-Y">TV-Y</option>
+                            <option value="TV-Y7">TV-Y7</option>
+                            <option value="TV-G">TV-G</option>
+                            <option value="TV-PG">TV-PG</option>
+                            <option value="TV-14">TV-14</option>
+                            <option value="TV-MA">TV-MA</option>
+                            <option value="Custom">Custom...</option>
+                        </select>
+                        <input type="text" id="ratingBadgeCustom" class="hidden" placeholder="Enter custom rating">
                     </div>
                     <div>
                         <label for="language">Language(s)</label>
@@ -228,7 +266,7 @@
 
             <section class="form-section">
                 <h2>Movie Info List Items</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label for="genre">Genre (comma-separated)</label>
                         <input type="text" id="genre" placeholder="e.g., Action, Sci-Fi">
@@ -241,22 +279,34 @@
                         <label for="sizeInfo">Size Info</label>
                         <input type="text" id="sizeInfo" placeholder="e.g., 1.2GB - 2.5GB">
                     </div>
-                    <div>
-                        <label for="qualityInfo">Quality Info</label>
-                        <input type="text" id="qualityInfo" placeholder="e.g., BluRay 720p - 1080p">
-                    </div>
-                    <div>
+                     <div>
                         <label for="formatInfo">Format Info</label>
                         <input type="text" id="formatInfo" placeholder="e.g., MKV, MP4">
                     </div>
+                    <div class="md:col-span-2">
+                        <span class="label-like">Quality Info (Select all that apply for HTML list)</span>
+                        <div id="qualityCheckboxes" class="checkbox-group grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-2 mt-2 mb-1">
+                            <div><input type="checkbox" id="q_webdl" value="WEB-DL"><label for="q_webdl">WEB-DL</label></div>
+                            <div><input type="checkbox" id="q_bluray" value="BluRay"><label for="q_bluray">BluRay</label></div>
+                            <div><input type="checkbox" id="q_hdrip" value="HDRip"><label for="q_hdrip">HDRip</label></div>
+                            <div><input type="checkbox" id="q_hdtv" value="HDTV"><label for="q_hdtv">HDTV</label></div>
+                            <div><input type="checkbox" id="q_dvd" value="DVD"><label for="q_dvd">DVD</label></div>
+                            <div class="sm:col-start-2"><input type="checkbox" id="q_480p" value="480p"><label for="q_480p">480p</label></div>
+                            <div><input type="checkbox" id="q_720p" value="720p"><label for="q_720p">720p</label></div>
+                            <div><input type="checkbox" id="q_1080p" value="1080p"><label for="q_1080p">1080p</label></div>
+                            <div><input type="checkbox" id="q_2160p" value="2160p"><label for="q_2160p">2160p (4K)</label></div>
+                        </div>
+                        <input type="text" id="qualityInfoText" placeholder="Or type full quality string (e.g., WEB-DL 1080p HEVC) - overrides checkboxes">
+                    </div>
+                   
                     <div>
-                        <label for="director">Director(s) (comma-separated)</label>
-                        <input type="text" id="director" placeholder="e.g., Lana Wachowski, Lilly Wachowski">
+                        <label for="director">Director(s) (comma-separated for list, primary for JSON)</label>
+                        <input type="text" id="director" placeholder="e.g., Christopher Nolan">
                     </div>
                 </div>
-                <div>
+                <div class="mt-4">
                     <label for="cast">Cast (comma-separated)</label>
-                    <input type="text" id="cast" placeholder="e.g., Keanu Reeves, Laurence Fishburne, Carrie-Anne Moss">
+                    <input type="text" id="cast" placeholder="e.g., Leonardo DiCaprio, Joseph Gordon-Levitt">
                 </div>
             </section>
 
@@ -270,19 +320,13 @@
 
             <section class="form-section">
                 <h2>Ad Scripts</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="adScript1Src">Ad Script 1 Source URL</label>
-                        <input type="text" id="adScript1Src" placeholder="//adnetwork.com/script1.js">
-                    </div>
-                    <div>
-                        <label for="adScript1ContainerId">Ad Script 1 Container ID</label>
-                        <input type="text" id="adScript1ContainerId" placeholder="container-ad1-id">
-                    </div>
-                </div>
                 <div>
-                    <label for="adScript2Src">Ad Script 2 Source URL</label>
-                    <input type="text" id="adScript2Src" placeholder="//adnetwork.com/script2.js">
+                    <label for="adBlock1">Ad Block 1 (Paste full HTML/Script code)</label>
+                    <textarea id="adBlock1" placeholder="<script>...</script> or <div><script>...</script></div>"></textarea>
+                </div>
+                <div class="mt-4">
+                    <label for="adBlock2">Ad Block 2 (Paste full HTML/Script code)</label>
+                    <textarea id="adBlock2" placeholder="<script>...</script> or other ad HTML"></textarea>
                 </div>
             </section>
 
@@ -318,6 +362,8 @@
 <script>
     const posterImgUrlInput = document.getElementById('posterImgUrl');
     const posterPreview = document.getElementById('posterPreview');
+    const ratingSelect = document.getElementById('ratingBadgeSelect');
+    const ratingCustomInput = document.getElementById('ratingBadgeCustom');
     const generateBtn = document.getElementById('generateBtn');
     const outputSection = document.getElementById('outputSection');
     const generatedHtmlOutput = document.getElementById('generatedHtmlOutput');
@@ -331,7 +377,6 @@
     const defaultPreviewSize = { width: 150, height: 225 };
     const placeholderPreviewSrc = `https://placehold.co/${defaultPreviewSize.width}x${defaultPreviewSize.height}/374151/9ca3af?text=Preview`;
 
-    // Function to update poster preview
     function updatePosterPreview() {
         const url = posterImgUrlInput.value.trim();
         if (url) {
@@ -340,20 +385,24 @@
             posterPreview.src = placeholderPreviewSrc;
         }
     }
-
-    // Event listener for poster URL input
     posterImgUrlInput.addEventListener('input', updatePosterPreview);
-    posterImgUrlInput.addEventListener('change', updatePosterPreview); // For pasting
-
-    // Handle image loading errors for the preview
+    posterImgUrlInput.addEventListener('change', updatePosterPreview);
     posterPreview.onerror = function() {
-        this.src = `https://placehold.co/${defaultPreviewSize.width}x${defaultPreviewSize.height}/374151/ef4444?text=Load+Error`; // Red background for error
+        this.src = `https://placehold.co/${defaultPreviewSize.width}x${defaultPreviewSize.height}/374151/ef4444?text=Load+Error`;
     };
-    // Set initial state for preview
     posterPreview.src = placeholderPreviewSrc;
 
+    ratingSelect.addEventListener('change', function() {
+        if (this.value === 'Custom') {
+            ratingCustomInput.classList.remove('hidden');
+            ratingCustomInput.value = '';
+            ratingCustomInput.focus();
+        } else {
+            ratingCustomInput.classList.add('hidden');
+            ratingCustomInput.value = '';
+        }
+    });
 
-    // Helper function to get form value
     const val = id => document.getElementById(id).value.trim();
 
     function showToast(message = "Copied to clipboard!") {
@@ -365,20 +414,6 @@
     }
 
     function copyToClipboard(text) {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(text)
-                .then(() => showToast())
-                .catch(err => {
-                    console.warn("Async clipboard copy failed, falling back:", err);
-                    fallbackCopyToClipboard(text);
-                });
-        } else {
-            console.warn("Async clipboard API not available, falling back.");
-            fallbackCopyToClipboard(text);
-        }
-    }
-
-    function fallbackCopyToClipboard(text) {
         const textArea = document.createElement('textarea');
         textArea.value = text;
         textArea.style.position = 'fixed'; 
@@ -392,11 +427,9 @@
                 showToast();
             } else {
                 showToast("Copy failed. Please copy manually.");
-                console.error('Fallback: Oops, unable to copy');
             }
         } catch (err) {
             showToast("Copy failed. Please copy manually.");
-            console.error('Fallback: Oops, unable to copy', err);
         }
         document.body.removeChild(textArea);
     }
@@ -409,15 +442,40 @@
 
         try {
             const movieTitleValue = val('movieTitle') || "Untitled Movie";
+            const websiteNameValue = document.getElementById('websiteName').value;
+            const websiteUrlValue = document.getElementById('websiteUrl').value;
+            const backButtonLinkValue = document.getElementById('backButtonLink').value;
+
+            let ratingBadgeValue = ratingSelect.value;
+            if (ratingBadgeValue === 'Custom') {
+                ratingBadgeValue = val('ratingBadgeCustom') || "NR"; 
+            }
+
+            let qualityInfoValue = '';
+            const qualityInfoTextInput = val('qualityInfoText');
+            if (qualityInfoTextInput) {
+                qualityInfoValue = qualityInfoTextInput;
+            } else {
+                const selectedQualities = [];
+                document.querySelectorAll('#qualityCheckboxes input[type="checkbox"]:checked').forEach(cb => {
+                    selectedQualities.push(cb.value);
+                });
+                if (selectedQualities.length > 0) {
+                    qualityInfoValue = selectedQualities.join(', ');
+                } else {
+                    qualityInfoValue = "N/A"; 
+                }
+            }
+
             const data = {
-                websiteName: val('websiteName') || "My Website", 
-                websiteUrl: val('websiteUrl') || "#",
-                backButtonLink: val('backButtonLink') || "index.html",
+                websiteName: websiteNameValue, 
+                websiteUrl: websiteUrlValue,
+                backButtonLink: backButtonLinkValue,
                 pageUrlForSharing: val('pageUrlForSharing'), 
                 movieTitle: movieTitleValue,
                 releaseYear: val('releaseYear') || new Date().getFullYear().toString(),
                 posterImgUrl: val('posterImgUrl') || `https://placehold.co/340x510/222222/FFFFFF?text=${encodeURIComponent(movieTitleValue)}`,
-                ratingBadge: val('ratingBadge') || "NR",
+                ratingBadge: ratingBadgeValue,
                 language: val('language') || "N/A",
                 runtime: val('runtime') || "N/A",
                 play480pLink: val('play480pLink'),
@@ -429,14 +487,13 @@
                 genre: val('genre'),
                 subtitleInfo: val('subtitleInfo'),
                 sizeInfo: val('sizeInfo'),
-                qualityInfo: val('qualityInfo'),
-                formatInfo: val('formatInfo'),
+                qualityInfo: qualityInfoValue,
+                formatInfo: val('formatInfo') || "N/A",
                 director: val('director'),
                 cast: val('cast'),
                 descriptionText: document.getElementById('descriptionText').value || "<p>No description available.</p>", 
-                adScript1Src: val('adScript1Src'),
-                adScript1ContainerId: val('adScript1ContainerId'),
-                adScript2Src: val('adScript2Src'),
+                adBlock1: document.getElementById('adBlock1').value, // Get raw HTML/script
+                adBlock2: document.getElementById('adBlock2').value  // Get raw HTML/script
             };
 
             const myListJs = data.myListOnclick.includes('customShowAlert') ? data.myListOnclick : data.myListOnclick.replace(/\balert\s*\(([^)]*)\)/g, 'customShowAlert($1)');
@@ -539,20 +596,25 @@
         </div>
     </div>
 
-    ${data.adScript1Src ? `<script async="async" data-cfasync="false" src="${data.adScript1Src}"><\/script>` : ''}
-    ${data.adScript1ContainerId && data.adScript1Src ? `<div id="${data.adScript1ContainerId}"></div>` : ''}
-    ${data.adScript2Src ? `<script type='text/javascript' src='${data.adScript2Src}'><\/script>` : ''}
+    ${data.adBlock1 ? data.adBlock1 : ''}
+    ${data.adBlock2 ? data.adBlock2 : ''}
+
 </body>
 </html>`;
             generatedHtmlOutput.value = generatedHtml;
 
+            // Generate JSON with the new structure
             const generatedJson = {
-                title: `${data.movieTitle} (${data.releaseYear})`,
+                title: data.movieTitle, // Just the title
                 genre: data.genre || null,
                 actors: data.cast ? data.cast.split(',').map(actor => actor.trim()).filter(actor => actor) : [],
                 thumb: data.posterImgUrl,
                 year: parseInt(data.releaseYear, 10) || null, 
-                page: data.pageUrlForSharing || null 
+                page: data.pageUrlForSharing || null,
+                director: data.director || null, // New field
+                runtime: data.runtime || null,   // New field
+                rating: data.ratingBadge || null, // New field (from ratingBadge input)
+                format: data.formatInfo || null   // New field
             };
             generatedJsonOutput.textContent = JSON.stringify(generatedJson, null, 2);
 

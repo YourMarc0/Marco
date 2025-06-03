@@ -34,7 +34,7 @@ const movies = [
 // Render latest uploads
 function renderLatest() {
   const container = document.getElementById('latest-uploads');
-  container.innerHTML = movies.slice().reverse().map(function(movie) {
+  container.innerHTML = movies.map(function(movie) {
     return `
       <a href="${movie.page}" class="movie-card">
         <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
@@ -163,7 +163,6 @@ function showDropdown(id) {
   if (existingStyle) {
     existingStyle.remove();
   }
-
   // Reset dropdown content from stored data
   if (!dropdown.dataset.originalContent) {
     dropdown.dataset.originalContent = dropdown.innerHTML;

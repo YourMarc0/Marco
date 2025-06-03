@@ -9,6 +9,19 @@ const movies = [
     page: "https://imthemarco.blogspot.com/2025/05/final-destination.html"
   },
   {
+    "title": "Conclave (2025)",
+    "genre": "Drama, Thriller",
+    "actors": [
+      "Ralph Fiennes",
+      "Jacek Koman",
+      "Lucian Msamati",
+      "Stanley Tucci"
+    ],
+    "thumb": "https://www.mp4moviez.audio/cover/conclave-(2024)-hindi-dubbed-movie.jpg",
+    "year": 2025,
+    "page": "https://imthemarco.blogspot.com/2025/06/conclave.html"
+  },
+  {
     title: "Final Destination (2000)",
     genre: "Horror, Thriller, Supernatural",
     actors: [
@@ -122,9 +135,7 @@ const movies = [
     size: "300MB || 1GB || 1.4GB",
     quality: "480p || 720p || 1080p – BluRay",
     format: "MKV",
-    description: "The prequel story traces the origins of the centuries-old blood feud between the aristocratic vampires and their onetime slaves, the Lycans. In the Dark Ages, a young Lycan named Lucian emerges as a powerful leader who rallies the werewolves to rise up against Viktor, the cruel vampire king who has enslaved them. Lucian is joined by his secret lover, Sonja, in his battle against the Vampire army and his struggle for Lycan freedom.",
-    download: "https://pixeldrain.net/api/file/78Kf7nP4?download",
-    play: "https://pixeldrain.net/api/file/78Kf7nP4?download"
+    
   },
   {
     title: "Salt (2010)",
@@ -159,6 +170,23 @@ const movies = [
     play: "https://gofile.io/d/x97a01",
     actors: ["John Krasinski", "Natalie Portman", "Eiza González", "Domhnall Gleeson", "Arian Moayed", "Laz Alonso", "Carmen Ejogo", "Stanley Tucci", "Benjamin Chivers", "Michael Epp", "Steve Tran", "Daniel de Bourg"],
     rating: "PG-13"
+  },
+  {
+    "title": "The Extraordinary Adventures of Adèle Blanc-Sec",
+    "genre": "Fantasy, Adventure, Action, Mystery",
+    "actors": [
+      "Louise Bourgoin",
+      "Gilles Lellouche",
+      "Jacky Nercessian",
+      "Nicolas Giraud"
+    ],
+    "thumb": "https://vegamovies.uy/uploads/posts/covers/Poster-The-Extraordinary-Adventures-2010.webp",
+    "year": 2010,
+    "page": "https://imthemarco.blogspot.com/2025/06/the-extraordinary-adventures-of-adele.html",
+    "director": "Luc Besson",
+    "runtime": "1.47",
+    "rating": "PG-13",
+    "format": "MKV"
   },
   {
     title: "Mission Impossible The Final Reckoning (2025)",
@@ -242,14 +270,29 @@ const movies = [
     year: 2012,
     page: `https://imthemarco.blogspot.com/2025/05/eternity-2012.html`
   },
-  
+  {
+    "title": "Sinners (2025)",
+    "genre": "Horror, Thriller",
+    "actors": [
+      "Michael B. Jordan",
+      "Saul Williams",
+      "Jack O'Connell",
+      "Dave Maldonado",
+      "Helena Hu",
+      "Sam Malone",
+      "Li Jun Li"
+    ],
+    "thumb": "https://vegamovies.uy/uploads/posts/covers/Poster-Sinners-220225.webp",
+    "year": 2025,
+    "page": "https://imthemarco.blogspot.com/2025/06/sinners.html"
+  }
 
 ];
 
 // Render latest uploads
 function renderLatest() {
   const container = document.getElementById('latest-uploads');
-  container.innerHTML = movies.slice().reverse().map(function(movie) {
+  container.innerHTML = movies.map(function(movie) {
     return `
       <a href="${movie.page}" class="movie-card">
         <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
@@ -307,8 +350,6 @@ function populateDropdowns() {
   populateRatingDropdown();
 }
 
- 
-
 function populateGenreDropdown() {
   const genreDropdown = document.getElementById('genre-dropdown');
   const genres = [...new Set(movies.flatMap(movie => movie.genre ? movie.genre.split(',').map(g => g.trim()) : []))].sort();
@@ -348,7 +389,6 @@ function filterMovies(filterType, filterValue) {
   renderFilteredMovies(filteredMovies);
   hideAllDropdowns();
 }
-
 // Render filtered movies
 function renderFilteredMovies(filteredMovies) {
   const container = document.getElementById('latest-uploads');

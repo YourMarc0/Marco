@@ -122,78 +122,92 @@
       </ul>
     </nav>
 <div class="movie-category-buttons">
-  <a href="index.html" class="category-btn home-btn" style="padding: 8px 16px; font-size: 0.9rem;">Home</a>
-  <a href="hollywood.html" class="category-btn hollywood-btn" style="padding: 8px 16px; font-size: 0.9rem;">Hollywood</a>
-  <a href="bollywood.html" class="category-btn bollywood-btn" style="padding: 8px 16px; font-size: 0.9rem;">Bollywood</a>
-  <a href="dashboard.html" class="category-btn admin-btn" style="padding: 8px 16px; font-size: 0.9rem;">
-    <span class="crown" style="font-size: 1rem;">👑</span>
-    Admin's Chamber
+  <a href="index.html" class="category-btn home-btn">Home</a>
+  <a href="hollywood.html" class="category-btn hollywood-btn">Hollywood</a>
+  <a href="bollywood.html" class="category-btn bollywood-btn">Bollywood</a>
+  <a href="dashboard.html" class="category-btn admin-btn">
+    <span class="crown">👑</span>
+    Admin
   </a>
-
-  <style>
-    .admin-btn {
-      background: linear-gradient(45deg, #ffd700, #daa520);
-      color: #000;
-      border: 2px solid #ffd700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    
-    .admin-btn:hover {
-      background: linear-gradient(45deg, #daa520, #ffd700);
-    }
-
-    .crown {
-      font-size: 1.2em;
-      filter: drop-shadow(0 0 2px #fff);
-    }
-  </style>
 </div>
 
 <style>
 .movie-category-buttons {
   display: flex;
   justify-content: center;
-  gap: 20px;
-  margin: 20px 0;
-  padding: 10px;
+  gap: 10px;
+  margin: 15px 0;
+  padding: 5px;
+  flex-wrap: wrap;
 }
 
 .category-btn {
-  padding: 12px 24px;
-  font-size: 1.1rem;
+  padding: 8px 12px;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: all 0.3s ease;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   position: relative;
   overflow: hidden;
+  min-width: 80px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .category-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+  
+  .movie-category-buttons {
+    gap: 8px;
+  }
+  
+  .crown {
+    font-size: 0.9em;
+  }
 }
 
 .home-btn {
   background: linear-gradient(45deg, #1a1a1a, #333);
   color: #fff;
-  border: 2px solid #444;
+  border: 1px solid #444;
 }
 
 .hollywood-btn {
   background: linear-gradient(45deg, #ff003c, #ff2b5c);
   color: #fff;
-  border: 2px solid #ff003c;
+  border: 1px solid #ff003c;
 }
 
 .bollywood-btn {
   background: linear-gradient(45deg, #ffd700, #ffa500);
   color: #000;
-  border: 2px solid #ffd700;
+  border: 1px solid #ffd700;
+}
+
+.admin-btn {
+  background: linear-gradient(45deg, #ffd700, #daa520);
+  color: #000;
+  border: 1px solid #ffd700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.crown {
+  font-size: 1em;
+  filter: drop-shadow(0 0 1px #fff);
 }
 
 .category-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
 .category-btn::before {
@@ -226,6 +240,10 @@
 
 .bollywood-btn:hover {
   background: linear-gradient(45deg, #ffa500, #ffd700);
+}
+
+.admin-btn:hover {
+  background: linear-gradient(45deg, #daa520, #ffd700);
 }
 </style>
     
