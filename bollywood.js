@@ -1,6 +1,38 @@
 // Demo movie data (replace with backend/API in production)
 const movies = [
- 
+  {
+    "title": "Kesari Chapter 2",
+    "genre": "Drama, History",
+    "actors": [
+      "Akshay Kumar",
+      "Ananya Panday",
+      "Simon Paisley Day"
+    ],
+    "thumb": "https://dotmovies.ac/uploads/posts/covers/Poster-Keshari-2-2025.webp",
+    "year": 2025,
+    "page": "https://healthimine.blogspot.com/2025/06/k-2-due-to-copyright-2025-watch-online.html",
+    "director": null,
+    "runtime": "2h 25m minutes",
+    "rating": "PG-13",
+    "format": "N/A"
+  },
+  {
+    "title": "Raid 2",
+    "genre": "Crime, Drama, Thriller",
+    "actors": [
+      "Ajay Devgn",
+      "Vaani Kapoor",
+      "Saurabh Shukla",
+      "Amit Sial"
+    ],
+    "thumb": "https://dotmovies.ac/uploads/posts/covers/Poster-Raid-2-202255.webp",
+    "year": 2024,
+    "page": "https://imthemarco.blogspot.com/2025/06/raid-2.html",
+    "director": null,
+    "runtime": "2h 25m minutes",
+    "rating": "PG-13",
+    "format": "N/A"
+  },
   {
     title: " Bhool Chuk Maaf (2025)",
     genre: "Fantasy, Romantic Comedy",

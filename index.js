@@ -1,6 +1,39 @@
 // Demo movie data (replace with backend/API in production)
 const movies = [
   {
+    "title": "The Count of Monte Cristo",
+    "genre": "Action, Adventure, Drama",
+    "actors": [
+      "Pierre Niney",
+      "Anaïs Demoustier",
+      "Laurent Lafitte",
+      "Patrick Mille"
+    ],
+    "thumb": "https://dotmovies.ac/uploads/posts/covers/Poster-The-Count-of-Monte-Cristo-2024-2024.webp",
+    "year": 2024,
+    "page": "https://imthemarco.blogspot.com/2025/06/the-count-of-monte-cristo.html",
+    "director": "Alexandre",
+    "runtime": "2h 25m minutes",
+    "rating": "PG-13",
+    "format": "N/A"
+  },
+  {
+    "title": "The Killer",
+    "genre": "Action, Thriller, Crime",
+    "actors": [
+      "Nathalie Emmanuel as Zee",
+      "Omar Sy as Sey",
+      "Sam Worthington as Finn"
+    ],
+    "thumb": "https://dotmovies.ac/uploads/posts/covers/the-killer-2024-hindi-dual-audio-hdrip-1080p-720p-480p.webp",
+    "year": 2024,
+    "page": "https://imthemarco.blogspot.com/2025/06/the-killer-2024.html",
+    "director": null,
+    "runtime": "N/A",
+    "rating": "PG-13",
+    "format": "N/A"
+  },
+  {
     title: "Thunderbolts (2025)",
     genre: "Action, Adventure, Superhero",
     actors: ["Florence Pugh", "Sebastian Stan", "David Harbour"],
@@ -26,6 +59,23 @@ const movies = [
     "format": "MKV"
   },
   {
+    "title": "Bad Influence",
+    "genre": "Thriller, Drama, Romance",
+    "actors": [
+      "Alberto Olmo",
+      "Enrique Arce",
+      "Sara Ariño",
+      "Fernando Fraga"
+    ],
+    "thumb": "https://dotmovies.ac/uploads/posts/covers/Poster-Bad-Influenxe-2025.webp",
+    "year": 2025,
+    "page": "https://imthemarco.blogspot.com/2025/06/bad-influence.html",
+    "director": null,
+    "runtime": "2h 25m minutes",
+    "rating": "R",
+    "format": "N/A"
+  },
+  {
     title: "Final Destination (2000)",
     genre: "Horror, Thriller, Supernatural",
     actors: [
@@ -36,6 +86,39 @@ const movies = [
     thumb: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSRY-xDKrIC0cj-mHHeX9A6K3s3fXn4FjsycWtbRBx2Jd3HcuF",
     year: 2024,
     page: "https://imthemarco.blogspot.com/2025/05/final-destination-2000-watch-online.html"
+  },
+  {
+    "title": "Kesari Chapter 2",
+    "genre": "Drama, History",
+    "actors": [
+      "Akshay Kumar",
+      "Ananya Panday",
+      "Simon Paisley Day"
+    ],
+    "thumb": "https://dotmovies.ac/uploads/posts/covers/Poster-Keshari-2-2025.webp",
+    "year": 2025,
+    "page": "https://healthimine.blogspot.com/2025/06/k-2-due-to-copyright-2025-watch-online.html",
+    "director": null,
+    "runtime": "2h 25m minutes",
+    "rating": "PG-13",
+    "format": "N/A"
+  },
+  {
+    "title": "Raid 2",
+    "genre": "Crime, Drama, Thriller",
+    "actors": [
+      "Ajay Devgn",
+      "Vaani Kapoor",
+      "Saurabh Shukla",
+      "Amit Sial"
+    ],
+    "thumb": "https://dotmovies.ac/uploads/posts/covers/Poster-Raid-2-202255.webp",
+    "year": 2024,
+    "page": "https://imthemarco.blogspot.com/2025/06/raid-2.html",
+    "director": null,
+    "runtime": "2h 25m minutes",
+    "rating": "PG-13",
+    "format": "N/A"
   },
   {
     title: "Nosferatu (1922)",

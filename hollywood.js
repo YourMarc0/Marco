@@ -1,12 +1,62 @@
 // Demo movie data (replace with backend/API in production)
 const movies = [
   {
+    "title": "The Count of Monte Cristo",
+    "genre": "Action, Adventure, Drama",
+    "actors": [
+      "Pierre Niney",
+      "Anaïs Demoustier",
+      "Laurent Lafitte",
+      "Patrick Mille"
+    ],
+    "thumb": "https://dotmovies.ac/uploads/posts/covers/Poster-The-Count-of-Monte-Cristo-2024-2024.webp",
+    "year": 2024,
+    "page": "https://imthemarco.blogspot.com/2025/06/the-count-of-monte-cristo.html",
+    "director": "Alexandre",
+    "runtime": "2h 25m minutes",
+    "rating": "PG-13",
+    "format": "N/A"
+  },
+  {
     title: "Thunderbolts (2025)",
     genre: "Action, Adventure, Superhero",
     actors: ["Florence Pugh", "Sebastian Stan", "David Harbour"],
     thumb: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSe5hUGbdfpD9GerQdpjIDe6HgB8Kry2mzGejX7f30FqY2tUqi-",
     year: 2025,
     page: "https://imthemarco.blogspot.com/2025/05/final-destination.html"
+  },
+  {
+    "title": "The Killer",
+    "genre": "Action, Thriller, Crime",
+    "actors": [
+      "Nathalie Emmanuel as Zee",
+      "Omar Sy as Sey",
+      "Sam Worthington as Finn"
+    ],
+    "thumb": "https://dotmovies.ac/uploads/posts/covers/the-killer-2024-hindi-dual-audio-hdrip-1080p-720p-480p.webp",
+    "year": 2024,
+    "page": "https://imthemarco.blogspot.com/2025/06/the-killer-2024.html",
+    "director": null,
+    "runtime": "N/A",
+    "rating": "PG-13",
+    "format": "N/A"
+  },
+  {
+    "title": "Bad Influence",
+    "genre": "Thriller, Drama, Romance",
+    "actors": [
+      "Alberto Olmo",
+      "Enrique Arce",
+      "Sara Ariño",
+      "Fernando Fraga"
+    ],
+    "thumb": "https://dotmovies.ac/uploads/posts/covers/Poster-Bad-Influenxe-2025.webp",
+    "year": 2025,
+    "page": "https://imthemarco.blogspot.com/2025/06/bad-influence.html",
+    "director": null,
+    "runtime": "2h 25m minutes",
+    "rating": "R",
+    "format": "N/A"
   },
   {
     "title": "Conclave (2025)",
@@ -352,94 +402,127 @@ function populateDropdowns() {
 
 function populateGenreDropdown() {
   const genreDropdown = document.getElementById('genre-dropdown');
-  const genres = [...new Set(movies.flatMap(movie => movie.genre ? movie.genre.split(',').map(g => g.trim()) : []))].sort();
-  genreDropdown.innerHTML = `
-    ${genres.map(genre => `<a href="#" onclick="filterMovies('genre', '${genre}')">${genre}</a>`).join('')}
-  `;
+  if (!genreDropdown) return;
+  
+  const genres = [...new Set(movies.flatMap(movie => 
+    movie.genre ? movie.genre.split(',').map(g => g.trim()) : []
+  ))].sort();
+  
+  genreDropdown.innerHTML = genres.map(genre => 
+    `<a href="#" onclick="filterMovies('genre', '${genre}'); return false;">${genre}</a>`
+  ).join('');
 }
 
 function populateYearDropdown() {
   const yearDropdown = document.getElementById('year-dropdown');
-  const years = [...new Set(movies.map(movie => movie.year).filter(year => year !== undefined))].sort((a, b) => b - a);
-  yearDropdown.innerHTML = `
-    ${years.map(year => `<a href="#" onclick="filterMovies('year', '${year}')">${year}</a>`).join('')}
-  `;
+  if (!yearDropdown) return;
+  
+  const years = [...new Set(movies
+    .map(movie => movie.year)
+    .filter(year => year !== undefined)
+  )].sort((a, b) => b - a);
+  
+  yearDropdown.innerHTML = years.map(year =>
+    `<a href="#" onclick="filterMovies('year', '${year}'); return false;">${year}</a>`
+  ).join('');
 }
 
 function populateRatingDropdown() {
   const ratingDropdown = document.getElementById('rating-dropdown');
-  const ratings = [...new Set(movies.map(movie => movie.rating).filter(rating => rating !== undefined && rating !== 'NR'))].sort();
-  ratingDropdown.innerHTML = `
-    ${ratings.map(rating => `<a href="#" onclick="filterMovies('rating', '${rating}')">${rating}</a>`).join('')}
-  `;
+  if (!ratingDropdown) return;
+  
+  const ratings = [...new Set(movies
+    .map(movie => movie.rating)
+    .filter(rating => rating && rating !== 'NR')
+  )].sort();
+  
+  ratingDropdown.innerHTML = ratings.map(rating =>
+    `<a href="#" onclick="filterMovies('rating', '${rating}'); return false;">${rating}</a>`
+  ).join('');
 }
 
 // Filter movies based on type and value
 function filterMovies(filterType, filterValue) {
-  let filteredMovies = movies;
+  let filteredMovies = [...movies];
 
-  if (filterType === 'genre') {
-    filteredMovies = movies.filter(movie => movie.genre && movie.genre.toLowerCase().includes(filterValue.toLowerCase()));
-  } else if (filterType === 'year') {
-    filteredMovies = movies.filter(movie => movie.year && movie.year === parseInt(filterValue));
-  } else if (filterType === 'rating') {
-    filteredMovies = movies.filter(movie => movie.rating && movie.rating.toLowerCase() === filterValue.toLowerCase());
+  switch(filterType) {
+    case 'genre':
+      filteredMovies = filteredMovies.filter(movie => 
+        movie.genre && movie.genre.toLowerCase().includes(filterValue.toLowerCase())
+      );
+      break;
+    case 'year':
+      filteredMovies = filteredMovies.filter(movie => 
+        movie.year && movie.year === parseInt(filterValue)
+      );
+      break;
+    case 'rating':
+      filteredMovies = filteredMovies.filter(movie => 
+        movie.rating && movie.rating.toLowerCase() === filterValue.toLowerCase()
+      );
+      break;
   }
 
   renderFilteredMovies(filteredMovies);
   hideAllDropdowns();
 }
+
 // Render filtered movies
 function renderFilteredMovies(filteredMovies) {
   const container = document.getElementById('latest-uploads');
+  if (!container) return;
+
   if (filteredMovies.length === 0) {
     container.innerHTML = '<div class="no-results">No movies found for this filter.</div>';
-  } else {
-    container.innerHTML = filteredMovies.map(function(movie) {
-      return `
-        <a href="${movie.page}" class="movie-card">
-          <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
-          <div class="movie-info">
-            <div class="movie-title">${movie.title}</div>
-            <div class="movie-meta">${movie.genre} | ${movie.year}</div>
-          </div>
-        </a>
-      `;
-    }).join('');
+    return;
   }
+
+  container.innerHTML = filteredMovies.map(movie => `
+    <a href="${movie.page}" class="movie-card">
+      <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
+      <div class="movie-info">
+        <div class="movie-title">${movie.title}</div>
+        <div class="movie-meta">${movie.genre || 'N/A'} | ${movie.year || 'N/A'}</div>
+      </div>
+    </a>
+  `).join('');
 }
 
 // Show/Hide Dropdown Menus with Netflix-inspired styling
 function showDropdown(id) {
   const dropdown = document.getElementById(id);
-  
-  // Clear any existing styles first
-  const existingStyle = document.getElementById('netflix-dropdown-style');
-  if (existingStyle) {
-    existingStyle.remove();
-  }
+  if (!dropdown) return;
 
-  // Reset dropdown content from stored data
+  // Remove existing styles
+  const existingStyle = document.getElementById('netflix-dropdown-style');
+  if (existingStyle) existingStyle.remove();
+
+  // Store original content if not already stored
   if (!dropdown.dataset.originalContent) {
     dropdown.dataset.originalContent = dropdown.innerHTML;
-  } else {
-    dropdown.innerHTML = dropdown.dataset.originalContent;
   }
 
-  dropdown.style.display = 'block';
-  dropdown.style.position = 'absolute';
-  dropdown.style.backgroundColor = '#141414';
-  dropdown.style.borderRadius = '4px';
-  dropdown.style.padding = '20px';
-  dropdown.style.width = '300px';
-  dropdown.style.zIndex = '1000';
-  dropdown.style.boxShadow = '0 4px 20px rgba(0,0,0,0.5)';
-  dropdown.style.border = '1px solid rgba(255,255,255,0.15)';
+  // Reset content
+  dropdown.innerHTML = dropdown.dataset.originalContent;
 
-  // Get content and organize into grid layout
-  const items = dropdown.dataset.originalContent.split('<a').filter(item => item.trim());
-  
-  // Create grid container
+  // Apply dropdown styling
+  Object.assign(dropdown.style, {
+    display: 'block',
+    position: 'absolute',
+    backgroundColor: '#141414',
+    borderRadius: '4px',
+    padding: '20px',
+    width: '300px',
+    zIndex: '1000',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.5)',
+    border: '1px solid rgba(255,255,255,0.15)'
+  });
+
+  // Create grid layout
+  const items = dropdown.dataset.originalContent
+    .split('<a')
+    .filter(item => item.trim());
+
   dropdown.innerHTML = `
     <div class="netflix-dropdown-grid">
       ${items.map(item => `
@@ -448,7 +531,7 @@ function showDropdown(id) {
     </div>
   `;
 
-  // Add custom styles with unique ID
+  // Add styles
   const style = document.createElement('style');
   style.id = 'netflix-dropdown-style';
   style.textContent = `
