@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Webpage & JSON Generator</title>
+    <title>Movie JSON Data Generator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -44,25 +44,21 @@
             transition: border-color 0.2s, box-shadow 0.2s;
         }
         input[readonly] {
-            background-color: #2d3748; 
-            color: #a0aec0; 
+            background-color: #2d3748;
+            color: #a0aec0;
             cursor: not-allowed;
         }
         input[type="text"]::placeholder, input[type="url"]::placeholder, input[type="number"]::placeholder, textarea::placeholder {
-            color: #9ca3af; 
+            color: #9ca3af;
             opacity: 1;
         }
         input[type="text"]:focus, input[type="url"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
             outline: none;
-            border-color: #60a5fa; 
+            border-color: #60a5fa;
             box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.5);
         }
-        input[readonly]:focus { 
-            border-color: #374151;
-            box-shadow: none;
-        }
         textarea {
-            min-height: 100px; /* Adjusted for ad blocks */
+            min-height: 100px;
             resize: vertical;
             font-family: 'Courier New', Courier, monospace;
             font-size: 0.9em;
@@ -76,28 +72,28 @@
             border: none;
         }
         .btn-primary {
-            background-color: #3b82f6; 
+            background-color: #3b82f6;
             color: white;
         }
         .btn-primary:hover {
-            background-color: #2563eb; 
+            background-color: #2563eb;
         }
         .btn-secondary {
-            background-color: #4b5563; 
+            background-color: #4b5563;
             color: white;
         }
         .btn-secondary:hover {
-            background-color: #374151; 
+            background-color: #374151;
         }
         .btn:active {
             transform: translateY(1px);
         }
         .output-area {
-            background-color: #1f2937; 
+            background-color: #1f2937;
             padding: 1rem;
             border-radius: 0.375rem;
             margin-top: 1rem;
-            border: 1px solid #374151; 
+            border: 1px solid #374151;
             white-space: pre-wrap;
             word-break: break-all;
             max-height: 400px;
@@ -110,7 +106,7 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #22c55e; 
+            background-color: #22c55e;
             color: white;
             padding: 10px 20px;
             border-radius: 5px;
@@ -123,7 +119,7 @@
             opacity: 1;
         }
         .error-message {
-            background-color: #ef4444; 
+            background-color: #ef4444;
             color: white;
             padding: 1rem;
             border-radius: 0.375rem;
@@ -131,14 +127,14 @@
             margin-bottom: 1rem;
         }
         .thumbnail-preview {
-            width: 150px; 
+            width: 150px;
             height: auto;
-            min-height: 75px; 
+            min-height: 75px;
             border-radius: 0.375rem;
             margin-top: 0.5rem;
-            border: 1px solid #4b5563; 
-            background-color: #374151; 
-            object-fit: cover; 
+            border: 1px solid #4b5563;
+            background-color: #374151;
+            object-fit: cover;
         }
         .checkbox-group div {
             display: flex;
@@ -148,40 +144,44 @@
         .checkbox-group input[type="checkbox"] {
             width: auto;
             margin-right: 0.5rem;
-            margin-bottom: 0; /* Override default input margin */
+            margin-bottom: 0;
         }
         .checkbox-group label {
-            margin-bottom: 0; /* Override default label margin */
-            font-weight: 400; /* Lighter font for checkbox labels */
-            color: #e5e7eb; /* Lighter text for checkbox labels */
+            margin-bottom: 0;
+            font-weight: 400;
+            color: #e5e7eb;
+        }
+        .hidden-input { /* Class to hide inputs completely */
+            display: none !important;
         }
     </style>
 </head>
 <body class="p-4 md:p-8">
     <div class="max-w-6xl mx-auto">
         <header class="mb-8 text-center">
-            <h1 class="text-4xl font-bold text-white">Movie Webpage & JSON Generator</h1>
-            <p class="text-lg text-gray-400 mt-2">Fill in the details below to generate your movie page HTML and JSON data.</p>
+            <h1 class="text-4xl font-bold text-white">Movie JSON Data Generator</h1>
+            <p class="text-lg text-gray-400 mt-2">Fill in the details below to generate your movie JSON data.</p>
+            <div class="flex justify-center gap-4 mt-4">
+                <a href="blogcode.html" class="btn btn-secondary">Link Gen 2</a>
+                <a href="blogadmincode.html" class="btn btn-secondary">Link Gen 2 Admin</a>
+            </div>
         </header>
 
         <div id="adminForm">
             <section class="form-section">
-                <h2>General Website Settings</h2>
+                <h2>Movie & Page Identifiers</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="websiteName">Your Website Name (for Logo)</label>
+                    <div class="hidden-input"> <label for="websiteName">Your Website Name (for Logo)</label>
                         <input type="text" id="websiteName" value="MARCO" readonly>
                     </div>
-                    <div>
-                        <label for="websiteUrl">Your Website URL (for Logo & Share)</label>
+                    <div class="hidden-input"> <label for="websiteUrl">Your Website URL (for Logo & Share)</label>
                         <input type="url" id="websiteUrl" value="https://yourmarc0.github.io/Marco/" readonly>
                     </div>
-                    <div>
-                        <label for="backButtonLink">Back Button Link</label>
+                    <div class="hidden-input"> <label for="backButtonLink">Back Button Link</label>
                         <input type="text" id="backButtonLink" value="https://yourmarc0.github.io/Marco/" readonly>
                     </div>
                     <div>
-                        <label for="pageUrlForSharing">Page URL for Sharing (for JSON)</label>
+                        <label for="pageUrlForSharing">Page URL for Sharing (for JSON 'page' field)</label>
                         <input type="url" id="pageUrlForSharing" placeholder="e.g., https://yourdomain.com/movie-title.html">
                     </div>
                 </div>
@@ -191,20 +191,20 @@
                 <h2>Movie Core Details</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="movieTitle">Movie Title</label>
+                        <label for="movieTitle">Movie Title (for JSON 'title')</label>
                         <input type="text" id="movieTitle" placeholder="e.g., The Matrix">
                     </div>
                     <div>
-                        <label for="releaseYear">Release Year</label>
+                        <label for="releaseYear">Release Year (for JSON 'year')</label>
                         <input type="number" id="releaseYear" placeholder="e.g., 1999">
                     </div>
                     <div>
-                        <label for="posterImgUrl">Poster Image URL</label>
+                        <label for="posterImgUrl">Poster Image URL (for JSON 'thumb')</label>
                         <input type="url" id="posterImgUrl" placeholder="e.g., https://example.com/poster.jpg">
                         <img id="posterPreview" src="https://placehold.co/150x225/374151/9ca3af?text=Preview" alt="Poster Preview" class="thumbnail-preview mt-2">
                     </div>
                     <div>
-                        <label for="ratingBadgeSelect">Rating Badge</label>
+                        <label for="ratingBadgeSelect">Rating Badge (for JSON 'rating')</label>
                         <select id="ratingBadgeSelect" class="mb-2">
                             <option value="NR">NR (Not Rated)</option>
                             <option value="G">G (General Audiences)</option>
@@ -224,67 +224,63 @@
                         <input type="text" id="ratingBadgeCustom" class="hidden" placeholder="Enter custom rating">
                     </div>
                     <div>
-                        <label for="language">Language(s)</label>
-                        <input type="text" id="language" placeholder="e.g., English, Spanish">
+                        <label for="language">Language(s) (for JSON 'language')</label>
+                        <input type="text" id="language" placeholder="e.g., English, Spanish or Dual Audio {Hindi-English}">
                     </div>
                      <div>
-                        <label for="runtime">Runtime</label>
+                        <label for="runtime">Runtime (for JSON 'runtime')</label>
                         <input type="text" id="runtime" placeholder="e.g., 2h 16m">
                     </div>
                 </div>
             </section>
 
             <section class="form-section">
-                <h2>Movie Meta, Links & Actions</h2>
+                <h2>Movie Links (for JSON)</h2>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="play480pLink">Play/Download 480p Link</label>
-                        <input type="url" id="play480pLink" placeholder="https://example.com/play/480p">
+                        <label for="play480pLink">Play Link (for JSON 'play')</label>
+                        <input type="url" id="play480pLink" placeholder="https://example.com/play/link">
                     </div>
                     <div>
-                        <label for="download480pLink">Download 480p Link</label>
-                        <input type="url" id="download480pLink" placeholder="https://example.com/download/480p">
+                        <label for="download480pLink">Download Link (for JSON 'download')</label>
+                        <input type="url" id="download480pLink" placeholder="https://example.com/download/link">
                     </div>
-                    <div>
-                        <label for="download720pLink">Alternate Download 720p Link</label>
+                    <div class="hidden-input"> <label for="download720pLink">Alternate Download 720p Link</label>
                         <input type="url" id="download720pLink" placeholder="https://example.com/download/720p_alt">
                     </div>
-                    <div>
-                        <label for="download1080pLink">Alternate Download 1080p Link</label>
+                    <div class="hidden-input"> <label for="download1080pLink">Alternate Download 1080p Link</label>
                         <input type="url" id="download1080pLink" placeholder="https://example.com/download/1080p_alt">
                     </div>
-                    <div>
-                        <label for="myListOnclick">"My List" Button Onclick Action</label>
+                    <div class="hidden-input"> <label for="myListOnclick">"My List" Button Onclick Action</label>
                         <input type="text" id="myListOnclick" placeholder="e.g., customShowAlert('Added to My List!')">
                     </div>
-                    <div>
-                        <label for="trailerOnclick">"Trailer" Button Onclick Action</label>
+                    <div class="hidden-input"> <label for="trailerOnclick">"Trailer" Button Onclick Action</label>
                         <input type="text" id="trailerOnclick" placeholder="e.g., customShowAlert('Trailer coming soon!')">
                     </div>
                  </div>
             </section>
 
             <section class="form-section">
-                <h2>Movie Info List Items</h2>
+                <h2>Movie Info (for JSON)</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                        <label for="genre">Genre (comma-separated)</label>
-                        <input type="text" id="genre" placeholder="e.g., Action, Sci-Fi">
+                        <label for="genre">Genre (comma-separated for JSON 'genre')</label>
+                        <input type="text" id="genre" placeholder="e.g., Action, Sci-Fi, Drama">
                     </div>
                     <div>
-                        <label for="subtitleInfo">Subtitle Info</label>
+                        <label for="subtitleInfo">Subtitle Info (for JSON 'subtitle')</label>
                         <input type="text" id="subtitleInfo" placeholder="e.g., YES / English, French">
                     </div>
                     <div>
-                        <label for="sizeInfo">Size Info</label>
-                        <input type="text" id="sizeInfo" placeholder="e.g., 1.2GB - 2.5GB">
+                        <label for="sizeInfo">Size Info (for JSON 'size')</label>
+                        <input type="text" id="sizeInfo" placeholder="e.g., 1.2GB - 2.5GB or 300MB || 1GB">
                     </div>
                      <div>
-                        <label for="formatInfo">Format Info</label>
+                        <label for="formatInfo">Format Info (for JSON 'format')</label>
                         <input type="text" id="formatInfo" placeholder="e.g., MKV, MP4">
                     </div>
                     <div class="md:col-span-2">
-                        <span class="label-like">Quality Info (Select all that apply for HTML list)</span>
+                        <span class="label-like">Quality Info (for JSON 'quality')</span>
                         <div id="qualityCheckboxes" class="checkbox-group grid grid-cols-2 sm:grid-cols-4 gap-x-4 gap-y-2 mt-2 mb-1">
                             <div><input type="checkbox" id="q_webdl" value="WEB-DL"><label for="q_webdl">WEB-DL</label></div>
                             <div><input type="checkbox" id="q_bluray" value="BluRay"><label for="q_bluray">BluRay</label></div>
@@ -294,32 +290,39 @@
                             <div class="sm:col-start-2"><input type="checkbox" id="q_480p" value="480p"><label for="q_480p">480p</label></div>
                             <div><input type="checkbox" id="q_720p" value="720p"><label for="q_720p">720p</label></div>
                             <div><input type="checkbox" id="q_1080p" value="1080p"><label for="q_1080p">1080p</label></div>
-                            <div><input type="checkbox" id="q_2160p" value="2160p"><label for="q_2160p">2160p (4K)</label></div>
+                            <div><input type="checkbox" id="q_2160p" value="2160p (4K)"><label for="q_2160p">2160p (4K)</label></div>
                         </div>
-                        <input type="text" id="qualityInfoText" placeholder="Or type full quality string (e.g., WEB-DL 1080p HEVC) - overrides checkboxes">
+                        <input type="text" id="qualityInfoText" placeholder="Or type full quality string (e.g., 480p || 720p || 1080p – BluRay) - overrides checkboxes">
                     </div>
-                   
+
                     <div>
-                        <label for="director">Director(s) (comma-separated for list, primary for JSON)</label>
+                        <label for="director">Director(s) (for JSON 'director')</label>
                         <input type="text" id="director" placeholder="e.g., Christopher Nolan">
+                    </div>
+                    <div>
+                        <label for="writerNames">Writer(s) (comma-separated for JSON 'writer')</label>
+                        <input type="text" id="writerNames" placeholder="e.g., Writer Name 1, Writer Name 2">
                     </div>
                 </div>
                 <div class="mt-4">
-                    <label for="cast">Cast (comma-separated)</label>
+                    <label for="cast">Cast / Actors (comma-separated for JSON 'actors' array)</label>
                     <input type="text" id="cast" placeholder="e.g., Leonardo DiCaprio, Joseph Gordon-Levitt">
                 </div>
             </section>
 
             <section class="form-section">
-                <h2>Description & IMDb</h2>
+                <h2>Description & Review (for JSON)</h2>
                 <div>
-                    <label for="descriptionText">Description (HTML allowed)</label>
-                    <textarea id="descriptionText" placeholder="Enter movie description here. You can use HTML tags like <strong>, <br>, etc.&#10;e.g., A computer hacker learns from mysterious rebels about the true nature of his reality...&#10;<br><br>👉 <strong>IMDb Rating:</strong> 8.7/10"></textarea>
+                    <label for="descriptionText">Description (for JSON 'description')</label>
+                    <textarea id="descriptionText" placeholder="Enter movie description here..."></textarea>
+                </div>
+                <div class="mt-4">
+                    <label for="reviewText">Movie Review (Optional, for JSON 'review')</label>
+                    <textarea id="reviewText" placeholder="Enter optional movie review text here..."></textarea>
                 </div>
             </section>
 
-            <section class="form-section">
-                <h2>Ad Scripts</h2>
+            <section class="form-section hidden-input"> <h2>Ad Scripts</h2>
                 <div>
                     <label for="adBlock1">Ad Block 1 (Paste full HTML/Script code)</label>
                     <textarea id="adBlock1" placeholder="<script>...</script> or <div><script>...</script></div>"></textarea>
@@ -333,20 +336,11 @@
             <div id="generationError" class="error-message hidden"></div>
 
             <div class="my-8 flex flex-col sm:flex-row justify-center items-center gap-4">
-                <button id="generateBtn" class="btn btn-primary w-full sm:w-auto text-lg">Generate Webpage & JSON</button>
+                <button id="generateBtn" class="btn btn-primary w-full sm:w-auto text-lg">Generate JSON Data</button>
             </div>
         </div>
 
         <div id="outputSection" class="hidden">
-            <section class="form-section">
-                <h2 class="text-2xl">Generated Movie Webpage HTML</h2>
-                <textarea id="generatedHtmlOutput" class="output-area w-full h-96 bg-gray-900 text-sm" readonly></textarea>
-                <div class="mt-4 flex gap-4">
-                    <button id="copyHtmlBtn" class="btn btn-secondary">Copy HTML</button>
-                    <button id="downloadHtmlBtn" class="btn btn-secondary">Download HTML</button>
-                </div>
-            </section>
-
             <section class="form-section mt-8">
                 <h2 class="text-2xl">Generated Movie JSON Data</h2>
                 <pre id="generatedJsonOutput" class="output-area bg-gray-900 text-sm"></pre>
@@ -366,10 +360,10 @@
     const ratingCustomInput = document.getElementById('ratingBadgeCustom');
     const generateBtn = document.getElementById('generateBtn');
     const outputSection = document.getElementById('outputSection');
-    const generatedHtmlOutput = document.getElementById('generatedHtmlOutput');
+    // const generatedHtmlOutput = document.getElementById('generatedHtmlOutput'); // Removed
     const generatedJsonOutput = document.getElementById('generatedJsonOutput');
-    const copyHtmlBtn = document.getElementById('copyHtmlBtn');
-    const downloadHtmlBtn = document.getElementById('downloadHtmlBtn');
+    // const copyHtmlBtn = document.getElementById('copyHtmlBtn'); // Removed
+    // const downloadHtmlBtn = document.getElementById('downloadHtmlBtn'); // Removed
     const copyJsonBtn = document.getElementById('copyJsonBtn');
     const toastNotification = document.getElementById('toastNotification');
     const generationErrorDiv = document.getElementById('generationError');
@@ -404,6 +398,7 @@
     });
 
     const val = id => document.getElementById(id).value.trim();
+    const valTextarea = id => document.getElementById(id).value;
 
     function showToast(message = "Copied to clipboard!") {
         toastNotification.textContent = message;
@@ -416,8 +411,8 @@
     function copyToClipboard(text) {
         const textArea = document.createElement('textarea');
         textArea.value = text;
-        textArea.style.position = 'fixed'; 
-        textArea.style.opacity = '0'; 
+        textArea.style.position = 'fixed';
+        textArea.style.opacity = '0';
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
@@ -436,19 +431,16 @@
 
 
     generateBtn.addEventListener('click', () => {
-        generationErrorDiv.classList.add('hidden'); 
+        generationErrorDiv.classList.add('hidden');
         generationErrorDiv.textContent = '';
-        outputSection.classList.add('hidden'); 
+        outputSection.classList.add('hidden');
 
         try {
-            const movieTitleValue = val('movieTitle') || "Untitled Movie";
-            const websiteNameValue = document.getElementById('websiteName').value;
-            const websiteUrlValue = document.getElementById('websiteUrl').value;
-            const backButtonLinkValue = document.getElementById('backButtonLink').value;
+            const movieTitleValue = val('movieTitle') || "Untitled Movie"; // Used for JSON.title
 
             let ratingBadgeValue = ratingSelect.value;
             if (ratingBadgeValue === 'Custom') {
-                ratingBadgeValue = val('ratingBadgeCustom') || "NR"; 
+                ratingBadgeValue = val('ratingBadgeCustom') || "NR";
             }
 
             let qualityInfoValue = '';
@@ -463,27 +455,21 @@
                 if (selectedQualities.length > 0) {
                     qualityInfoValue = selectedQualities.join(', ');
                 } else {
-                    qualityInfoValue = "N/A"; 
+                    qualityInfoValue = "N/A";
                 }
             }
 
+            // Data object now only contains fields relevant to JSON or still part of the form
             const data = {
-                websiteName: websiteNameValue, 
-                websiteUrl: websiteUrlValue,
-                backButtonLink: backButtonLinkValue,
-                pageUrlForSharing: val('pageUrlForSharing'), 
+                pageUrlForSharing: val('pageUrlForSharing'),
                 movieTitle: movieTitleValue,
                 releaseYear: val('releaseYear') || new Date().getFullYear().toString(),
-                posterImgUrl: val('posterImgUrl') || `https://placehold.co/340x510/222222/FFFFFF?text=${encodeURIComponent(movieTitleValue)}`,
+                posterImgUrl: val('posterImgUrl') || `https://placehold.co/150x225/222222/FFFFFF?text=${encodeURIComponent(movieTitleValue)}`,
                 ratingBadge: ratingBadgeValue,
                 language: val('language') || "N/A",
                 runtime: val('runtime') || "N/A",
                 play480pLink: val('play480pLink'),
                 download480pLink: val('download480pLink'),
-                download720pLink: val('download720pLink'),
-                download1080pLink: val('download1080pLink'),
-                myListOnclick: val('myListOnclick') || "customShowAlert('Action not configured')", 
-                trailerOnclick: val('trailerOnclick') || "customShowAlert('Action not configured')", 
                 genre: val('genre'),
                 subtitleInfo: val('subtitleInfo'),
                 sizeInfo: val('sizeInfo'),
@@ -491,130 +477,34 @@
                 formatInfo: val('formatInfo') || "N/A",
                 director: val('director'),
                 cast: val('cast'),
-                descriptionText: document.getElementById('descriptionText').value || "<p>No description available.</p>", 
-                adBlock1: document.getElementById('adBlock1').value, // Get raw HTML/script
-                adBlock2: document.getElementById('adBlock2').value  // Get raw HTML/script
+                writerNames: val('writerNames'),
+                reviewText: valTextarea('reviewText'),
+                descriptionText: valTextarea('descriptionText') || "No description available."
             };
 
-            const myListJs = data.myListOnclick.includes('customShowAlert') ? data.myListOnclick : data.myListOnclick.replace(/\balert\s*\(([^)]*)\)/g, 'customShowAlert($1)');
-            const trailerJs = data.trailerOnclick.includes('customShowAlert') ? data.trailerOnclick : data.trailerOnclick.replace(/\balert\s*\(([^)]*)\)/g, 'customShowAlert($1)');
+            // HTML Generation Logic Removed
 
-            const generatedHtml = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${data.movieTitle} (${data.releaseYear}) - Watch Online</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root { --netflix-red: #e50914; --netflix-dark: #141414; --netflix-bg: #181818; --netflix-grey: #232526; --netflix-light: #fff; --netflix-shadow: 0 4px 24px rgba(0,0,0,0.4); }
-        html, body { margin: 0; padding: 0; font-family: 'Roboto', Arial, sans-serif; background: var(--netflix-bg); color: var(--netflix-light); min-height: 100vh; }
-        body::before { content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(120deg, rgba(20,20,20,0.7) 60%, rgba(35,37,38,0.9) 100%); z-index: -1; }
-        .header { background: var(--netflix-dark); padding: 0.7rem 1.2rem 0.7rem 3.5rem; display: flex; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.3); position: relative; }
-        .back-btn { position: absolute; left: 1.2rem; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; display: flex; align-items: center; color: var(--netflix-red); font-size: 1.7rem; padding: 0.2rem 0.5rem; transition: color 0.2s; }
-        .back-btn:hover { color: #fff; background: var(--netflix-red); border-radius: 50%; }
-        .logo { font-size: 2.4rem; font-weight: 900; letter-spacing: 3px; color: var(--netflix-red); text-decoration: none; text-shadow: 2px 2px 12px #000, 0 0 8px var(--netflix-red); font-family: 'Bebas Neue', cursive, sans-serif; margin-left: 0.5rem; padding: 0.1rem 1.2rem; border-radius: 8px; background: linear-gradient(90deg, rgba(229,9,20,0.15) 0%, rgba(20,20,20,0.7) 100%); transition: background 0.2s, color 0.2s, box-shadow 0.2s; border: 2px solid var(--netflix-red); display: inline-block; }
-        .logo:hover { color: #fff; background: var(--netflix-red); box-shadow: 0 0 18px 2px #e50914; text-shadow: 2px 2px 16px #000; border-color: #fff; }
-        .container { max-width: 1100px; margin: 2.5rem auto 1.5rem auto; background: rgba(20,20,20,0.98); border-radius: 16px; box-shadow: var(--netflix-shadow); padding: 2.5rem 2rem; display: flex; flex-wrap: wrap; gap: 2.5rem; position: relative; align-items: flex-start; }
-        .movie-poster { width: 340px; min-width: 180px; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.5); object-fit: cover; background: #222; transition: transform 0.2s; margin-bottom: 1rem; }
-        .movie-poster:hover { transform: scale(1.03); }
-        .movie-details { flex: 1; min-width: 260px; display: flex; flex-direction: column; justify-content: flex-start; }
-        .movie-title { font-family: 'Bebas Neue', cursive, sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; color: #fff; letter-spacing: 2px; text-shadow: 2px 2px 12px #000, 0 0 8px var(--netflix-red); line-height: 1.1; }
-        .rating-badge { display: inline-block; background: var(--netflix-red); color: #fff; font-weight: 700; font-size: 1rem; border-radius: 6px; padding: 0.3rem 0.9rem; margin-bottom: 0.7rem; box-shadow: 0 1px 4px rgba(0,0,0,0.18); letter-spacing: 1px; }
-        .movie-meta { font-size: 1.1rem; color: #bbb; margin-bottom: 1.1rem; }
-        .movie-info-list { margin: 0 0 1.2rem 0; padding: 0; list-style: none; color: #fff; font-size: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.2rem; }
-        .movie-info-list li { background: var(--netflix-grey); border-radius: 4px; padding: 0.2rem 0.7rem; margin-bottom: 0.3rem; font-size: 0.98rem; color: #fff; box-shadow: 0 1px 4px rgba(0,0,0,0.2); }
-        .action-buttons { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
-        .btn { font-family: 'Roboto', sans-serif; font-size: 1.1rem; font-weight: 700; border: none; border-radius: 6px; padding: 0.7rem 1.6rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.2); margin-right: 0.5rem; margin-bottom: 0.5rem; transition: background 0.2s, color 0.2s; font-family: 'Roboto', sans-serif; text-decoration: none; }
-        .btn-play { background: var(--netflix-red); color: #fff; } .btn-play:hover { background: #b0060f; }
-        .btn-download { background: #222; color: #fff; border: 1px solid var(--netflix-red); } .btn-download:hover { background: var(--netflix-red); color: #fff; }
-        .btn-list { background: #fff; color: #222; } .btn-list:hover { background: #e5e5e5; }
-        .btn-share { background: #232526; color: #fff; border: 1px solid #444; } .btn-share:hover { background: #444; }
-        .btn-trailer { background: #fff; color: var(--netflix-red); } .btn-trailer:hover { background: var(--netflix-red); color: #fff; }
-        .section-title { font-size: 1.3rem; font-weight: 700; color: var(--netflix-red); margin: 1.2rem 0 0.5rem 0; letter-spacing: 1px; font-family: 'Bebas Neue', cursive, sans-serif; }
-        .custom-alert-box { position: fixed; left: 50%; top: 20px; transform: translateX(-50%); padding: 10px 20px; background: #333; color: white; border: 1px solid var(--netflix-red); border-radius: 5px; z-index: 2000; box-shadow: var(--netflix-shadow); transition: opacity 0.3s; opacity: 1; }
-        @media (max-width: 900px) { .container { flex-direction: column; align-items: center; padding: 1.2rem 0.5rem; } .movie-poster { width: 100%; max-width: 320px; } }
-        @media (max-width: 600px) { .header { padding: 0.7rem 0.5rem 0.7rem 2.7rem; } .logo { font-size: 1.3rem; } .container { padding: 0.5rem 0.2rem; } .movie-title { font-size: 1.5rem; } .movie-poster { width: 100%; max-width: 220px; } .btn { font-size: 0.95rem; padding: 0.5rem 1.1rem; } .section-title { font-size: 1rem; } }
-    </style>
-    <script>
-        function customShowAlert(message) {
-            let alertBox = document.querySelector('.custom-alert-box');
-            if (alertBox) { 
-                alertBox.remove();
-            }
-            alertBox = document.createElement('div');
-            alertBox.className = 'custom-alert-box';
-            alertBox.textContent = message;
-            document.body.appendChild(alertBox);
-            setTimeout(() => {
-                if (alertBox) alertBox.style.opacity = '0';
-                setTimeout(() => { if (alertBox) alertBox.remove(); }, 300);
-            }, 2500);
-        }
-    <\/script>
-</head>
-<body>
-    <div class="header">
-        <a href="${data.backButtonLink}" class="back-btn" title="Back">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><polyline points="15 18 9 12 15 6"></polyline></svg>
-        </a>
-        <a href="${data.websiteUrl}" class="logo">${data.websiteName}</a>
-    </div>
-
-    <div class="container">
-        <img class="movie-poster" src="${data.posterImgUrl}" alt="${data.movieTitle}" onerror="this.src='https://placehold.co/340x510/222222/FFFFFF?text=${encodeURIComponent(data.movieTitle)}+Poster+Not+Found'; this.onerror=null;">
-        <div class="movie-details">
-            <div class="movie-title">${data.movieTitle}</div>
-            <span class="rating-badge">${data.ratingBadge}</span>
-            <div class="movie-meta">Release Year: ${data.releaseYear} &nbsp;|&nbsp; Language: ${data.language}</div>
-            <div class="action-buttons">
-                ${data.play480pLink ? `<button class="btn btn-play" onclick="window.open('${data.play480pLink}', '_blank')"> ▶ 480p </button>` : ''}
-                ${myListJs ? `<button class="btn btn-list" onclick="${myListJs}"> + My List </button>` : ''}
-                ${data.download480pLink ? `<button class="btn btn-download" onclick="window.open('${data.download480pLink}', '_blank')"> ⬇ Download 480p</button>` : ''}
-                ${data.download1080pLink ? `<button class="btn btn-download" onclick="window.open('${data.download1080pLink}', '_blank')"> ⬇ Alternate Download 1080p</button>` : ''}
-                ${data.download720pLink ? `<button class="btn btn-download" onclick="window.open('${data.download720pLink}', '_blank')"> ⬇ Alternate Download 720p</button>` : ''}
-                ${trailerJs ? `<button class="btn btn-trailer" onclick="${trailerJs}"> 🎬 Trailer </button>` : ''}
-                <button class="btn btn-share" onclick="window.open('${data.websiteUrl}', '_blank')"> 🌐 Share This Website </button>
-                <button class="btn btn-share" onclick="navigator.clipboard.writeText(window.location.href).then(() => { const B=this,T=B.innerHTML; B.innerHTML='Link Copied!'; setTimeout(() => {B.innerHTML=T},2000);}).catch(e=>{console.error('Failed to copy link:',e); customShowAlert('Failed to copy link: ' + e.message)})"> ⤴ Share </button>
-            </div>
-            <ul class="movie-info-list">
-                ${data.genre ? `<li><b>Genre:</b> ${data.genre}</li>` : ''}
-                ${data.runtime ? `<li><b>Runtime:</b> ${data.runtime}</li>` : ''}
-                ${data.subtitleInfo ? `<li><b>Subtitle:</b> ${data.subtitleInfo}</li>` : ''}
-                ${data.sizeInfo ? `<li><b>Size:</b> ${data.sizeInfo}</li>` : ''}
-                ${data.qualityInfo ? `<li><b>Quality:</b> ${data.qualityInfo}</li>` : ''}
-                ${data.formatInfo ? `<li><b>Format:</b> ${data.formatInfo}</li>` : ''}
-                ${data.director ? `<li><b>Director:</b> ${data.director}</li>` : ''}
-                ${data.cast ? `<li><b>Cast:</b> ${data.cast}</li>` : ''}
-            </ul>
-
-            <div class="section-title">Description</div>
-            <div>
-                ${data.descriptionText}
-            </div>
-        </div>
-    </div>
-
-    ${data.adBlock1 ? data.adBlock1 : ''}
-    ${data.adBlock2 ? data.adBlock2 : ''}
-
-</body>
-</html>`;
-            generatedHtmlOutput.value = generatedHtml;
-
-            // Generate JSON with the new structure
+            // JSON Generation
             const generatedJson = {
-                title: data.movieTitle, // Just the title
+                title: data.movieTitle || null,
                 genre: data.genre || null,
                 actors: data.cast ? data.cast.split(',').map(actor => actor.trim()).filter(actor => actor) : [],
-                thumb: data.posterImgUrl,
-                year: parseInt(data.releaseYear, 10) || null, 
+                thumb: data.posterImgUrl || null,
+                year: data.releaseYear ? parseInt(data.releaseYear, 10) : null,
                 page: data.pageUrlForSharing || null,
-                director: data.director || null, // New field
-                runtime: data.runtime || null,   // New field
-                rating: data.ratingBadge || null, // New field (from ratingBadge input)
-                format: data.formatInfo || null   // New field
+                director: data.director || null,
+                runtime: data.runtime || null,
+                rating: data.ratingBadge || null,
+                language: data.language || null,
+                subtitle: data.subtitleInfo || null,
+                size: data.sizeInfo || null,
+                quality: data.qualityInfo === "N/A" && !val('qualityInfoText') ? null : data.qualityInfo,
+                format: data.formatInfo === "N/A" && !val('formatInfo') ? null : data.formatInfo,
+                description: data.descriptionText === "No description available." && !valTextarea('descriptionText').trim() ? null : data.descriptionText,
+                review: data.reviewText.trim() || null,
+                download: data.download480pLink || data.play480pLink || null,
+                play: data.play480pLink || null,
+                writer: data.writerNames || null
             };
             generatedJsonOutput.textContent = JSON.stringify(generatedJson, null, 2);
 
@@ -625,27 +515,11 @@
             console.error("Error during generation:", error);
             generationErrorDiv.textContent = `An error occurred: ${error.message}. Please check your inputs or the browser console for more details.`;
             generationErrorDiv.classList.remove('hidden');
-            outputSection.classList.add('hidden'); 
+            outputSection.classList.add('hidden');
         }
     });
 
-    copyHtmlBtn.addEventListener('click', () => {
-        copyToClipboard(generatedHtmlOutput.value);
-    });
-
-    downloadHtmlBtn.addEventListener('click', () => {
-        const filenameBase = (val('movieTitle') || 'movie').replace(/[^a-z0-9]/gi, '_').toLowerCase();
-        const filename = `${filenameBase}.html`;
-        const blob = new Blob([generatedHtmlOutput.value], { type: 'text/html' });
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = filename;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(link.href); 
-        showToast("HTML file download initiated!");
-    });
+    // copyHtmlBtn and downloadHtmlBtn event listeners removed
 
     copyJsonBtn.addEventListener('click', () => {
         copyToClipboard(generatedJsonOutput.textContent);

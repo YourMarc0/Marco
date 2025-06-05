@@ -1,6 +1,27 @@
 // Demo movie data (replace with backend/API in production)
 const movies = [
   {
+    "title": "Thunderbolts",
+    "genre": "Action, Mystery",
+    "actors": ["Florence Pugh", "Sebastian Stan", "David Harbour"],
+    "thumb": "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSe5hUGbdfpD9GerQdpjIDe6HgB8Kry2mzGejX7f30FqY2tUqi-",
+    "year": 2025,
+    "page": null,
+    "director": null,
+    "runtime": "2h 47m", 
+    "rating": "PG-13",
+    "language": "Hindi & English",
+    "subtitle": "YES / English",
+    "size": "770MB - 1.4GB - 2.6GB",
+    "quality": "480p, 720p",
+    "format": "MKV",
+    "description": null,
+    "review": null,
+    "download": "https://imthemarco.blogspot.com/2025/06/dummy.html",
+    "play": null,
+    "writer": null
+  },
+  {
     "title": "THE SEED OF THE SACRED FIG",
     "genre": "Drama, Thriller, Crime",
     "actors": [

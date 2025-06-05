@@ -3,71 +3,155 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Devilish Login</title>
+    <title>Iron Tech Login</title>
     <style>
         body {
             margin: 0;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(135deg, #1a0f0f 0%, #3d0000 100%);
-            font-family: 'Times New Roman', serif;
+            overflow: hidden;
+            background: #000;
+            font-family: 'Roboto', sans-serif;
+            perspective: 1000px;
+        }
+
+        .tech-background {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(45deg, #000428, #004e92);
+            z-index: 0;
+        }
+
+        .circuit-line {
+            position: absolute;
+            background: #00f7ff;
+            opacity: 0.3;
+            box-shadow: 0 0 10px #00f7ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+
+        .spark {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #fff;
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: spark 1s linear infinite;
+        }
+
+        @keyframes spark {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(0); opacity: 0; }
         }
 
         .login-container {
-            background: rgba(20, 0, 0, 0.8);
+            background: rgba(0, 28, 48, 0.8);
             padding: 40px;
             border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3),
-                        0 0 40px rgba(0, 0, 0, 0.5);
-            border: 2px solid #660000;
+            border: 2px solid #00f7ff;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(0deg);
+            width: 320px;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+            animation: containerFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes containerFloat {
+            0%, 100% { transform: translate(-50%, -50%) rotateX(0deg); }
+            50% { transform: translate(-50%, -52%) rotateX(5deg); }
         }
 
         h2 {
-            color: #ff0000;
+            color: #00f7ff;
             text-align: center;
             margin-bottom: 30px;
             text-transform: uppercase;
             letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 0 10px #00f7ff;
         }
 
         .input-group {
             margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .input-group::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: -100%;
+            background: #00f7ff;
+            animation: scanline 2s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         input {
             width: 100%;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.5);
-            border: 1px solid #800000;
-            color: #ffffff;
+            padding: 12px;
+            background: rgba(0, 247, 255, 0.1);
+            border: 1px solid #00f7ff;
+            color: #fff;
             border-radius: 5px;
             outline: none;
+            transition: all 0.3s ease;
         }
 
         input:focus {
-            border-color: #ff0000;
-            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
+            transform: scale(1.02);
         }
 
         button {
             width: 100%;
             padding: 12px;
-            background: linear-gradient(45deg, #800000, #ff0000);
-            border: none;
-            color: white;
+            background: transparent;
+            border: 2px solid #00f7ff;
+            color: #00f7ff;
             border-radius: 5px;
             cursor: pointer;
             text-transform: uppercase;
             font-weight: bold;
+            position: relative;
+            overflow: hidden;
             transition: all 0.3s ease;
         }
 
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 247, 255, 0.4), transparent);
+            animation: buttonGlow 2s linear infinite;
+        }
+
+        @keyframes buttonGlow {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
         button:hover {
-            background: linear-gradient(45deg, #ff0000, #800000);
+            background: rgba(0, 247, 255, 0.2);
             transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.5);
         }
 
         .error {
@@ -75,25 +159,56 @@
             text-align: center;
             margin-top: 10px;
             display: none;
+            text-shadow: 0 0 10px #ff0000;
         }
     </style>
 </head>
 <body>
+    <div class="tech-background"></div>
     <div class="login-container">
-        <h2>🔥 Diabolic Login 🔥</h2>
+        <h2>⚡ System Login ⚡</h2>
         <form id="loginForm">
             <div class="input-group">
-                <input type="text" id="username" placeholder="Username" required>
+                <input type="text" id="username" placeholder="Enter Username" required>
             </div>
             <div class="input-group">
-                <input type="password" id="password" placeholder="Password" required>
+                <input type="password" id="password" placeholder="Enter Password" required>
             </div>
-            <button type="submit">Enter the Realm</button>
+            <button type="submit">Initialize Access</button>
         </form>
-        <p id="error" class="error">Invalid credentials!</p>
+        <p id="error" class="error">Access Denied: Invalid Credentials</p>
     </div>
 
     <script>
+        function createCircuitLines() {
+            for(let i = 0; i < 20; i++) {
+                const line = document.createElement('div');
+                line.className = 'circuit-line';
+                line.style.width = Math.random() * 200 + 100 + 'px';
+                line.style.height = '1px';
+                line.style.left = Math.random() * window.innerWidth + 'px';
+                line.style.top = Math.random() * window.innerHeight + 'px';
+                line.style.transform = `rotate(${Math.random() * 360}deg)`;
+                document.body.appendChild(line);
+            }
+        }
+
+        function createSparks() {
+            setInterval(() => {
+                const spark = document.createElement('div');
+                spark.className = 'spark';
+                spark.style.left = Math.random() * window.innerWidth + 'px';
+                spark.style.top = Math.random() * window.innerHeight + 'px';
+                document.body.appendChild(spark);
+                setTimeout(() => spark.remove(), 1000);
+            }, 200);
+        }
+
+        window.addEventListener('load', () => {
+            createCircuitLines();
+            createSparks();
+        });
+
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -102,7 +217,7 @@
             const error = document.getElementById('error');
 
             if ((username === 'garry' && password === 'garry@meow') ||
-                (username === 'garry' && password === 'rythm@meow')) {
+                (username === 'rythm' && password === 'rythm@meow')) {
                 window.location.href = 'code green.html';
             } else {
                 error.style.display = 'block';

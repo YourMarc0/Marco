@@ -524,12 +524,14 @@ function showDropdown(id) {
     .filter(item => item.trim());
 
   dropdown.innerHTML = `
+
     <div class="netflix-dropdown-grid">
       ${items.map(item => `
         <div class="netflix-dropdown-item"><a${item}</div>
       `).join('')}
     </div>
   `;
+
 
   // Add styles
   const style = document.createElement('style');
@@ -539,6 +541,7 @@ function showDropdown(id) {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
       gap: 15px;
+
       max-height: 400px;
       overflow-y: auto;
       scrollbar-width: thin;
@@ -550,6 +553,7 @@ function showDropdown(id) {
     .netflix-dropdown-grid::-webkit-scrollbar-track {
       background: #141414;
     }
+
     .netflix-dropdown-grid::-webkit-scrollbar-thumb {
       background: #E50914;
       border-radius: 5px;
@@ -595,6 +599,7 @@ function resetToHome() {
   hideAllDropdowns();
   renderLatest();
   const activeButtons = document.querySelectorAll('.platform-button.active');
+
   activeButtons.forEach(button => button.classList.remove('active'));
   const searchInput = document.getElementById('search-input');
   if (searchInput) searchInput.value = '';
@@ -602,10 +607,12 @@ function resetToHome() {
   if (searchSection) searchSection.style.display = 'none';
 }
 
+
 // Function to show all movies
 function showAllMovies() {
   hideAllDropdowns();
   renderLatest();
+
 }
 
 // Function to show random recommended movies with filtering
@@ -617,11 +624,13 @@ function showRecommendations(filterOptions = {}) {
     let matches = true;
     
     // Filter by genre if specified
+
     if (filterOptions.genre) {
       matches = matches && movie.genre && movie.genre.toLowerCase().includes(filterOptions.genre.toLowerCase());
     }
     
     // Filter by year if specified
+
     if (filterOptions.year) {
       matches = matches && movie.year === filterOptions.year;
     }
@@ -668,10 +677,12 @@ function showRecommendations(filterOptions = {}) {
     <div class="recommendations-grid" style="
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+
       gap: 20px;
     ">
       ${recommendedMovies.length ? recommendedMovies.map(movie => `
         <a href="${movie.page}" class="movie-card" style="
+
           position: relative;
           transition: transform 0.3s ease;
           &:hover {
@@ -748,6 +759,98 @@ function renderSlideshowFromMovies() {
     shuffled.forEach(movie => {
       html += `
         <div class="movie-card-slideshow">
+          <img src="${movie.thumb}" alt="${movie.title}">
+          <div class="movie-card-title-slideshow">${movie.title}</div>
+        </div>
+      `;
+    });
+  }
+  slideshow.innerHTML = html;
+}
+          background: #232526;
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <button onclick="window.close()" class="back-btn" title="Back">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#e50914" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <a href="#" class="logo">Marco</a>
+      </div>
+      <div class="container">
+        <img class="movie-poster" src="${movie.thumb}" alt="${movie.title} Poster">
+        <div class="movie-details">
+          <div class="movie-title">${movie.title}</div>
+          <span class="rating-badge">${movie.rating || 'NR'}</span>
+          <div class="movie-meta">Release Year: ${movie.year} ${movie.runtime ? `&nbsp;|&nbsp; Runtime: ${movie.runtime}` : ''}</div>
+          <div class="action-buttons">
+            <button class="btn btn-play" onclick="window.open('${movie.page}', '_blank')">
+              ▶ Play
+            </button>
+            <button class="btn btn-download" onclick="window.open('${movie.download || movie.page}', '_blank')">
+              ⬇ Download
+            </button>
+            <button class="btn btn-share" onclick="navigator.clipboard.writeText(window.location.href);alert('Link copied!')">
+              ⤴ Share
+            </button>
+          </div>
+          <ul class="movie-info-list">
+            ${movie.director ? `<li><b>Director:</b> ${movie.director}</li>` : ''}
+            ${movie.format ? `<li><b>Format:</b> ${movie.format}</li>` : ''}
+            ${movie.runtime ? `<li><b>Runtime:</b> ${movie.runtime}</li>` : ''}
+            <li><b>Genres:</b>
+              <ul class="genre-list">
+                ${movie.genre.split(',').map(g => `<li>${g.trim()}</li>`).join('')}
+              </ul>
+            </li>
+          </ul>
+          <div class="section-title">Cast</div>
+          <ul class="cast-list">
+            ${movie.actors.map(actor => `<li>${actor}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    </body>
+    </html>
+  `);
+  detailsWindow.document.close();
+}
+
+// Close dropdowns when clicking outside
+document.addEventListener('click', function(event) {
+  if (!event.target.closest('.platform-button')) {
+    hideAllDropdowns();
+  }
+});
+
+// Initial population of dropdowns and home button when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  renderLatest();
+  renderSlideshowFromMovies();
+  populateDropdowns();
+  addHomeButton();
+});
+
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function renderSlideshowFromMovies() {
+  const slideshow = document.getElementById('movie-slideshow');
+  if (!slideshow) return;
+  const shuffled = shuffleArray([...movies]);
+  let html = '';
+  for (let i = 0; i < 2; i++) {
+    shuffled.forEach(movie => {
+      html += `
+        <div class="movie-card-slideshow" onclick="openMovieDetails('${movie.title}')">
           <img src="${movie.thumb}" alt="${movie.title}">
           <div class="movie-card-title-slideshow">${movie.title}</div>
         </div>
