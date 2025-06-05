@@ -167,16 +167,56 @@ function showMovieDetails(movieIndex) {
       // Add visual cue to indicate scrollability
       const content = document.querySelector('.movie-details-content');
       if (content && content.scrollHeight > content.clientHeight) {
-        const scrollIndicator = document.querySelector('.scroll-indicator');
-        if (scrollIndicator) scrollIndicator.style.display = 'block';
+        const scrollIndicator = document.createElement('div');
+        scrollIndicator.className = 'scroll-indicator';
+        scrollIndicator.innerHTML = `
+          <div class="scroll-text">Scroll to Download</div>
+          <div class="scroll-arrow">↓</div>
+        `;
+        content.appendChild(scrollIndicator);
         
-        // Hide scroll indicator when user starts scrolling
+        // Add fade-out animation when scrolling starts
         content.addEventListener('scroll', function() {
-          if (scrollIndicator) scrollIndicator.style.display = 'none';
+          if (scrollIndicator) {
+            scrollIndicator.style.opacity = '0';
+            setTimeout(() => {
+              scrollIndicator.remove();
+            }, 300); // Remove after fade animation
+          }
         }, { once: true });
+
+        // Add CSS for scroll indicator
+        const style = document.createElement('style');
+        style.textContent = `
+          .scroll-indicator {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(229, 9, 20, 0.9);
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+          }
+          .scroll-text {
+            font-size: 14px;
+            margin-bottom: 5px;
+          }
+          .scroll-arrow {
+            font-size: 20px;
+            animation: bounce 1s infinite;
+          }
+          @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+          }
+        `;
+        document.head.appendChild(style);
       }
     }, 100);
-    
     // Add touch swipe down to close for mobile
     const panel = document.querySelector('.movie-details-panel');
     let touchStartY = 0;
