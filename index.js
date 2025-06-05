@@ -1,6 +1,79 @@
 // Demo movie data (replace with backend/API in production)
 const movies = [
   {
+    "title": "Final Destination: Bloodlines",
+    "genre": "Horror, Thriller",
+    "actors": [
+      "Kaitlyn Santa Juana",
+      "Teo Briones",
+      "Richard Harmon",
+      "Rya Kihlstedt",
+      "Owen Patrick Joyner",
+      "Anna Lore",
+      "Tony Todd",
+      "Brec Bassinger"
+    ],
+    "thumb": "https://upload.wikimedia.org/wikipedia/en/a/ab/Final_Destination_Bloodlines_%282025%29_poster.jpg",
+    "year": 2025,
+    "page": null,
+    "director": "Zach Lipovsky, Adam B. Stein",
+    "runtime": "1h 50min",
+    "rating": "R",
+    "language": "Hindi dubbed",
+    "subtitle": "Yes",
+    "size": null,
+    "quality": "480p, 720p, 1080p",
+    "format": null,
+    "description": "In this chilling sixth installment of the Final Destination franchise, college student Stefani Reyes is plagued by violent nightmares linked to a 1968 tower disaster her grandmother, Iris, once foresaw and prevented. As Death seeks to correct the disrupted design by targeting Iris's descendants, Stefani must uncover her family's dark past to break the deadly cycle.",
+    "review": null,
+    "download": "https://imthemarco.blogspot.com/2025/06/4.html",
+    "play": "https://imthemarco.blogspot.com/2025/06/4.html",
+    "writer": "Guy Busick, Lori Evans Taylor"
+  },  
+  {
+    "title": "Conclave",
+    "genre": "Drama, Mystery, Thriller",
+    "actors": [
+      "Ralph Fiennes",
+      "John Lithgow",
+      "Stanley Tucci",
+      "Isabella Rossellini"
+    ],
+    "thumb": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZw-cN2nhkoJXU8aMI8pnoANMTVLLOFUEm2Q&s",
+    "year": 2024,
+    "page": null,
+    "director": "Edward Berger",
+    "runtime": "1h 46min",
+    "rating": "PG-13",
+    "language": "Hindi dubbed",
+    "subtitle": "Yes",
+    "size": null,
+    "quality": "480p, 720p, 1080p",
+    "format": null,
+    "description": "Following the death of the Pope, the Cardinals gather in the Vatican to elect his successor. As secrets and political agendas emerge behind closed doors, one Cardinal discovers a conspiracy that could shake the very foundations of the Church.",
+    "review": null,
+    "download": "https://imthemarco.blogspot.com/2025/06/3.html",
+    "play": "https://imthemarco.blogspot.com/2025/06/3.html",
+    "writer": null
+  },  
+  {
+    title: "Absolution (2024) Hindi Dubbed Movie",
+    genre: "Action, Crime, Drama",
+    actors: [
+      "Liam Neeson",
+      "Daniel Diemer",
+      "Javier Molina",
+      "Jimmy Gonzales"
+    ],
+    thumb: "https://resizing.flixster.com/MI4gB_erP2feQJ7f-yynf5HbSK8=/fit-in/352x330/v2/https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p28068782_v_v13_ac.jpg",
+    year: 2024,
+    director: "Hans Petter Moland",
+    runtime: "1h 44m",
+    description: "An aging gangster attempts to reconnect with his children and rectify the mistakes in his past, but the criminal underworld won't loosen their grip willingly.",
+    review: "\"Absolution\" delivers a gritty crime drama with strong performances, especially from Liam Neeson. While the plot treads familiar ground, the emotional stakes and action sequences keep viewers engaged.",
+    download: "https://drive.google.com/file/d/1Ymxbq312ipkc-dFvc3zwQtJWTm0M_Jrc/view?usp=sharing"
+  },
+  {
     "title": "Ashgrove",
     "genre": "Drama",
     "actors": [
@@ -46,6 +119,88 @@ const movies = [
     "download": "https://imthemarco.blogspot.com/2025/06/dummy.html",
     "play": null,
     "writer": null
+  },
+  {
+    title: "The Seed of the Sacred Fig",
+    genre: "Drama, Thriller, Crime",
+    actors: ["Soheila Golestani", "Setareh Maleki", "Niousha Akhshi", "Shiva Ordooie", "Mohammad Kamal Alavi", "Barat Azimi", "Parisa Mohyedini", "Amineh Mazrouie Arani", "Reza Akhlaghirad", "Mahsa Rostami", "Missagh Zareh"],
+    thumb: "https://vegamovies.uy/uploads/posts/covers/Poster-The-Sed-of-the-sacred-fig-2024.webp",
+    year: 2024,
+    director: "Mohammad Rasoulof",
+    runtime: "2h 47m",
+    rating: "NR",
+    language: "Hindi & English",
+    subtitle: "YES / English",
+    size: "770MB - 1.4GB - 2.6GB",
+    quality: "WEB-DL 480p - 720p - 1080p",
+    format: "MKV",
+    description: "**The Seed of the Sacred Fig** (2024) is a critically acclaimed Iranian drama-thriller directed by Mohammad Rasoulof. The film explores the story of a judge working within Iran's judiciary system who begins to experience deep mistrust and paranoia after a political protest leads to nationwide unrest. As surveillance and suspicion invade his personal life, the conflict between duty, conscience, and family loyalty intensifies. Known for its bold commentary on authoritarianism and justice, the film has received praise for its compelling narrative and powerful performances.",
+    download: "https://fast-dl.lol/dl/c2edfb",
+    play: "https://fast-dl.lol/dl/c2edfb"
+  },
+  {
+    title: "Bogota City of the Lost (2025) Hindi Dubbed",
+    genre: "Crime, Thriller, Drama",
+    actors: [
+      "Song Joong-ki",
+      "Lee Hee-joon",
+      "Kwon Hae-hyo"
+    ],
+    thumb: "https://resizing.flixster.com/uTfj1yJwOT57A0i6GNWpp9WbaEQ=/ems.cHJkLWVtcy1hc3NldHMvbW92aWVzLzE1NjFjMzBlLWE2MzgtNGIwNC05ZTkxLWEwZTVhMmU0YTRmMy5qcGc=",
+    year: 2025,
+    director: "Kim Seong-je",
+    runtime: "1h 53m",
+    description: "A gripping crime thriller set in 1990s Colombia, following a group of Korean immigrants struggling to survive.",
+    review: "A tense, atmospheric drama with strong performances and a unique setting.",
+    download: "https://drive.google.com/file/d/1lkzGGl9Bod0rprSia35H51P07rABW5Rm/view?usp=drive_link"
+  },
+  {
+    title: "Fountain of Youth",
+    genre: "Action / Adventure / Heist",
+    year: 2025,
+    runtime: "125 minutes",
+    thumb: "https://m.media-amazon.com/images/M/MV5BNWRlZmU3ZTItM2JlYi00YTg1LTgxNTItMjMyNzIyZWY5YWJmXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpghttps://images.plex.tv/photo?size=large-1280&url=https%3A%2F%2Fmetadata-static.plex.tv%2F6%2Fgracenote%2F61645ff02c24d958cb3926e2a797fa46.jpg",
+    page: "https://imthemarco.blogspot.com/2025/05/fountain-of-youth.html",
+    director: "John Krasinski",
+    description: "Estranged siblings Luke and Charlotte Purdue reunite to embark on a globe-trotting quest for the legendary Fountain of Youth. Their journey leads them through ancient libraries and cryptic clues, culminating beneath the Great Pyramid of Giza. As they confront mercenaries and ancient guardians, they uncover the Fountain's true nature and the perilous cost of immortality. Faced with visions of eternal life and its consequences, they must decide whether to seize the power or let it remain hidden.",
+    download: "https://gofile.io/d/x97a01",
+    play: "https://gofile.io/d/x97a01",
+    actors: ["John Krasinski", "Natalie Portman", "Eiza González", "Domhnall Gleeson", "Arian Moayed", "Laz Alonso", "Carmen Ejogo", "Stanley Tucci", "Benjamin Chivers", "Michael Epp", "Steve Tran", "Daniel de Bourg"],
+    rating: "PG-13"
+  },{
+    title: "Mission Impossible The Final Reckoning (2025)",
+    genre: "Action, Thriller, Spy",
+    actors: ["Tom Cruise", "Hayley Atwell", "Ving Rhames", "Simon Pegg"], // Update with actual cast if known
+    thumb: "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS1KzgP3ubLzquySUERfhx0ZTs-v3IVwifHZnQQw5CwiSYfmSomi8pUUhEEzr0cw73Lgiz6",
+    year: 2025,
+    director: "Christopher McQuarrie", // Update if different
+    runtime: "TBA",
+    rating: "NR",
+    language: "Hindi & English",
+    subtitle: "YES / English",
+    size: "11GB",
+    quality: "480p || 720p || 1080p",
+    format: "MKV",
+    description: "Mission Impossible The Final Reckoning is the latest installment in the legendary action franchise. Ethan Hunt and his team face their most dangerous mission yet, with the fate of the world hanging in the balance.",
+    download: "https://nexdrive.xyz/genfxm/20108",
+    play: "https://nexdrive.xyz/genfxm/20108"
+  },{
+    title: "The Devil's Plan Death Room (Season 1)",
+    genre: "Reality, Game Show, Survival",
+    actors: ["Unknown"],
+    thumb: "https://images.ctfassets.net/4cd45et68cgf/YZtrXZMbcSKvAu3qg1oT9/65785e88520431b68300bf5115472789/The_Devil-s_Plan_Death_Room.jpg?w=1200",
+    year: 2025,
+    director: "Unknown",
+    runtime: "12 Episodes",
+    rating: "NR",
+    language: "Hindi DD5.1 + Korean [DUAL AUDIO SERIES]",
+    subtitle: "YES / English",
+    size: "240MB / 340MB || 700MB / 700MB || 1.5GB / 4.5GB - Each Episodes",
+    quality: "480p || 720p || 1080p - WEB-DL",
+    format: "MKV",
+    description: "'THE DEVIL'S PLAN: DEATH ROOM' - A Netflix Original South Korean Reality TV Survival Game Show - It's the ultimate showdown of wits, brains, strategy, and alliances for a chance to win 500 million won.",
+    download: "https://nexdrive.xyz/genfxm/20395",
+    play: "https://nexdrive.xyz/genfxm/20395"
   },
   {
     "title": "THE SEED OF THE SACRED FIG",
