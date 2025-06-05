@@ -1,6 +1,32 @@
 // Demo movie data (replace with backend/API in production)
 const movies = [
   {
+    "title": "Ashgrove",
+    "genre": "Drama",
+    "actors": [
+      "Amanda Brugel",
+      "Natalie Brown",
+      "Sugith Varughese",
+      "Shawn Doyle"
+    ],
+    "thumb": "https://vegamovies.mk/uploads/posts/covers/Poster-Ashgrove-2022.webp",
+    "year": 2022,
+    "page": null,
+    "director": null,
+    "runtime": "1h,32min",
+    "rating": "PG",
+    "language": "hindi dubbed",
+    "subtitle": "yes",
+    "size": null,
+    "quality": "480p, 720p, 1080p",
+    "format": null,
+    "description": "Set in the not-so-distant future, Dr. Jennifer Ashgrove - one of the world's top scientists - is battling to find a cure to a crisis that affects the world's water supply. As the weight of the world takes its toll, she retreats to the countryside with her husband in a bid to clear her mind.",
+    "review": null,
+    "download": "https://imthemarco.blogspot.com/2025/06/2.html",
+    "play": "https://imthemarco.blogspot.com/2025/06/2.html",
+    "writer": null
+  },
+  {
     "title": "Thunderbolts",
     "genre": "Action, Mystery",
     "actors": ["Florence Pugh", "Sebastian Stan", "David Harbour"],
@@ -167,56 +193,150 @@ function showMovieDetails(movieIndex) {
       // Add visual cue to indicate scrollability
       const content = document.querySelector('.movie-details-content');
       if (content && content.scrollHeight > content.clientHeight) {
-        const scrollIndicator = document.createElement('div');
-        scrollIndicator.className = 'scroll-indicator';
-        scrollIndicator.innerHTML = `
-          <div class="scroll-text">Scroll to Download</div>
-          <div class="scroll-arrow">↓</div>
+        // Create a floating download button that appears immediately
+        const floatingDownload = document.createElement('div');
+        floatingDownload.className = 'floating-download-indicator';
+        floatingDownload.innerHTML = `
+          <div class="floating-download-text">Download Available</div>
+          <div class="floating-download-arrow">↓</div>
         `;
-        content.appendChild(scrollIndicator);
+        document.body.appendChild(floatingDownload);
         
-        // Add fade-out animation when scrolling starts
-        content.addEventListener('scroll', function() {
-          if (scrollIndicator) {
-            scrollIndicator.style.opacity = '0';
-            setTimeout(() => {
-              scrollIndicator.remove();
-            }, 300); // Remove after fade animation
-          }
-        }, { once: true });
-
-        // Add CSS for scroll indicator
+        // Add CSS for floating download indicator
         const style = document.createElement('style');
         style.textContent = `
-          .scroll-indicator {
+          .floating-download-indicator {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(229, 9, 20, 0.9);
-            padding: 10px 20px;
-            border-radius: 20px;
+            bottom: 70px;
+            right: 20px;
+            background: #e50914;
             color: white;
-            text-align: center;
-            transition: opacity 0.3s ease;
-            z-index: 1000;
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: floatIn 0.5s forwards, pulse 2s infinite;
+            cursor: pointer;
           }
-          .scroll-text {
+          
+          @keyframes floatIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+          }
+          
+          @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+          }
+          
+          .floating-download-text {
             font-size: 14px;
+            font-weight: bold;
             margin-bottom: 5px;
           }
-          .scroll-arrow {
+          
+          .floating-download-arrow {
             font-size: 20px;
             animation: bounce 1s infinite;
           }
-          @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(5px); }
-          }
         `;
         document.head.appendChild(style);
+        
+        // Auto-scroll to download section after a delay
+        setTimeout(() => {
+          // Find the download section
+          const downloadSection = document.querySelector('.movie-details-download');
+          if (downloadSection && content) {
+            // Calculate position of download section relative to content
+            const downloadPosition = downloadSection.offsetTop;
+            
+            // Smooth scroll to download section
+            content.scrollTo({
+              top: downloadPosition - 20, // Scroll slightly above for better visibility
+              behavior: 'smooth'
+            });
+            
+            // Highlight the download button with a pulsing effect
+            const downloadButton = document.getElementById('download-480p');
+            if (downloadButton) {
+              downloadButton.classList.add('download-highlight');
+              
+              // Add CSS for download button highlight
+              const highlightStyle = document.createElement('style');
+              highlightStyle.textContent = `
+                .download-highlight {
+                  animation: downloadPulse 2s infinite;
+                }
+                
+                @keyframes downloadPulse {
+                  0% { transform: scale(1); box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3); }
+                  50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(229, 9, 20, 0.5); }
+                  100% { transform: scale(1); box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3); }
+                }
+              `;
+              document.head.appendChild(highlightStyle);
+              
+              // Remove highlight after a few seconds
+              setTimeout(() => {
+                downloadButton.classList.remove('download-highlight');
+              }, 5000);
+            }
+          }
+          
+          // Remove floating download indicator when user interacts with content
+          content.addEventListener('touchstart', function() {
+            const indicator = document.querySelector('.floating-download-indicator');
+            if (indicator) {
+              indicator.style.animation = 'floatOut 0.3s forwards';
+              
+              // Add float out animation
+              const floatOutStyle = document.createElement('style');
+              floatOutStyle.textContent = `
+                @keyframes floatOut {
+                  from { transform: translateY(0); opacity: 1; }
+                  to { transform: translateY(20px); opacity: 0; }
+                }
+              `;
+              document.head.appendChild(floatOutStyle);
+              
+              setTimeout(() => {
+                indicator.remove();
+              }, 300);
+            }
+          }, { once: true });
+          
+          // Make floating indicator clickable to scroll to download
+          const indicator = document.querySelector('.floating-download-indicator');
+          if (indicator) {
+            indicator.addEventListener('click', function() {
+              // Find the download section
+              const downloadSection = document.querySelector('.movie-details-download');
+              if (downloadSection && content) {
+                // Calculate position of download section relative to content
+                const downloadPosition = downloadSection.offsetTop;
+                
+                // Smooth scroll to download section
+                content.scrollTo({
+                  top: downloadPosition - 20,
+                  behavior: 'smooth'
+                });
+                
+                // Remove the indicator
+                this.style.animation = 'floatOut 0.3s forwards';
+                setTimeout(() => {
+                  this.remove();
+                }, 300);
+              }
+            });
+          }
+        }, 1500); // Delay before auto-scrolling to download section
       }
     }, 100);
+    
     // Add touch swipe down to close for mobile
     const panel = document.querySelector('.movie-details-panel');
     let touchStartY = 0;
@@ -236,6 +356,26 @@ function showMovieDetails(movieIndex) {
         closeMovieDetails();
       }
     }, {passive: true});
+  }
+}
+
+function closeMovieDetails() {
+  const overlay = document.getElementById('movie-details-overlay');
+  overlay.classList.remove('active');
+  
+  // Re-enable body scrolling
+  document.body.style.overflow = '';
+  
+  // Remove event listeners to prevent memory leaks
+  const download480p = document.getElementById('download-480p');
+  if (download480p) {
+    download480p.removeEventListener('click', createRipple);
+  }
+  
+  // Remove any floating download indicators
+  const floatingIndicator = document.querySelector('.floating-download-indicator');
+  if (floatingIndicator) {
+    floatingIndicator.remove();
   }
 }
 
@@ -259,20 +399,6 @@ function createRipple(event) {
   }
   
   button.appendChild(circle);
-}
-
-function closeMovieDetails() {
-  const overlay = document.getElementById('movie-details-overlay');
-  overlay.classList.remove('active');
-  
-  // Re-enable body scrolling
-  document.body.style.overflow = '';
-  
-  // Remove event listeners to prevent memory leaks
-  const download480p = document.getElementById('download-480p');
-  if (download480p) {
-    download480p.removeEventListener('click', createRipple);
-  }
 }
 
 // Close movie details panel when clicking outside

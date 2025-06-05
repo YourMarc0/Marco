@@ -843,73 +843,41 @@ footer {
 }
 
 /* Enhanced Mobile Responsiveness */
+/* Make download button more prominent on mobile */
 @media (max-width: 768px) {
-  .movie-details-panel {
-    width: 100%;
-    max-width: 100%;
-    height: 100vh;
-    max-height: 100vh;
-    border-radius: 0;
-  }
-  
-  .movie-details-content {
-    flex-direction: column;
+  .movie-details-download {
+    margin-top: 30px;
     padding: 15px;
-    max-height: calc(100vh - 200px - 50px);
+    background: rgba(229, 9, 20, 0.1);
+    border-radius: 10px;
+    border: 1px dashed rgba(229, 9, 20, 0.3);
   }
   
-  .movie-details-poster {
-    width: 140px;
-    height: 210px;
-    margin: 0 auto 20px auto;
-  }
-  
-  .movie-details-info {
+  .movie-details-download h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #fff;
     text-align: center;
-  }
-  
-  .movie-details-meta {
-    justify-content: center;
-  }
-  
-  .movie-details-cast h3:after,
-  .movie-details-download h3:after {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  
-  .movie-details-cast-list {
-    justify-content: center;
-  }
-  
-  .download-buttons {
-    justify-content: center;
-  }
-  
-  .download-button {
-    width: 80%;
-    padding: 15px 20px;
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  
-  /* Show scroll indicator on mobile */
-  .scroll-indicator {
     display: block;
   }
   
-  /* Add pull-to-close indicator */
-  .movie-details-panel:before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
+  .movie-details-download h3:after {
     width: 60px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    z-index: 10;
+  }
+  
+  .download-button {
+    width: 100%;
+    padding: 16px 25px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg, #e50914 0%, #ff3b30 100%);
+  }
+  
+  .download-button:before {
+    width: 24px;
+    height: 24px;
   }
 }
 
