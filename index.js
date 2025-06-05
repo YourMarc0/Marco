@@ -100,14 +100,15 @@ function searchMovies() {
   }
 }
 
-// Movie Details Panel Functions
-// Enhance the showMovieDetails function to handle mobile devices better
+// Movie Details Panel Functions - Enhanced Version
 function showMovieDetails(movieIndex) {
   const movie = movies[movieIndex];
   if (!movie) return;
   
   // Set movie details in the panel
-  document.getElementById('movie-details-backdrop').src = movie.thumb;
+  const backdrop = document.getElementById('movie-details-backdrop');
+  if (backdrop) backdrop.src = movie.thumb; // Use thumbnail as backdrop
+  
   document.getElementById('movie-details-poster').src = movie.thumb;
   document.getElementById('movie-details-title').textContent = movie.title;
   
@@ -140,6 +141,8 @@ function showMovieDetails(movieIndex) {
   if (download480p) {
     download480p.href = downloadLink;
     download480p.textContent = 'DOWNLOAD';
+    // Add ripple effect on click
+    download480p.addEventListener('click', createRipple);
   }
   
   if (download720p) download720p.style.display = 'none';
@@ -159,13 +162,18 @@ function showMovieDetails(movieIndex) {
       const panel = document.querySelector('.movie-details-panel');
       if (panel) {
         panel.scrollTop = 0;
+      }
+      
+      // Add visual cue to indicate scrollability
+      const content = document.querySelector('.movie-details-content');
+      if (content && content.scrollHeight > content.clientHeight) {
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        if (scrollIndicator) scrollIndicator.style.display = 'block';
         
-        // Ensure the panel doesn't exceed viewport height on mobile
-        panel.style.maxHeight = '90vh';
-        
-        // Make sure content is scrollable on mobile
-        const content = document.querySelector('.movie-details-content');
-        if (content) content.style.maxHeight = 'calc(90vh - 250px)';
+        // Hide scroll indicator when user starts scrolling
+        content.addEventListener('scroll', function() {
+          if (scrollIndicator) scrollIndicator.style.display = 'none';
+        }, { once: true });
       }
     }, 100);
     
@@ -180,12 +188,37 @@ function showMovieDetails(movieIndex) {
     
     panel.addEventListener('touchend', function(e) {
       touchEndY = e.changedTouches[0].screenY;
-      if (touchEndY - touchStartY > 100 && panel.scrollTop <= 0) {
+      const content = document.querySelector('.movie-details-content');
+      
+      if (touchEndY - touchStartY > 100 && 
+          (!content || content.scrollTop <= 0)) {
         // Swipe down detected at top of panel
         closeMovieDetails();
       }
     }, {passive: true});
   }
+}
+
+// Function to create ripple effect on buttons
+function createRipple(event) {
+  const button = event.currentTarget;
+  
+  const circle = document.createElement('span');
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+  
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+  circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+  circle.classList.add('ripple');
+  
+  // Remove existing ripples
+  const ripple = button.querySelector('.ripple');
+  if (ripple) {
+    ripple.remove();
+  }
+  
+  button.appendChild(circle);
 }
 
 function closeMovieDetails() {
@@ -194,6 +227,12 @@ function closeMovieDetails() {
   
   // Re-enable body scrolling
   document.body.style.overflow = '';
+  
+  // Remove event listeners to prevent memory leaks
+  const download480p = document.getElementById('download-480p');
+  if (download480p) {
+    download480p.removeEventListener('click', createRipple);
+  }
 }
 
 // Close movie details panel when clicking outside
@@ -229,7 +268,6 @@ function renderFilteredMovies(filteredMovies) {
     }).join('');
   }
 }
-
 // Show/Hide Dropdown Menus with Netflix-inspired styling
 function showDropdown(id) {
   const dropdown = document.getElementById(id);

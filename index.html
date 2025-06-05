@@ -265,7 +265,7 @@
     </div>
     <div style="margin-top:1rem;">&copy; 2024 Marco Movie Streaming</div>
   </footer>
-  <!-- Movie Details Panel Overlay -->
+  <!-- Movie Details Panel Overlay - Enhanced Version -->
   <div class="movie-details-overlay" id="movie-details-overlay">
     <div class="movie-details-panel">
       <div class="movie-details-header">
@@ -273,6 +273,7 @@
         <button class="movie-details-close" onclick="closeMovieDetails()">✕</button>
       </div>
       <div class="movie-details-content">
+        <div class="scroll-indicator"></div>
         <img class="movie-details-poster" id="movie-details-poster" src="" alt="Movie poster">
         <div class="movie-details-info">
           <h2 class="movie-details-title" id="movie-details-title"></h2>
@@ -285,9 +286,9 @@
           <div class="movie-details-download">
             <h3>Download</h3>
             <div class="download-buttons">
-              <a href="#" class="download-button" id="download-480p">480p</a>
-              <a href="#" class="download-button" id="download-720p">720p</a>
-              <a href="#" class="download-button" id="download-1080p">1080p</a>
+              <a href="#" class="download-button" id="download-480p">DOWNLOAD</a>
+              <a href="#" class="download-button" id="download-720p" style="display:none;">720p</a>
+              <a href="#" class="download-button" id="download-1080p" style="display:none;">1080p</a>
             </div>
           </div>
         </div>
