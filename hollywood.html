@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Marco - Movie Streaming</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="hollywood.css">
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
   <!-- Netflix-style intro animation overlay -->
@@ -44,11 +44,20 @@
       </svg>
     </div>
     <div id="crash-flash"></div>
-    <span class="marco-logo-anim tron-glow" id="marco-logo">Marco</span>
+    <span class="marco-logo-anim tron-glow" id="marco-logo">Marco Hollywood</span>
   </div>
   <header>
     <a href="https://yourmarc0.github.io/Marco/" class="logo" id="glowing-logo">Marco Hollywood</a>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
+      #glowing-logo {
+        font-family: 'Playfair Display', serif;
+        font-weight: 700;
+        font-size: 1.8em;
+        letter-spacing: 0.05em;
+      }
+
       @keyframes randomGlow {
         0% { text-shadow: none; }
         50% { text-shadow: 0 0 10px #ff003c, 0 0 20px #ff003c, 0 0 30px #ff003c; }
@@ -73,7 +82,6 @@
           // Set next random interval between 1-5 seconds
           setTimeout(triggerGlow, Math.random() * 4000 + 1000);
         }
-        
         // Start the random glow effect
         setTimeout(triggerGlow, Math.random() * 4000 + 1000);
       })();
@@ -92,7 +100,7 @@
     </div>
     <!-- Movie Slideshow End -->
     <!-- Add this right before the closing </header> tag -->
-   
+    
   </header>
   <main>
     <!-- Platform Menu Bar -->
@@ -121,57 +129,138 @@
         </li>
       </ul>
     </nav>
-    <div class="back-button-container">
-      <a href="index.html" class="back-button">Back to Main Page</a>
-    </div>
-    <div class="filter-controls">
-      <a href="hollywood.html" class="filter-button">Cancel All Filters</a>
-    </div>
-    
-    <style>
-      .filter-controls {
-        text-align: center;
-        margin: 1rem 0;
-      }
-      .filter-button {
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        background-color: #ff003c;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-        font-weight: 500;
-        transition: all 0.2s ease;
-      }
-      .filter-button:hover {
-        background-color: #d10032;
-        transform: translateY(-1px);
-      }
-    </style>
-    <style>
-      .back-button-container {
-        text-align: center;
-        margin: 1rem 0;
-      }
-      
-      .back-button {
-        display: inline-block;
-        padding: 0.8rem 1.5rem;
-        background-color: #ff003c;
-        color: white;
-        text-decoration: none;
-        border-radius: 5px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 8px rgba(255, 0, 60, 0.3);
-      }
+<div class="movie-category-buttons">
+  <a href="index.html" class="category-btn home-btn">clear filters</a>
+  <a href="index.html" class="category-btn go-home-btn">Go to Homepage</a>
+  <a href="hollywood.html" class="category-btn hollywood-btn">Hollywood</a>
+  <a href="bollywood.html" class="category-btn bollywood-btn">Bollywood</a>
+  <a href="dashboard.html" class="category-btn admin-btn">
+    <span class="crown">👑</span>
+    Admin
+  </a>
+</div>
 
-      .back-button:hover {
-        background-color: #d10032;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(255, 0, 60, 0.4);
-      }
-    </style>
+<style>
+.movie-category-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 15px 0;
+  padding: 5px;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  overflow: hidden;
+  min-width: 80px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .category-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    min-width: 70px;
+  }
+  
+  .movie-category-buttons {
+    gap: 8px;
+  }
+  
+  .crown {
+    font-size: 0.9em;
+  }
+}
+
+.home-btn {
+  background: linear-gradient(45deg, #1a1a1a, #333);
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.hollywood-btn {
+  background: linear-gradient(45deg, #ff003c, #ff2b5c);
+  color: #fff;
+  border: 1px solid #ff003c;
+}
+.go-home-btn {
+  background: linear-gradient(45deg, #000, #333);
+  color: #fff;
+  border: 1px solid #444;
+  
+}
+.bollywood-btn {
+  background: linear-gradient(45deg, #ffd700, #ffa500);
+  color: #000;
+  border: 1px solid #ffd700;
+}
+
+.admin-btn {
+  background: linear-gradient(45deg, #ffd700, #daa520);
+  color: #000;
+  border: 1px solid #ffd700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.crown {
+  font-size: 1em;
+  filter: drop-shadow(0 0 1px #fff);
+}
+
+.category-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.category-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.category-btn:hover::before {
+  left: 100%;
+}
+
+.home-btn:hover {
+  background: linear-gradient(45deg, #333, #1a1a1a);
+}
+
+.hollywood-btn:hover {
+  background: linear-gradient(45deg, #ff2b5c, #ff003c);
+}
+
+.bollywood-btn:hover {
+  background: linear-gradient(45deg, #ffa500, #ffd700);
+}
+
+.admin-btn:hover {
+  background: linear-gradient(45deg, #daa520, #ffd700);
+}
+</style>
+    
     <h2>Latest Uploads</h2>
     <div id="latest-uploads"></div>
   </main>
@@ -190,6 +279,39 @@
     </div>
     <div style="margin-top:1rem;">&copy; 2024 Marco Movie Streaming</div>
   </footer>
+  <!-- Movie Details Panel Overlay - Enhanced Version -->
+  <div class="movie-details-overlay" id="movie-details-overlay">
+    <div class="movie-details-panel">
+      <div class="movie-details-header">
+        <img class="movie-details-backdrop" id="movie-details-backdrop" src="" alt="Movie backdrop">
+        <button class="movie-details-close" onclick="closeMovieDetails()">✕</button>
+      </div>
+      <div class="movie-details-content">
+        <div class="scroll-indicator"></div>
+        <img class="movie-details-poster" id="movie-details-poster" src="" alt="Movie poster">
+        <div class="movie-details-info">
+          <h2 class="movie-details-title" id="movie-details-title"></h2>
+          <div class="movie-details-meta" id="movie-details-meta"></div>
+          <div class="movie-details-description" id="movie-details-description"></div>
+          <div class="movie-details-cast">
+            <h3>Cast</h3>
+            <div class="movie-details-cast-list" id="movie-details-cast"></div>
+          </div>
+          <div class="movie-details-download">
+            <h3>Download</h3>
+            <div class="download-buttons">
+              <a href="#" class="download-button" id="download-480p">DOWNLOAD</a>
+              <a href="#" class="download-button" id="download-720p" style="display:none;">720p</a>
+              <a href="#" class="download-button" id="download-1080p" style="display:none;">1080p</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="movie-details-footer">
+        Thank you for using Marco - Your ultimate movie destination!
+      </div>
+    </div>
+  </div>
   <script src="hollywood.js"></script>
   <style>
     #marco-intro {

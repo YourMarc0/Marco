@@ -1,66 +1,74 @@
 // Demo movie data (replace with backend/API in production)
 const movies = [
   {
-    "title": "Kesari Chapter 2",
-    "genre": "Drama, History",
+    "title": "Housefull 5",
+    "genre": "Comedy, Mystery, Thriller",
     "actors": [
       "Akshay Kumar",
-      "Ananya Panday",
-      "Simon Paisley Day"
+      "Riteish Deshmukh",
+      "Abhishek Bachchan",
+      "Jacqueline Fernandez",
+      "Nargis Fakhri",
+      "Sonam Bajwa",
+      "Sanjay Dutt",
+      "Jackie Shroff",
+      "Nana Patekar",
+      "Fardeen Khan",
+      "Shreyas Talpade",
+      "Dino Morea",
+      "Chitrangda Singh",
+      "Soundarya Sharma",
+      "Chunky Panday",
+      "Johnny Lever",
+      "Nikitin Dheer",
+      "Ranjeet"
     ],
-    "thumb": "https://dotmovies.ac/uploads/posts/covers/Poster-Keshari-2-2025.webp",
+    "thumb": "https://upload.wikimedia.org/wikipedia/en/e/ec/Housefull_5.jpg",
     "year": 2025,
-    "page": "https://healthimine.blogspot.com/2025/06/k-2-due-to-copyright-2025-watch-online.html",
-    "director": null,
-    "runtime": "2h 25m minutes",
-    "rating": "PG-13",
-    "format": "N/A"
-  },
+    "page": null,
+    "director": "Tarun Mansukhani",
+    "runtime": "2h 45min",
+    "rating": "U/A",
+    "language": "Hindi dubbed",
+    "subtitle": "Yes",
+    "size": null,
+    "quality": "480p, 720p, 1080p",
+    "format": null,
+    "description": "Set aboard a luxurious 20-story cruise ship, billionaire Mr. Dobriyal's 100th birthday celebration takes a dark turn when he is found dead. Chaos ensues as three impostors, each claiming to be his long-lost heir named 'Jolly', compete for his fortune. Amidst the confusion, a series of murders occur, and two fake cops further complicate matters. The film introduces suspense elements and multiple climactic twists—each theatre screening may feature a different killer reveal to keep audiences guessing until the end.",
+    "review": null,
+    "download": "https://imthemarco.blogspot.com/2025/06/9-houseful.html",
+    "play": "https://imthemarco.blogspot.com/2025/06/9-houseful.html",
+    "writer": "Farhad Samji, Tarun Mansukhani"
+  },  
   {
-    "title": "Raid 2",
-    "genre": "Crime, Drama, Thriller",
+    "title": "The Bhootnii",
+    "genre": "Comedy, Horror",
     "actors": [
-      "Ajay Devgn",
-      "Vaani Kapoor",
-      "Saurabh Shukla",
-      "Amit Sial"
+      "Sanjay Dutt",
+      "Mouni Roy",
+      "Sunny Singh",
+      "Palak Tiwari",
+      "Aasif Khan",
+      "Nikunj Lotia"
     ],
-    "thumb": "https://dotmovies.ac/uploads/posts/covers/Poster-Raid-2-202255.webp",
-    "year": 2024,
-    "page": "https://imthemarco.blogspot.com/2025/06/raid-2.html",
-    "director": null,
-    "runtime": "2h 25m minutes",
-    "rating": "PG-13",
-    "format": "N/A"
-  },
-  {
-    title: " Bhool Chuk Maaf (2025)",
-    genre: "Fantasy, Romantic Comedy",
-    actors: ["Rajkummar Rao", "Wamiqa Gabbi", "Seema Pahwa"],
-    thumb: "https://m.media-amazon.com/images/M/MV5BZTAwNjIzZjEtZjk1MC00NTI5LTg0MjctZTBkMWVhMWMzMjg5XkEyXkFqcGc@._V1_QL75_UX298.5_.jpg",
-    year: 2025,
-    page: "https://imthemarco.blogspot.com/2025/05/bhool-chuk-maaf-2025.html"
-  },
-  {
-    title: "L2: Empuraan",
-    genre: "Action, Thriller, Political",
-    actors: ["Mohanlal", "Prithviraj Sukumaran", "Tovino Thomas", "Indrajith Sukumaran"],
-    thumb: "https://upload.wikimedia.org/wikipedia/en/3/35/L2_-_Empuraan_poster.jpg",
-    year: 2025,
-    page: "https://imthemarco.blogspot.com/2025/05/l2-empuraan.html",
-    director: "Prithviraj Sukumaran",
-    runtime: "TBA",
-    rating: "NR",
-    language: "Hindi & English",
-    subtitle: "YES / English",
-    size: "11GB",
-    quality: "480p || 720p || 1080p",
-    format: "MKV",
-    description: "L2: Empuraan is the highly anticipated sequel to the blockbuster *Lucifer*. The film delves deeper into the mysterious world of Khureshi-Ab'ram, played by Mohanlal, as he expands his political and criminal empire on a global scale.",
-    download: "https://gofile.io/d/r3HDLz",
-    play: "https://gofile.io/d/r3HDLz"
+    "thumb": "https://m.media-amazon.com/images/M/MV5BYmIyMWMzMTItNDJhMS00MTBlLWI4MDYtZGQ2ZjQ4ZWI2MDU5XkEyXkFqcGc@._V1_.jpg",
+    "year": 2025,
+    "page": null,
+    "director": "Sidhaant Sachdev",
+    "runtime": "2h 10min",
+    "rating": "UA",
+    "language": "Hindi",
+    "subtitle": "Yes",
+    "size": null,
+    "quality": "480p, 720p, 1080p",
+    "format": null,
+    "description": "Set in Delhi's St. Vincent College, the film revolves around the legend of the 'Virgin Tree', believed to grant true love on Valentine's Day. However, every year on Holika Dahan, a student mysteriously dies, their soul claimed by a vengeful spirit. Shantanu, heartbroken after a recent breakup, seeks solace under the Virgin Tree, awakening Mohabbat, a ghost who becomes infatuated with him. As Mohabbat's obsession grows, she begins haunting anyone who comes between her and Shantanu. To combat the escalating supernatural occurrences, the college administration enlists Baba, a seasoned para-physicist and alumnus of the institution, to uncover the mystery.",
+    "review": null,
+    "download": "https://imthemarco.blogspot.com/2025/06/8bhootni.html",
+    "play": "https://imthemarco.blogspot.com/2025/06/8bhootni.html",
+    "writer": "Sidhaant Sachdev, Vankush Arora"
   }
-
+ 
 ];
 
 // Render latest uploads
@@ -68,19 +76,19 @@ function renderLatest() {
   const container = document.getElementById('latest-uploads');
   container.innerHTML = movies.map(function(movie) {
     return `
-      <a href="${movie.page}" class="movie-card">
+      <div class="movie-card" onclick="showMovieDetails(${movies.indexOf(movie)})">
         <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
         <div class="movie-info">
           <div class="movie-title">${movie.title}</div>
           <div class="movie-meta">${movie.genre} | ${movie.year}</div>
         </div>
-      </a>
+      </div>
     `;
   }).join('');
 }
 renderLatest();
 
-// Search functionality
+// Search functionality  
 function searchMovies() {
   const query = document.getElementById('search-input').value.trim().toLowerCase();
   const results = movies.filter(function(movie) {
@@ -104,67 +112,307 @@ function searchMovies() {
     // Show as a dropdown list with image and icon like in the reference
     container.innerHTML = `
       <div class="search-dropdown">
-        ${results.map(function(movie) {
+        ${results.map(function(movie, index) {
           return `
-            <a class="search-result-item" href="${movie.page}">
+            <div class="search-result-item" onclick="showMovieDetails(${movies.indexOf(movie)})">
               <img class="search-thumb" src="${movie.thumb}" alt="${movie.title}">
               <span class="search-title">${movie.title}</span>
-            </a>
+            </div>
           `;
         }).join('')}
       </div>
     `;
   }
 }
-// Platform Menu Functionality
-// Populate dropdowns
-function populateDropdowns() {
-  populateGenreDropdown();
-  populateYearDropdown(); 
-  populateRatingDropdown();
-}
 
-// Add
-
-function populateGenreDropdown() {
-  const genreDropdown = document.getElementById('genre-dropdown');
-  const genres = [...new Set(movies.flatMap(movie => movie.genre ? movie.genre.split(',').map(g => g.trim()) : []))].sort();
-  genreDropdown.innerHTML = `
-    ${genres.map(genre => `<a href="#" onclick="filterMovies('genre', '${genre}')">${genre}</a>`).join('')}
+// Movie Details Panel Functions - Enhanced Version
+function showMovieDetails(movieIndex) {
+  const movie = movies[movieIndex];
+  if (!movie) return;
+  
+  // Set movie details in the panel
+  const backdrop = document.getElementById('movie-details-backdrop');
+  if (backdrop) backdrop.src = movie.thumb; // Use thumbnail as backdrop
+  
+  document.getElementById('movie-details-poster').src = movie.thumb;
+  document.getElementById('movie-details-title').textContent = movie.title;
+  
+  // Set meta information with improved formatting
+  const metaHTML = `
+    <span>${movie.year || 'N/A'}</span>
+    <span>${movie.rating || 'N/A'}</span>
+    <span>${movie.runtime || 'N/A'}</span>
+    <span>${movie.genre || 'N/A'}</span>
+    ${movie.director ? `<span>Director: ${movie.director}</span>` : ''}
   `;
-}
-
-function populateYearDropdown() {
-  const yearDropdown = document.getElementById('year-dropdown');
-  const years = [...new Set(movies.map(movie => movie.year).filter(year => year !== undefined))].sort((a, b) => b - a);
-  yearDropdown.innerHTML = `
-    ${years.map(year => `<a href="#" onclick="filterMovies('year', '${year}')">${year}</a>`).join('')}
-  `;
-}
-
-function populateRatingDropdown() {
-  const ratingDropdown = document.getElementById('rating-dropdown');
-  const ratings = [...new Set(movies.map(movie => movie.rating).filter(rating => rating !== undefined && rating !== 'NR'))].sort();
-  ratingDropdown.innerHTML = `
-    ${ratings.map(rating => `<a href="#" onclick="filterMovies('rating', '${rating}')">${rating}</a>`).join('')}
-  `;
-}
-
-// Filter movies based on type and value
-function filterMovies(filterType, filterValue) {
-  let filteredMovies = movies;
-
-  if (filterType === 'genre') {
-    filteredMovies = movies.filter(movie => movie.genre && movie.genre.toLowerCase().includes(filterValue.toLowerCase()));
-  } else if (filterType === 'year') {
-    filteredMovies = movies.filter(movie => movie.year && movie.year === parseInt(filterValue));
-  } else if (filterType === 'rating') {
-    filteredMovies = movies.filter(movie => movie.rating && movie.rating.toLowerCase() === filterValue.toLowerCase());
+  document.getElementById('movie-details-meta').innerHTML = metaHTML;
+  
+  // Set description with fallback
+  document.getElementById('movie-details-description').textContent = 
+    movie.description || 'No description available for this movie.';
+  
+  // Set cast with improved handling
+  const castHTML = movie.actors && movie.actors.length > 0 ?
+    movie.actors.map(actor => `<div class="movie-details-cast-item">${actor}</div>`).join('') :
+    '<div class="movie-details-cast-item">Cast information not available</div>';
+  document.getElementById('movie-details-cast').innerHTML = castHTML;
+  
+  // Set a single download button and hide the others
+  const downloadLink = movie.download || '#';
+  const download480p = document.getElementById('download-480p');
+  const download720p = document.getElementById('download-720p');
+  const download1080p = document.getElementById('download-1080p');
+  
+  if (download480p) {
+    download480p.href = downloadLink;
+    download480p.textContent = 'DOWNLOAD';
+    // Add ripple effect on click
+    download480p.addEventListener('click', createRipple);
   }
-
-  renderFilteredMovies(filteredMovies);
-  hideAllDropdowns();
+  
+  if (download720p) download720p.style.display = 'none';
+  if (download1080p) download1080p.style.display = 'none';
+  
+  // Show the panel with smooth animation
+  const overlay = document.getElementById('movie-details-overlay');
+  overlay.classList.add('active');
+  
+  // Prevent body scrolling when panel is open
+  document.body.style.overflow = 'hidden';
+  
+  // For mobile: ensure the panel is properly positioned and scrollable
+  if (window.innerWidth <= 768) {
+    // Scroll to top of panel for better mobile experience
+    setTimeout(() => {
+      const panel = document.querySelector('.movie-details-panel');
+      if (panel) {
+        panel.scrollTop = 0;
+      }
+      
+      // Add visual cue to indicate scrollability
+      const content = document.querySelector('.movie-details-content');
+      if (content && content.scrollHeight > content.clientHeight) {
+        // Create a floating download button that appears immediately
+        const floatingDownload = document.createElement('div');
+        floatingDownload.className = 'floating-download-indicator';
+        floatingDownload.innerHTML = `
+          <div class="floating-download-text">Download Available</div>
+          <div class="floating-download-arrow">↓</div>
+        `;
+        document.body.appendChild(floatingDownload);
+        
+        // Add CSS for floating download indicator
+        const style = document.createElement('style');
+        style.textContent = `
+          .floating-download-indicator {
+            position: fixed;
+            bottom: 70px;
+            right: 20px;
+            background: #e50914;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: floatIn 0.5s forwards, pulse 2s infinite;
+            cursor: pointer;
+          }
+          
+          @keyframes floatIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+          }
+          
+          @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+          }
+          
+          .floating-download-text {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+          }
+          
+          .floating-download-arrow {
+            font-size: 20px;
+            animation: bounce 1s infinite;
+          }
+        `;
+        document.head.appendChild(style);
+        
+        // Auto-scroll to download section after a delay
+        setTimeout(() => {
+          // Find the download section
+          const downloadSection = document.querySelector('.movie-details-download');
+          if (downloadSection && content) {
+            // Calculate position of download section relative to content
+            const downloadPosition = downloadSection.offsetTop;
+            
+            // Smooth scroll to download section
+            content.scrollTo({
+              top: downloadPosition - 20, // Scroll slightly above for better visibility
+              behavior: 'smooth'
+            });
+            
+            // Highlight the download button with a pulsing effect
+            const downloadButton = document.getElementById('download-480p');
+            if (downloadButton) {
+              downloadButton.classList.add('download-highlight');
+              
+              // Add CSS for download button highlight
+              const highlightStyle = document.createElement('style');
+              highlightStyle.textContent = `
+                .download-highlight {
+                  animation: downloadPulse 2s infinite;
+                }
+                
+                @keyframes downloadPulse {
+                  0% { transform: scale(1); box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3); }
+                  50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(229, 9, 20, 0.5); }
+                  100% { transform: scale(1); box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3); }
+                }
+              `;
+              document.head.appendChild(highlightStyle);
+              
+              // Remove highlight after a few seconds
+              setTimeout(() => {
+                downloadButton.classList.remove('download-highlight');
+              }, 5000);
+            }
+          }
+          
+          // Remove floating download indicator when user interacts with content
+          content.addEventListener('touchstart', function() {
+            const indicator = document.querySelector('.floating-download-indicator');
+            if (indicator) {
+              indicator.style.animation = 'floatOut 0.3s forwards';
+              
+              // Add float out animation
+              const floatOutStyle = document.createElement('style');
+              floatOutStyle.textContent = `
+                @keyframes floatOut {
+                  from { transform: translateY(0); opacity: 1; }
+                  to { transform: translateY(20px); opacity: 0; }
+                }
+              `;
+              document.head.appendChild(floatOutStyle);
+              
+              setTimeout(() => {
+                indicator.remove();
+              }, 300);
+            }
+          }, { once: true });
+          
+          // Make floating indicator clickable to scroll to download
+          const indicator = document.querySelector('.floating-download-indicator');
+          if (indicator) {
+            indicator.addEventListener('click', function() {
+              // Find the download section
+              const downloadSection = document.querySelector('.movie-details-download');
+              if (downloadSection && content) {
+                // Calculate position of download section relative to content
+                const downloadPosition = downloadSection.offsetTop;
+                
+                // Smooth scroll to download section
+                content.scrollTo({
+                  top: downloadPosition - 20,
+                  behavior: 'smooth'
+                });
+                
+                // Remove the indicator
+                this.style.animation = 'floatOut 0.3s forwards';
+                setTimeout(() => {
+                  this.remove();
+                }, 300);
+              }
+            });
+          }
+        }, 1500); // Delay before auto-scrolling to download section
+      }
+    }, 100);
+    
+    // Add touch swipe down to close for mobile
+    const panel = document.querySelector('.movie-details-panel');
+    let touchStartY = 0;
+    let touchEndY = 0;
+    
+    panel.addEventListener('touchstart', function(e) {
+      touchStartY = e.changedTouches[0].screenY;
+    }, {passive: true});
+    
+    panel.addEventListener('touchend', function(e) {
+      touchEndY = e.changedTouches[0].screenY;
+      const content = document.querySelector('.movie-details-content');
+      
+      if (touchEndY - touchStartY > 100 && 
+          (!content || content.scrollTop <= 0)) {
+        // Swipe down detected at top of panel
+        closeMovieDetails();
+      }
+    }, {passive: true});
+  }
 }
+
+function closeMovieDetails() {
+  const overlay = document.getElementById('movie-details-overlay');
+  overlay.classList.remove('active');
+  
+  // Re-enable body scrolling
+  document.body.style.overflow = '';
+  
+  // Remove event listeners to prevent memory leaks
+  const download480p = document.getElementById('download-480p');
+  if (download480p) {
+    download480p.removeEventListener('click', createRipple);
+  }
+  
+  // Remove any floating download indicators
+  const floatingIndicator = document.querySelector('.floating-download-indicator');
+  if (floatingIndicator) {
+    floatingIndicator.remove();
+  }
+}
+
+// Function to create ripple effect on buttons
+function createRipple(event) {
+  const button = event.currentTarget;
+  
+  const circle = document.createElement('span');
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+  
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+  circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+  circle.classList.add('ripple');
+  
+  // Remove existing ripples
+  const ripple = button.querySelector('.ripple');
+  if (ripple) {
+    ripple.remove();
+  }
+  
+  button.appendChild(circle);
+}
+
+// Close movie details panel when clicking outside
+document.getElementById('movie-details-overlay').addEventListener('click', function(event) {
+  if (event.target === this) {
+    closeMovieDetails();
+  }
+});
+
+// Close movie details with Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape' && document.getElementById('movie-details-overlay').classList.contains('active')) {
+    closeMovieDetails();
+  }
+});
 
 // Render filtered movies
 function renderFilteredMovies(filteredMovies) {
@@ -174,18 +422,17 @@ function renderFilteredMovies(filteredMovies) {
   } else {
     container.innerHTML = filteredMovies.map(function(movie) {
       return `
-        <a href="${movie.page}" class="movie-card">
+        <div class="movie-card" onclick="showMovieDetails(${movies.indexOf(movie)})">
           <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
           <div class="movie-info">
             <div class="movie-title">${movie.title}</div>
             <div class="movie-meta">${movie.genre} | ${movie.year}</div>
           </div>
-        </a>
+        </div>
       `;
     }).join('');
   }
 }
-
 // Show/Hide Dropdown Menus with Netflix-inspired styling
 function showDropdown(id) {
   const dropdown = document.getElementById(id);
@@ -195,6 +442,7 @@ function showDropdown(id) {
   if (existingStyle) {
     existingStyle.remove();
   }
+
   // Reset dropdown content from stored data
   if (!dropdown.dataset.originalContent) {
     dropdown.dataset.originalContent = dropdown.innerHTML;
@@ -301,12 +549,16 @@ function showAllMovies() {
   renderLatest();
 }
 
-// Function to show recommended movies (rating > 8)
+// Function to show random recommended movies
 function showRecommendations() {
   hideAllDropdowns();
-  const recommendedMovies = movies.filter(movie => {
-    return movie.rating && !isNaN(movie.rating) && parseFloat(movie.rating) > 8;
-  });
+  
+  // Get a copy of the movies array and shuffle it
+  const shuffledMovies = [...movies].sort(() => Math.random() - 0.5);
+  
+  // Take first 50 movies as recommendations (or all if less than 50)
+  const recommendedMovies = shuffledMovies.slice(0, Math.min(50, shuffledMovies.length));
+  
   const container = document.getElementById('latest-uploads');
   container.innerHTML = `
     <h3 style="color: #E50914; margin-bottom: 20px;">Recommended Movies</h3>
@@ -316,31 +568,13 @@ function showRecommendations() {
       gap: 20px;
     ">
       ${recommendedMovies.map(movie => `
-        <a href="${movie.page}" class="movie-card" style="
-          position: relative;
-          transition: transform 0.3s ease;
-          &:hover {
-            transform: scale(1.05);
-          }
-        ">
-          <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}" style="
-            width: 100%;
-            border-radius: 4px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-          ">
-          <div class="movie-info" style="
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 15px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            border-radius: 0 0 4px 4px;
-          ">
-            <div class="movie-title" style="color: #fff; font-weight: bold;">${movie.title}</div>
-            <div class="movie-meta" style="color: #ccc; font-size: 0.9em;">${movie.genre} | ${movie.year}</div>
+        <div class="movie-card" onclick="showMovieDetails(${movies.indexOf(movie)})">
+          <img class="movie-thumb" src="${movie.thumb}" alt="${movie.title}">
+          <div class="movie-info">
+            <div class="movie-title">${movie.title}</div>
+            <div class="movie-meta">${movie.genre || 'N/A'} | ${movie.year || 'N/A'}</div>
           </div>
-        </a>
+        </div>
       `).join('')}
     </div>
   `;
@@ -353,13 +587,90 @@ document.addEventListener('click', function(event) {
   }
 });
 
-// Initial population of dropdowns and home button when the page loads
-document.addEventListener('DOMContentLoaded', function() {
-  renderLatest();
-  renderSlideshowFromMovies();
-  populateDropdowns();
-  addHomeButton();
-});
+// Platform Menu Functionality - Move these outside DOMContentLoaded
+function populateDropdowns() {
+  populateGenreDropdown();
+  populateYearDropdown();
+  populateRatingDropdown();
+}
+
+function populateGenreDropdown() {
+  const genreDropdown = document.getElementById('genre-dropdown');
+  if (!genreDropdown) return;
+  
+  const genres = [...new Set(movies.flatMap(movie => 
+    movie.genre ? movie.genre.split(',').map(g => g.trim()) : []
+  ))].sort();
+  
+  genreDropdown.innerHTML = genres.map(genre => 
+    `<a href="#" onclick="filterMovies('genre', '${genre}'); return false;">${genre}</a>`
+  ).join('');
+}
+
+function populateYearDropdown() {
+  const yearDropdown = document.getElementById('year-dropdown');
+  if (!yearDropdown) return;
+  
+  const years = [...new Set(movies
+    .map(movie => movie.year)
+    .filter(year => year !== undefined)
+  )].sort((a, b) => b - a); // Sort years in descending order
+  
+  yearDropdown.innerHTML = years.map(year =>
+    `<a href="#" onclick="filterMovies('year', '${year}'); return false;">${year}</a>`
+  ).join('');
+}
+
+function populateRatingDropdown() {
+  const ratingDropdown = document.getElementById('rating-dropdown');
+  if (!ratingDropdown) return;
+  
+  const ratings = [...new Set(movies
+    .map(movie => movie.rating)
+    .filter(rating => rating && rating !== 'NR')
+  )].sort();
+  
+  ratingDropdown.innerHTML = ratings.map(rating =>
+    `<a href="#" onclick="filterMovies('rating', '${rating}'); return false;">${rating}</a>`
+  ).join('');
+}
+
+// Filter movies based on type and value
+function filterMovies(filterType, filterValue) {
+  let filteredMovies = [...movies];
+
+  switch(filterType) {
+    case 'genre':
+      filteredMovies = filteredMovies.filter(movie => 
+        movie.genre && movie.genre.toLowerCase().includes(filterValue.toLowerCase())
+      );
+      break;
+    case 'year':
+      filteredMovies = filteredMovies.filter(movie => 
+        movie.year && movie.year === parseInt(filterValue)
+      );
+      break;
+    case 'rating':
+      filteredMovies = filteredMovies.filter(movie => 
+        movie.rating && movie.rating.toLowerCase() === filterValue.toLowerCase()
+      );
+      break;
+  }
+
+  renderFilteredMovies(filteredMovies);
+  hideAllDropdowns();
+}
+
+// Add home button functionality
+function addHomeButton() {
+  const homeBtn = document.querySelector('.home-btn');
+  if (homeBtn) {
+    homeBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      resetToHome();
+    });
+  }
+}
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -386,3 +697,11 @@ function renderSlideshowFromMovies() {
   }
   slideshow.innerHTML = html;
 }
+
+// Initial population of dropdowns and home button when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+  renderLatest();
+  renderSlideshowFromMovies();
+  populateDropdowns(); // Call the function to populate dropdowns
+  addHomeButton();
+});
